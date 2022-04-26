@@ -1,75 +1,21 @@
-.wrapper{
+.wrapper {}
+body{
+    font-family: Arial;
+    background-color: #ecf0f1;
+}
+.shellMainSide {
+    display: flex;
+    gap: 40px;
+}
 
+.main__container {
+    display: flex;
+    flex-direction: column;
+    gap: 19px;
 }
-.header{
-  background-color:rgb(91, 198, 91);
-  padding: 10px 0;
-  margin-bottom: 15px;
-}
-.header__container{
-  max-width: 1100px;
-  margin: 0 auto;
-}
-.header__list{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.header__logo{
-
-}
-.header__logo img{
-  width: 70px;
-  height: 70px;
-}
-.header__li{
-  font-size: 18px;
-  font-weight: 500;
-}
-.shellMainSide{
-  display: flex;
-  gap: 40px;
-}
-.main__container{
-  display: flex;
-  flex-direction: column;
-  gap: 19px;
-}
-.mainPhoto{
-
-}
-.mainPhoto img{
-  width: 1200px;
-  height: 300px;
-}
-.sideBar{
-  background-color: rgb(91, 198, 91);
-  width: 200px;
-  box-sizing: border-box;
-  padding: 50px 0px;
-}
-.sideBar__list{
-  font-size: 18px;
-  font-weight: 500;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  line-height: 30px;
-}
-.sideBar__list li{
-  cursor: pointer;
-}
-.mainProfile{
-  display: flex;
-  gap: 20px;
-}
-.mainProfile__img img{
-  height: 150px;
-  width: 150px;
-}
-.mainProfile__name{
-  margin-bottom: 10px;
-}
-.mainProfileTextStyle{
-  line-height: 24px;
+.title{
+    font-size: 50px;
+    font-weight: 500;
+    margin-bottom: 20px;
+    
 }

@@ -1,0 +1,54 @@
+.massages{
+    width: 80%;
+}
+.users{
+    background: white;
+    padding: 20px;
+}
+.user{
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr 1fr;
+    color: #212121;
+    font-size: 20px;
+    cursor: pointer;
+    margin-bottom: 10px;
+    line-height: 50px;
+}
+.userName{
+}
+.user img{
+    width:45px;
+    height:45px;
+    border-radius: 50%;
+    margin-right: 20px;
+}
+.userMassages{
+    background: white;
+    padding: 10px 20px;
+}
+.container{
+    display: grid;
+    grid-template-columns: 2fr 4fr 2fr;
+    gap: 15px;
+}
+.user a.activeUser{
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr 1fr;
+    color: #2b42c5;
+    font-size: 20px;
+    cursor: pointer;
+    margin-bottom: 10px;
+    line-height: 50px;
+}
+.massage{
+    font-size: 20px;
+    margin-bottom:10px;
+    color: #212121;
+}
+.flexContainer{
+}
+.textarea{
+    border:1px black solid;
+}
