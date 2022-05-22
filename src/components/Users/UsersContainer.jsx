@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import {fillUsers, downloadUsers,followUsers,unfollowUsers} from "../../redux/users-reducer";
+import {fillUsers, downloadUsers,followUsers,unfollowUsers, blocked} from "../../redux/users-reducer";
 import Users from "./Users";
 import React from "react";
 import { getUsers } from "../../redux/reselects";
@@ -10,7 +10,6 @@ class UsersContainer extends React.Component{
        return <Users  {...this.props} checkUsers={this.checkUsers}/>     
     }
 }
-
 const mapStateToProps = state=>{
     return{
         usersState: getUsers(state),
@@ -22,4 +21,4 @@ const mapStateToProps = state=>{
     }
 }
 
-export default connect(mapStateToProps,{fillUsers,downloadUsers,followUsers,unfollowUsers})(UsersContainer)
+export default connect(mapStateToProps,{blocked,fillUsers,downloadUsers,followUsers,unfollowUsers})(UsersContainer)

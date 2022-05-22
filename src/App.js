@@ -23,6 +23,7 @@ class App extends React.Component{
     this.props.inizializateReady(this.props.userData.isAuth, this.props.userData.id)
   }
   render(){
+    console.log('APP RENDER');
     if(!this.props.inizializated) return <div className='inizializating'></div> 
     return (
       <BrowserRouter>

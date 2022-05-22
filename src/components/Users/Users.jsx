@@ -15,6 +15,7 @@ const Users = props=>{
         let slicedPages = pages.slice( curPF, curPL);
         return(
             <div className={classes.users}>
+                <button onClick={()=> props.blocked(true,24122)}>BUTTOND</button>
             <div className="title">USERS</div>
             <div className={classes.numsContainer}>
             {slicedPages.map(p=>{
