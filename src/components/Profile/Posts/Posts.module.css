@@ -17,7 +17,7 @@
 .forms{
     margin-bottom: 20px;
 }
-.form textarea{
+.inputClass{
     background-color: rgba(117, 113, 113, 0.34);
     max-width: 60vw;
     padding: 5px 10px;
@@ -38,4 +38,30 @@
 .flexReverse{
     display:flex;
     flex-direction: column-reverse;
+}
+.errorPost{
+    border: 2px red solid;
+    padding: 10px;
+    display: inline-block;
+    margin: 0 0 0 10px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.errorLogin{
+    border: 2px red solid;
+    padding: 10px;
+    display: inline-block;
+    margin: 0 0 10px 0px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.postFlexContainer{
+    display: grid;
+    grid-template-columns: 2fr 0.4fr;
+    grid-template-rows: 1fr;
+    align-items: center;
 }

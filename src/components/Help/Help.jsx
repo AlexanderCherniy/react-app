@@ -1,11 +1,9 @@
-import HelpClass from './Help.module.css'
-
-let Help = props =>{
+import CssClass from './HelpCss.module.css'
+const Help = props =>{
     return(
-        <div className={HelpClass.photos}>
-            <div className={HelpClass.container}>
-                <div className='title'>Help</div>
-            </div>
+        <div>
+            <div className="title">Help</div>
+            <div className={CssClass.Help}></div>
         </div>
     )
 }

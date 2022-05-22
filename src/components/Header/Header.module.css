@@ -14,12 +14,15 @@
   align-items: center;
 }
 .header__logo{
-
+  display: flex;
+  align-items: center;
+  gap: 20px;
 }
 .header__logo img{
   width: 75px;
   height: 75px;
   cursor: pointer;
+  border-radius:50%;
 }
 .header__li{
   font-size: 18px;

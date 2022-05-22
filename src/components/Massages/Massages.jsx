@@ -1,5 +1,6 @@
 import mClas from './Massages.module.css'
 import React from "react";
+import { Navigate } from 'react-router-dom';
 let Massages = props =>{
     let createRef = React.createRef()
     let createPost = ()=>{
@@ -16,21 +17,17 @@ let Massages = props =>{
                         {props.shortUsers}
                     </div>
                     <div className={mClas.userMassages}>
+                        <div className={mClas.massage}>
                             {props.shortMassages}
-                        <div className={mClas.flexContainer}>
-                            <textarea className={mClas.textarea} ref={createRef} onChange={massageChange} value={props.newMassageText}/>
-                            <button onClick={createPost} type='send'>Send</button>
+                        </div>
+                        <div className={mClas.formsContainer}>
+                            <textarea placeholder='Напишите сообщение...' className={mClas.textarea}
+                            ref={createRef} onChange={massageChange} value={props.newMassageText}/>
+                            <button className={mClas.button} onClick={createPost} type='send'>Send</button>
                         </div>
                     </div>
                 </div>
         </main>
     )
 }
-
-    // let shortMassages = props.state.massages.map(massageEl=><Route path={massageEl.path} element={
-    // <UsersMassages massageAnother={massageEl.massageAnother} massageYour={massageEl.massageYour}/>}/>)
-
- {/* <Routes>
-  {shortMassages}
-  </Routes> */}
 export default Massages;

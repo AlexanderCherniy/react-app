@@ -1,0 +1,57 @@
+.photo{
+    width: 100px;
+    height: 100px;
+}
+.activeNum{
+    font-weight:bold;
+    margin-right: 5px;
+    font-size: 20px;
+}
+.noactiveNum{
+    margin-right: 5px;
+    font-size: 17px;
+}
+.numsContainer{
+    max-width: 230px;
+    overflow: hidden;
+    margin-bottom: 30px;
+}
+.unfollow{
+    padding: 5px 10px;
+    background-color: red;
+}
+.unfollowDisabled{
+    padding: 5px 10px;
+    background-color: red;
+    opacity: 0.9;
+}
+.follow{
+    padding: 5px 10px;
+    background-color: green;
+}
+.followDisabled{
+    padding: 5px 10px;
+    background-color: green;
+    opacity: 0.9;
+}
+.loaderSpin{
+    width:200px;
+    height:200px;
+    border-radius:50%;
+    border: 10px green solid;
+    border-right: 10px transparent solid;
+    animation: cyrcle 2s ease-in-out 0s infinite forwards;
+}
+@keyframes cyrcle {
+    0%{
+        border-right: 10px transparent solid;
+        transform:rotate(0deg);
+    }
+    50%{
+        border-right: 10px red solid;
+    }
+    100%{
+        border-right: 10px transparent solid;
+        transform:rotate(360deg);
+    }
+}

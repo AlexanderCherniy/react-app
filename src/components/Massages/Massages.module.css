@@ -8,12 +8,31 @@
 .user{
     display: grid;
     grid-template-rows: 1fr;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     color: #212121;
     font-size: 20px;
     cursor: pointer;
     margin-bottom: 10px;
+    align-items: center;
     line-height: 50px;
+    gap: 20px;
+}
+.user a.activeUser{
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
+    color: #2b42c5;
+    font-size: 20px;
+    cursor: pointer;
+    align-items: center;
+    margin-bottom: 10px;
+    line-height: 50px;
+    gap: 20px;
+}
+.online{
+    width:10px;
+    height:10px;
+    border-radius:50%;
 }
 .userName{
 }
@@ -21,34 +40,56 @@
     width:45px;
     height:45px;
     border-radius: 50%;
-    margin-right: 20px;
 }
 .userMassages{
     background: white;
-    padding: 10px 20px;
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    white-space: pre-wrap;
+}
+.massage{
+    flex: 1 1 auto;
+    padding: 0px 10px;
 }
 .container{
     display: grid;
     grid-template-columns: 2fr 4fr 2fr;
+    white-space: pre-wrap;
     gap: 15px;
-}
-.user a.activeUser{
-    display: grid;
-    grid-template-rows: 1fr;
-    grid-template-columns: 1fr 1fr;
-    color: #2b42c5;
-    font-size: 20px;
-    cursor: pointer;
-    margin-bottom: 10px;
-    line-height: 50px;
+    overflow: hidden;
 }
 .massage{
     font-size: 20px;
     margin-bottom:10px;
     color: #212121;
+    max-width: 600px;
+    overflow: hidden;
 }
-.flexContainer{
+.formsContainer{
+    padding: 10px;
+    border-radius: 0 0 4px 4px;
+    box-shadow: 0 1px 0 0 #ecf0f1,0 0 0 1px #ecf0f1;
+    background-color: #ffffff;
+    display: flex;
+    gap: 10px;
 }
 .textarea{
-    border:1px black solid;
+    padding: 10px;
+    border-radius: 6px;
+    border: solid 1px #555555;
+    max-width: 480px;
+    width: 100%;
+    height: 50px;
+    font-size: 15px;
+    resize: none;
+}
+.button{
+    background-color: #fff;
+    border-radius: 6px;
+    padding: 0px 20px;
+    text-transform: uppercase;
+    font-size: 15px;
+    border: solid 1px #555555;
 }

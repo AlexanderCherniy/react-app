@@ -1,17 +1,16 @@
-import Posts from './Posts/Posts';
+import AnonimGoLogin from '../../noc/noc';
 import PostsContainer from './Posts/PostsContainer';
 import incClass from './Profile.module.css';
 import ProfileInfo from './ProfileInfo/ProfileInfo.jsx';
-let Profile = (props)=>{
+let Profile = props=>{
     return(
       <main className={incClass.main}>
       <div className={incClass.container}>
-        <div className='title'>Profile</div>
-        <ProfileInfo state = {props.store.getState().profilePage}/>
+        <ProfileInfo {...props} state = {props.store.getState().profilePage}/>
       </div>
-      <PostsContainer store = {props.store}/>
+        <PostsContainer />
     </main>
     )
 }
-
-export default Profile
+const LoginProfileContainer = AnonimGoLogin(Profile,true);
+export default LoginProfileContainer

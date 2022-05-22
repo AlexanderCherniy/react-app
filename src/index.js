@@ -9,17 +9,9 @@ import reportWebVitals from "./reportWebVitals";
 
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-const refreshPath = (state)=>{
-  root.render(
-    <React.StrictMode>
-      <App store = {store} state={store.getState()} dispatch = {store.dispatch.bind(store)}/>
-    </React.StrictMode>
-  );
-  
-  reportWebVitals();
-}
-refreshPath(store.getState())
-store.subscribe(()=>{
-  let state = store.getState()
-  refreshPath(state)
-})
+root.render(
+  // <React.StrictMode>
+    <App store = {store}/>
+  // </React.StrictMode>
+);
+reportWebVitals();

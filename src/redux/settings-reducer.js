@@ -3,8 +3,10 @@ let initialState = {newText:'Settings'}
 let reducer = (state = initialState,action)=>{
     switch(action.type){
         case CHANGE_SETTINGS_TEXT:
-            state.newText = action.text;
-            return state
+            return{
+                ...state,
+                newText: action.text
+            }
         default: return state
     }
 }

@@ -1,5 +1,9 @@
-let ADD_POST = 'ADD-POST'
-let CHANGE_POST = 'CHANGE-POST'
+import { ProfileApi } from "../api/api-dal"
+
+const ADD_POST = 'ADD-POST'
+const CHANGE_POST = 'CHANGE-POST'
+const UPDATE_PROFILE = 'UPDATE_PROFILE'
+const SET_STATUS = 'CHANGE_STATUS'
 let initialState = {
     post:[
         {id:0,img:'https://img.freepik.com/free-vector/man-is-thinking-about-something-and-looking-for-a-solution_376167-16.jpg',comment:'Какие кроссовки купить?'},
@@ -7,33 +11,62 @@ let initialState = {
         {id:2,img:'https://stihi.ru/pics/2017/02/05/6700.jpg',comment:'Я думаю ададис лучше!'},
         {id:3,img:'https://stihi.ru/pics/2017/02/05/6700.jpg',comment:'Вы о чем? '},
     ],
-    newPost:'zxcVlad1000-7?',
+    newPost:'',
     profile:[
-        {Id:0,favoriteImg:'https://bellyupsports.com/wp-content/uploads/2020/07/merlin_166319154_b92292b2-1a0f-437d-a694-8a97b586227d-mobileMasterAt3x.jpg',
-         photo:'https://teatral-online.ru/i/ph/xl/xl_20191211150357.jpg',name:'Dmitry A.',dateBirth:'Date Of Birth: 11 February',city:'City: Moscow',
-         favoriteWebSite: 'Web Site: https://google.com'
-        }
-    ]
+    ],
+    statusText: 'Напишите о себе',
 }
 let reducer = (state = initialState,action)=>{
     switch(action.type){
-        case ADD_POST:
+        case ADD_POST:{
+            let IdLast = state.post[state.post.length - 1].id
             let newPost = {
-                id:4,
+                id:IdLast + 1,
                 img:'https://stihi.ru/pics/2017/02/05/6700.jpg',
                 comment : state.newPost,
             }
-            state.post.push(newPost)
+            return {
+                ...state,
+                post : [...state.post,newPost],
+            }
+        }
+        case CHANGE_POST: {
+            return{
+                ...state,
+                newPost:action.text
+            }
+        }
+        case UPDATE_PROFILE:{
+            return{
+                ...state,
+                profile: [action.newProfile]
+            }
+        }
+        case SET_STATUS:{
+            return{
+                ...state,
+                statusText: action.newStatusText
+            }
+        }
+        default:{
             return state
-        case CHANGE_POST: 
-            state.newPost = action.text
-            return state
-        default: return state
+        }
     }
 }
 export let addPostsCreateAction = ()=>({type: ADD_POST})
-export let changePostsCreateAction = (text)=>({
-    type : CHANGE_POST,
-    text:text
-})
+export let changePostsCreateAction = (text)=>({type : CHANGE_POST, text})
+export let updateProfile = (newProfile)=>({type:UPDATE_PROFILE, newProfile})
+export let changeStatus = (newStatusText)=>({type:SET_STATUS, newStatusText})
+export let getStatus = (id)=> dispatch=>{
+    ProfileApi.getStatus(id).then(response => {
+        dispatch(changeStatus(response.data))
+    })
+}
+export let updateStatus = (status)=> dispatch=>{
+    ProfileApi.updateStatus(status).then(response => {
+        if(response.data.resultCode === 0){
+            dispatch(changeStatus(status))
+        }
+    })
+}
 export default reducer

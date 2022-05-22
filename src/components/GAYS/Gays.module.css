@@ -1,0 +1,36 @@
+.user{
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+
+}
+.photo{
+    width: 75px;
+    height: 75px;
+    margin-right: 10px;
+}
+.Id{
+    font-size: 30px;
+    font-weight: 600;
+    margin-right: 10px;
+}
+.name{
+    font-size: 20px;
+    font-weight: 600;
+    margin-right: 10px;
+}
+.follow{
+    background-color: green;
+    padding: 10px;
+}
+.unfollow{
+    background-color: red;
+    padding: 10px;
+}
+.activeNum{
+    font-weight:bold;
+    font-size: 23px;
+}
+.noactiveNum{
+    font-size: 19px;
+}
