@@ -1,8 +1,8 @@
 import './App.css';
 import './Nullstyle.css';
 import HeaderContainer from './components/Header/HeaderContainer';
-import Music from './components/Music/Music';
-import Games from './components/Games/Games';
+// import Music from './components/Music/Music';
+// import Games from './components/Games/Games';
 import Help from './components/Help/Help';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import MassagesContainer from './components/Massages/MassagesContainer';
@@ -34,10 +34,10 @@ class App extends React.Component{
           <Routes>
             <Route path='/profile/:userId' element={<ProfileContainer store = {this.props.store}/>}/>
             <Route path='/profile' element={<ProfileContainer store = {this.props.store}/>}/>
-            <Route path='/music' element={<Music/>}/>
+            <Route path='/music' element={<div>Music</div>}/>
             <Route path='/friends' element={<FriendsContainer/>}/>
             <Route path='/gays' element={<GaysContainer/>}/>
-            <Route path='/games' element={<Games/>}/>
+            <Route path='/games' element={<div>Games</div>}/>
             <Route path='/massages/*' element={<MassagesContainer store = {this.props.store}/>}/>
             <Route path='/help' element={<Help/>}/>
             <Route path='/settings' element={<SettingsContainer store = {this.props.store}/>}/>
