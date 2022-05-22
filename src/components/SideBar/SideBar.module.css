@@ -1,0 +1,36 @@
+.sideBar {
+  background: #2b3f4f;
+  width: 200px;
+  box-sizing: border-box;
+  padding: 50px 0px;
+}
+
+.sideBar__list {
+  font-size: 18px;
+  font-weight: 500;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sideBar__list li {
+}
+.item{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.item a {
+  color: #b0c4d4;
+  text-transform: uppercase;
+  cursor: pointer;
+  width: 100%;
+  line-height: 45px;
+  display: flex;
+  justify-content: center;
+}
+.item a.activeLink {
+  background: #24323c;
+  color: white;
+  width: 100%;
+}

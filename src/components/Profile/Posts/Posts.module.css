@@ -1,0 +1,41 @@
+.posts{
+    margin: 30px 0;
+}
+.container{
+    max-width: 900px;
+}
+.title{
+    font-size: 30px;
+    font-weight: 500;
+}
+.form{
+    margin: 10px 0;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+.forms{
+    margin-bottom: 20px;
+}
+.form textarea{
+    background-color: rgba(117, 113, 113, 0.34);
+    max-width: 60vw;
+    padding: 5px 10px;
+    height: 60px;
+    width: 100%;
+    font-size: 20px;
+    border: 1px solid rgba(117, 113, 113);
+}
+.buttonShell button{
+    background-color:rgb(91, 198, 91);
+    padding: 15px 20px;
+    font-size: 20px;
+    max-height: 60px;
+    height: 100%;
+    color: white;
+    text-transform: uppercase;
+}
+.flexReverse{
+    display:flex;
+    flex-direction: column-reverse;
+}
