@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import {useLocation, useNavigate, useParams} from 'react-router-dom'
 import AnonimGoLogin from '../../noc/noc'
 import { compose } from 'redux';
+import { getMyUserProfile } from '../../redux/reselects';
 
 let WithRouter = ()=>{
     let ComponentWithRouterProp = props =>{
@@ -43,7 +44,7 @@ class ProfileContainer extends React.Component{
 }
 const mapStateToProps = state =>{
     return{
-        userProfile : state.profilePage.profile,
+        userProfile : getMyUserProfile(state),
         userData: state.auth,
         statusText: state.profilePage.statusText
     }

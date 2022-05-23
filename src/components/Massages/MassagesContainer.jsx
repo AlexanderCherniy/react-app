@@ -6,6 +6,7 @@ import Massages from './Massages';
 import { connect } from 'react-redux';
 import AnonimGoLogin from '../../noc/noc'
 import { compose } from 'redux';
+import { getMassages } from '../../redux/reselects';
 const Users = props =>{
     let online = props.online
     online === 'true' ? online = '#81b53e' : online = '#f0ad4e'
@@ -25,12 +26,12 @@ const UsersMassages = props =>{
             {props.massage}
         </div>
     )
-} 
+}
 const mapStateToProps = (state)=>{
     return{
         shortUsers : state.massagesPage.users.map(user => <Users key={user.userId} online = {user.online}
                      userPhoto = {user.userPhoto} userId = {user.userId} userName={user.userName}/>),
-        shortMassages : state.massagesPage.massages.map(massage => <UsersMassages key={massage.Id} massage = {massage.massage}/>),
+        shortMassages : getMassages(state).map(massage => <UsersMassages key={massage.Id} massage = {massage.massage}/>),
         newMassageText : state.massagesPage.newMassageText,
     }
 }
