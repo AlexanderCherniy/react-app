@@ -2,7 +2,7 @@
   "name": "react-first",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://alexandercherniy.github.io/react-app",
+  "homepage": "https://alexandercherniy.github.io/Lite",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^12.1.5",
