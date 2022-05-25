@@ -1,9 +1,9 @@
 import { ProfileApi } from "../api/api-dal"
 
-const ADD_POST = 'ADD-POST'
-const CHANGE_POST = 'CHANGE-POST'
-const UPDATE_PROFILE = 'UPDATE_PROFILE'
-const SET_STATUS = 'CHANGE_STATUS'
+const ADD_POST = 'profile-reducer/ADD-POST'
+const CHANGE_POST = 'profile-reducer/CHANGE-POST'
+const UPDATE_PROFILE = 'profile-reducer/UPDATE_PROFILE'
+const SET_STATUS = 'profile-reducer/CHANGE_STATUS'
 let initialState = {
     post:[
         {id:0,img:'https://img.freepik.com/free-vector/man-is-thinking-about-something-and-looking-for-a-solution_376167-16.jpg',comment:'Какие кроссовки купить?'},
@@ -53,20 +53,18 @@ let reducer = (state = initialState,action)=>{
         }
     }
 }
-export let addPostsCreateAction = ()=>({type: ADD_POST})
-export let changePostsCreateAction = (text)=>({type : CHANGE_POST, text})
-export let updateProfile = (newProfile)=>({type:UPDATE_PROFILE, newProfile})
-export let changeStatus = (newStatusText)=>({type:SET_STATUS, newStatusText})
-export let getStatus = (id)=> dispatch=>{
-    ProfileApi.getStatus(id).then(response => {
-        dispatch(changeStatus(response.data))
-    })
+export const addPostsCreateAction = ()=>({type: ADD_POST})
+export const changePostsCreateAction = (text)=>({type : CHANGE_POST, text})
+export const updateProfile = (newProfile)=>({type:UPDATE_PROFILE, newProfile})
+export const changeStatus = (newStatusText)=>({type:SET_STATUS, newStatusText})
+export const getStatus = (id)=> async dispatch=>{
+    const response = await ProfileApi.getStatus(id)
+    dispatch(changeStatus(response.data))
 }
-export let updateStatus = (status)=> dispatch=>{
-    ProfileApi.updateStatus(status).then(response => {
-        if(response.data.resultCode === 0){
-            dispatch(changeStatus(status))
-        }
-    })
+export const updateStatus = (status)=> async dispatch=>{
+    const response = await ProfileApi.updateStatus(status)
+    if(response.data.resultCode === 0){
+        dispatch(changeStatus(status))
+    }
 }
 export default reducer

@@ -1,32 +1,32 @@
 import mClas from './Massages.module.css'
 import React from "react";
 import { Navigate } from 'react-router-dom';
-let Massages = props =>{
+let Massages = props => {
     let createRef = React.createRef()
-    let createPost = ()=>{
+    let createPost = () => {
         props.createPost()
     }
-    let massageChange = ()=>{
+    let massageChange = () => {
         let text = createRef.current.value
         props.massageChange(text)
     }
-    return(
+    return (
         <main className={mClas.massages}>
-                <div className={mClas.container}>
-                    <div className={mClas.users}>
-                        {props.shortUsers}
+            <div className={mClas.container}>
+                <div className={mClas.users}>
+                    {props.shortUsers}
+                </div>
+                <div className={mClas.userMassages}>
+                    <div className={mClas.massage}>
+                        {props.shortMassages}
                     </div>
-                    <div className={mClas.userMassages}>
-                        <div className={mClas.massage}>
-                            {props.shortMassages}
-                        </div>
-                        <div className={mClas.formsContainer}>
-                            <textarea placeholder='Напишите сообщение...' className={mClas.textarea}
-                            ref={createRef} onChange={massageChange} value={props.newMassageText}/>
-                            <button className={mClas.button} onClick={createPost} type='send'>Send</button>
-                        </div>
+                    <div className={mClas.formsContainer}>
+                        <textarea placeholder='Напишите сообщение...' className={mClas.textarea}
+                            ref={createRef} onChange={massageChange} value={props.newMassageText} />
+                        <button className={mClas.button} onClick={createPost} type='send'>Send</button>
                     </div>
                 </div>
+            </div>
         </main>
     )
 }

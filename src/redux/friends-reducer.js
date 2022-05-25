@@ -1,8 +1,8 @@
-const FIND_USER = 'FIND-USER'
-const TOGGLE_FOLLOW_USER = 'TOGGLE_FOLLOW_USER'
-const USERS = 'USERS'
-const USERS_VIEWER = 'USERS_VIEWER' 
-const TOTAL_COUNT = 'TOTAL_COUNT' 
+const FIND_USER = 'friends-reducer/FIND-USER'
+const TOGGLE_FOLLOW_USER = 'friends-reducer/TOGGLE_FOLLOW_USER'
+const USERS = 'friends-reducer/USERS'
+const USERS_VIEWER = 'friends-reducer/USERS_VIEWER' 
+const TOTAL_COUNT = 'friends-reducer/TOTAL_COUNT' 
 let initialState = {
     users:[],
     findUserText:'FIND-USERSSS',

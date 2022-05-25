@@ -12,5 +12,5 @@ let Profile = props=>{
     </main>
     )
 }
-const LoginProfileContainer = AnonimGoLogin(Profile,true);
+const LoginProfileContainer = AnonimGoLogin(Profile);
 export default LoginProfileContainer

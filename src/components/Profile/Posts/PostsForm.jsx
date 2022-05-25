@@ -1,7 +1,7 @@
 import incClass from './Posts.module.css';
 import React from "react";
 import { validatePost } from '../../../validate/validate';
-import {ErrorMessage,Form, Field, Formik} from "formik"
+import {Form, Field, Formik} from "formik"
 import { Textarea } from '../../../Forms/Forms';
 const PostsForm = (props)=>{
     return <Formik initialValues={{
@@ -10,7 +10,8 @@ const PostsForm = (props)=>{
     validate={validatePost}
     onSubmit = {values=>{
         props.changeNewPost(values.newPost)
-        values.newPost !== '' ? props.addPostsProps(props.newPost) : console.log()
+        props.addPosts(props.newPost)
+        values.newPost = ''
     }}
     >
       <Form> 

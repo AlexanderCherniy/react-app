@@ -1,7 +1,7 @@
-const TOGGLE_FOLLOW = 'TOGGLE-FOLLOW'
-const USERS = 'USERS'
-const TOTAL_COUNT = 'TOTAL_COUNT'
-const PAGE_NUMS = 'PAGE_NUMS'
+const TOGGLE_FOLLOW = 'gays-reducer/TOGGLE-FOLLOW'
+const USERS = 'gays-reducer/USERS'
+const TOTAL_COUNT = 'gays-reducer/TOTAL_COUNT'
+const PAGE_NUMS = 'gays-reducer/PAGE_NUMS'
 let initialState = {
     users:[],
     totalCount:0,

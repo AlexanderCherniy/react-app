@@ -6,9 +6,9 @@ const mapStateToProps = state =>{
         newText : state.settings.newText
     }
 }
-const mapDispatchToProps = dispatch =>{
-    return{
-        changeSettings: text=> dispatch(changeSettingsAction(text)),
+const mapDispatchToProps = dispatch => {
+    return {
+        changeSettings: text => dispatch(changeSettingsAction(text)),
     }
 }
 const SettingsContainer = connect(mapStateToProps, mapDispatchToProps)(Settings)

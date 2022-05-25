@@ -1,7 +1,7 @@
-const ADD_MASSAGE = 'massages-reducer/ADD-MASSAGE'
-const CHANGE_MASSAGE = 'massages-reducer/CHANGE-MASSAGE'
-const ADD_USERS = "massages-reducer/ADD_USERS"
-let initialState = {
+import { massageActionCreator, massageChangeActionCreator } from "./massages-reducer"
+import massagesReducer from './massages-reducer'
+import { newUsers } from "./friends-reducer"
+let state = {
     users:[
         {userId:1 ,userName:'Svetlana',userPhoto:'https://i.pinimg.com/736x/1d/1e/47/1d1e471310a3b0e6f3a154fc6d71b323.jpg', online:'true'},
         {userId:2 ,userName:'Vlad',userPhoto:'https://sunmag.me/wp-content/uploads/2020/08/sunmag-2-kachestva-nastoyashchego-muzhchiny.jpg',
@@ -28,41 +28,20 @@ let initialState = {
     ],
     newMassageText:''
 }
-let reducer = (state = initialState,action)=>{
-    switch(action.type){
-        case ADD_MASSAGE: {
-            let massagesId = state.massages
-            let IdLast = massagesId[massagesId.length - 1].Id
-            let newMassage = {Id: IdLast + 1, massage: state.newMassageText}
-            return{
-                ...state,
-                massages : [...state.massages,newMassage],
-                newMassageText:''
-            }
-        }
-        case CHANGE_MASSAGE: {
-            return{
-                ...state,
-                newMassageText: action.MassageText
-            }
-        }
-        case ADD_USERS:{
-            return{
-                ...state,
-                users: action.newUsers
-            }
-        }
-        default: {
-            return state
-        }
-    }
-}
-export let massageChangeActionCreator = (text)=>{
-    return ({
-        type:CHANGE_MASSAGE,
-        MassageText:text
-    })
-}
-export const addUsers = (newUsers)=>({type:ADD_USERS, newUsers})
-export let massageActionCreator = ()=>({type:ADD_MASSAGE})
-export default reducer
+
+test("input massages changed", ()=>{
+    const action = massageChangeActionCreator("HI, HOW ARE YOU!?")
+    const newState = massagesReducer(state,action)
+    expect(newState.newMassageText).toBe("HI, HOW ARE YOU!?")
+})
+test("massages added", ()=>{
+    state.newMassageText = 'as'
+    const action = massageActionCreator()
+    const newState = massagesReducer(state,action)
+    expect(newState.massages.length).toBe(state.massages.length + 1)
+})
+test("check users test", ()=>{
+    const action = newUsers(state.users)
+    const newState = massagesReducer(state,action)
+    expect(newState.users.length).toBe(state.users.length)
+})

@@ -1,57 +1,57 @@
 import Profile from './Profile';
-import React from 'react';
-import {getStatus, updateProfile, updateStatus} from '../../redux/profile-reducer'
+import React, { useEffect } from 'react';
+import { getStatus, updateProfile, updateStatus } from '../../redux/profile-reducer'
 import * as axios from 'axios';
 import { connect } from 'react-redux';
-import {useLocation, useNavigate, useParams} from 'react-router-dom'
+import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import AnonimGoLogin from '../../noc/noc'
 import { compose } from 'redux';
 import { getMyUserProfile } from '../../redux/reselects';
 
-let WithRouter = ()=>{
-    let ComponentWithRouterProp = props =>{
+let WithRouter = () => {
+    let ComponentWithRouterProp = props => {
         const location = useLocation()
         const navigate = useNavigate()
         const params = useParams()
-        return(<ProfileContainer {...props} router={{location,navigate,params}}/>)
+        return <ProfileContainer {...props} router={{ location, navigate, params }} />
     }
     return ComponentWithRouterProp
 }
-class ProfileContainer extends React.Component{ 
-    isMe = false
-    componentDidUpdate(){
-        let userId = this.props.router.params.userId
-            if(!userId && this.isMe === false){
-                this.isMe = true
-                userId = this.props.userData.id
-                axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`).then(response=>
-                this.props.updateProfile(response.data)
-            ) 
-        }
-    }
-    componentWillUnmount = ()=> this.isMe = false
-    componentDidMount(){
-        let userId = this.props.router.params.userId
-        if(!userId) userId = this.props.userData.id
-        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`).then(response=>
-            this.props.updateProfile(response.data)
-        )
+const ProfileContainer = props => {
+    let isMe = false
+    let userId = props.router.params.userId
 
-    }
-    render(){
-        return <Profile {...this.props}/>
-    }
+    useEffect(() => {
+        if (!userId) userId = props.userData.id
+        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`).then(response =>
+            props.updateProfile(response.data)
+        )
+        if (isMe === true) {
+            isMe = false
+        }
+    }, [userId, isMe])
+
+    useEffect(() => {
+        if (!userId && isMe === false) {
+            isMe = true
+            userId = props.userData.id
+            axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`).then(response =>
+                props.updateProfile(response.data)
+            )
+        }
+    }, [userId])
+    return <Profile {...props} />
 }
-const mapStateToProps = state =>{
-    return{
-        userProfile : getMyUserProfile(state),
+const mapStateToProps = state => {
+    return {
+        userProfile: getMyUserProfile(state),
         userData: state.auth,
         statusText: state.profilePage.statusText
     }
 }
 
 export default compose(
-    connect(mapStateToProps,{updateProfile,getStatus,updateStatus}),
+    connect(mapStateToProps, { updateProfile, getStatus, updateStatus }),
     WithRouter,
     AnonimGoLogin
 )(ProfileContainer)

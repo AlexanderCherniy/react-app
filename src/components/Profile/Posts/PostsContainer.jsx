@@ -9,13 +9,8 @@ let mapStateToProps = (state)=>{
 }
 let mapDispatchToProps = (dispatch)=>{
     return{
-        changeNewPost : (text)=>{
-            dispatch(changePostsCreateAction(text))
-        },
-        addPosts : ()=>{
-            dispatch(addPostsCreateAction())
-            // dispatch(changePostsCreateAction(""))
-        }
+        changeNewPost : (text)=> dispatch(changePostsCreateAction(text)),
+        addPosts : ()=> dispatch(addPostsCreateAction())
     }
 }
 const PostsContainer = connect(mapStateToProps,mapDispatchToProps)(Posts)

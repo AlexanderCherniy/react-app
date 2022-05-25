@@ -1,6 +1,6 @@
 import { setProfile } from "./auth-reducer"
 
-const INIZIALIZATION = 'INIZIALIZATION'
+const INIZIALIZATION = 'app-reducer/INIZIALIZATION'
 let initialState = {
     inizializated: false
 }

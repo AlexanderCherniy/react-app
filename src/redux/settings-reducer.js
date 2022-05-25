@@ -1,4 +1,4 @@
-let CHANGE_SETTINGS_TEXT = 'CHANGE-SETTINGS-TEXT'
+let CHANGE_SETTINGS_TEXT = 'settings-reducer/CHANGE-SETTINGS-TEXT'
 let initialState = {newText:'Settings'}
 let reducer = (state = initialState,action)=>{
     switch(action.type){

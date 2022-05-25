@@ -1,9 +1,9 @@
 import { AuthApi, UsersApi } from "../api/api-dal"
 
-const GET_DATA = 'GET_DATA'
-const AUTH_TOGGLE = 'AUTH_TOGGLE'
-const SET_PHOTO = 'SET_PHOTO'
-const SET_ERROR = 'SET_ERROR'
+const GET_DATA = 'auth-reducer/GET_DATA'
+const AUTH_TOGGLE = 'auth-reducer/AUTH_TOGGLE'
+const SET_PHOTO = 'auth-reducer/SET_PHOTO'
+const SET_ERROR = 'auth-reducer/SET_ERROR'
 let initialState = {
     email:null,
     id:null,

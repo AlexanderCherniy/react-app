@@ -10,6 +10,7 @@ export const validatePost = values => {
     return errors;
 };
 export const validateLogin = values => {
+  debugger
     const errors = {};
     if (!values.login) {
       errors.login = 'Login Request!';

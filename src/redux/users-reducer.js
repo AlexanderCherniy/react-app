@@ -1,10 +1,10 @@
 import { UsersApi } from "../api/api-dal"
-const TOGGLE_FOLLOWER = 'TOGGLE-FOLLOWER'
-const USERS = 'USERS'
-const PAGES_NUMS = 'PAGES_NUMS'
-const TOTAL_COUNT = 'TOTAL_COUNT'
-const LOADER = 'LOADER'
-const IS_BLOCKED = 'IS_BLOCKED'
+const TOGGLE_FOLLOWER = 'users-reducer/TOGGLE-FOLLOWER'
+const USERS = 'users-reducer/USERS'
+const PAGES_NUMS = 'users-reducer/PAGES_NUMS'
+const TOTAL_COUNT = 'users-reducer/TOTAL_COUNT'
+const LOADER = 'users-reducer/LOADER'
+const IS_BLOCKED = 'users-reducer/IS_BLOCKED'
 let initialState = {
     users:[],
     totalCount: 0,
@@ -50,43 +50,38 @@ export const setTotalUsersCount = count=> ({type:TOTAL_COUNT, count})
 export const loader = (loader)=> ({type:LOADER,loader})
 export const blocked = (isBlocked,userId)=> ({type:IS_BLOCKED,isBlocked,userId})
 export const fillUsers = (nums,pageSize)=>{
-    return (dispatch)=>{
+    return async dispatch=>{
         dispatch(pagesNums(nums))
         dispatch(users(""))
         dispatch(loader(true))
-        UsersApi.getUsers(nums, pageSize).then(data=>{
-            dispatch(loader(false))
-            dispatch(users(data.items))
-        })
+        const data = await UsersApi.getUsers(nums, pageSize)
+        dispatch(loader(false))
+        dispatch(users(data.items))
     }
 }
 export const downloadUsers = (usersLength,currentPage,pageSize)=>{
-    return dispatch=>{
+    return async dispatch=>{
         if(usersLength === 0){
-            UsersApi.getUsers(currentPage,pageSize).then(data=>{
-                dispatch(loader(false))
-                dispatch(users(data.items))
-                dispatch(setTotalUsersCount(data.totalCount))
-            }
-        )
-    }}
+            const data = await UsersApi.getUsers(currentPage,pageSize)
+            dispatch(loader(false))
+            dispatch(users(data.items))
+            dispatch(setTotalUsersCount(data.totalCount))
+        }
+    }
 }
-export const followUsers = (id)=>{
-    return dispatch =>{
+
+const followOrUnfollow = async (dispatch,followOrUnfollowMethod,id)=>{
+    let apiMethod = followOrUnfollowMethod
     dispatch(blocked(true,id))
-    UsersApi.postFollowUsers(id).then(()=>{
-        dispatch(toggleFollow(id))
-        dispatch(blocked(false,id))
-    })
+    await apiMethod(id)
+    dispatch(toggleFollow(id))
+    dispatch(blocked(false,id))
 }
+
+export const followUsers = (id)=> dispatch=>{
+    followOrUnfollow(dispatch,UsersApi.postFollowUsers, id)
 }
-export const unfollowUsers = (id)=>{
-    return dispatch =>{
-    dispatch(blocked(true,id))
-    UsersApi.deleteFollowUsers(id).then(()=>{
-        dispatch(toggleFollow(id))
-        dispatch(blocked(false,id))
-    })  
-}
+export const unfollowUsers = (id)=> dispatch=>{
+    followOrUnfollow(dispatch,UsersApi.deleteFollowUsers, id)
 }
 export default reducer

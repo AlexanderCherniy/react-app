@@ -1,12 +1,12 @@
 import SettingsClass from './Settings.module.css'
 import React from 'react'
-let Settings = props =>{
+let Settings = props => {
     let createRef = React.createRef()
-    let changeSettingsFunc = ()=>{
+    let changeSettingsFunc = () => {
         let text = createRef.current.value
         props.changeSettings(text)
     }
-    return(
+    return (
         <div className={SettingsClass.photos}>
             <div className={SettingsClass.container}>
                 <div className='title'>Settings</div>
