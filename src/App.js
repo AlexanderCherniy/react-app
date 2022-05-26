@@ -2,7 +2,7 @@ import './App.css';
 import './Nullstyle.css';
 import HeaderContainer from './components/Header/HeaderContainer';
 import Help from './components/Help/Help';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { HashRouter, Route, Routes } from 'react-router-dom';
 import SettingsContainer from './components/Settings/SettingsContainer';
 import SideBarContainer from './components/SideBar/SideBarContainer';
 import FriendsContainer from './components/Friends/FriendsContainer';
@@ -73,11 +73,11 @@ const AppContainer = compose(
 )(App)
 const MainApp = props =>{
   return(
-    <BrowserRouter basename={process.env.NODE_ENV}>
+    <HashRouter>
       <Provider store={store}>
         <AppContainer store = {store}/>
       </Provider>
-    </BrowserRouter>
+    </HashRouter>
   )
 }
 export default MainApp
