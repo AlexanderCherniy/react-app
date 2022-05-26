@@ -46,7 +46,6 @@ const App = props =>{
               <MassagesContainer store = {props.store}/>
             </React.Suspense>
             }/>
-            {/* <Route path='/massages/*' element={LazyLoaderHOC(<MassagesContainer/>)}/> */}
             <Route path='/help' element={<Help/>}/>
             <Route path='/settings' element={<SettingsContainer store = {props.store}/>}/>
             <Route path='/users' element={
