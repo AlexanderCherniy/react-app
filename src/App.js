@@ -73,7 +73,7 @@ const AppContainer = compose(
 )(App)
 const MainApp = props =>{
   return(
-    <BrowserRouter>
+    <BrowserRouter basename={process.env.NODE_ENV}>
       <Provider store={store}>
         <AppContainer store = {store}/>
       </Provider>
