@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.css": "/AlexanderCherniy/react-app/static/css/main.25f3a99f.css",
-    "main.js": "/AlexanderCherniy/react-app/static/js/main.db69f607.js",
-    "static/css/977.0c10004e.chunk.css": "/AlexanderCherniy/react-app/static/css/977.0c10004e.chunk.css",
-    "static/js/977.d9281fc3.chunk.js": "/AlexanderCherniy/react-app/static/js/977.d9281fc3.chunk.js",
-    "static/js/787.92609f8e.chunk.js": "/AlexanderCherniy/react-app/static/js/787.92609f8e.chunk.js",
-    "index.html": "/AlexanderCherniy/react-app/index.html",
-    "main.25f3a99f.css.map": "/AlexanderCherniy/react-app/static/css/main.25f3a99f.css.map",
-    "main.db69f607.js.map": "/AlexanderCherniy/react-app/static/js/main.db69f607.js.map",
-    "977.0c10004e.chunk.css.map": "/AlexanderCherniy/react-app/static/css/977.0c10004e.chunk.css.map",
-    "977.d9281fc3.chunk.js.map": "/AlexanderCherniy/react-app/static/js/977.d9281fc3.chunk.js.map",
-    "787.92609f8e.chunk.js.map": "/AlexanderCherniy/react-app/static/js/787.92609f8e.chunk.js.map"
+    "main.css": "/react-app/static/css/main.25f3a99f.css",
+    "main.js": "/react-app/static/js/main.5259abc9.js",
+    "static/css/977.0c10004e.chunk.css": "/react-app/static/css/977.0c10004e.chunk.css",
+    "static/js/977.d9281fc3.chunk.js": "/react-app/static/js/977.d9281fc3.chunk.js",
+    "static/js/787.92609f8e.chunk.js": "/react-app/static/js/787.92609f8e.chunk.js",
+    "index.html": "/react-app/index.html",
+    "main.25f3a99f.css.map": "/react-app/static/css/main.25f3a99f.css.map",
+    "main.5259abc9.js.map": "/react-app/static/js/main.5259abc9.js.map",
+    "977.0c10004e.chunk.css.map": "/react-app/static/css/977.0c10004e.chunk.css.map",
+    "977.d9281fc3.chunk.js.map": "/react-app/static/js/977.d9281fc3.chunk.js.map",
+    "787.92609f8e.chunk.js.map": "/react-app/static/js/787.92609f8e.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.25f3a99f.css",
-    "static/js/main.db69f607.js"
+    "static/js/main.5259abc9.js"
   ]
 }
