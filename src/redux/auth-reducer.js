@@ -1,4 +1,4 @@
-import { AuthApi, UsersApi } from "../api/api-dal"
+import { AuthApi, ProfileApi } from "../api/api-dal"
 
 const GET_DATA = 'auth-reducer/GET_DATA'
 const AUTH_TOGGLE = 'auth-reducer/AUTH_TOGGLE'
@@ -56,7 +56,7 @@ export const setProfile = (isAuth,id)=> dispatch=>{
         dispatch(authToggle(true))
         setTimeout(()=>{
           if(isAuth===true){
-            UsersApi.getUserPhoto(id).then(data=>{
+            ProfileApi.getProfile(id).then(data=>{
                 dispatch(setPhoto(data.photos.small))
               })
             }

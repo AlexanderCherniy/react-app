@@ -11,11 +11,6 @@ export const UsersApi ={
     deleteFollowUsers : (id)=> defaultAxios.delete(`follow/${id}`).then(response => response) ,
 
     postFollowUsers : (id)=> defaultAxios.post(`follow/${id}`,{}).then(response => response) ,
-
-    getUserPhoto : (id)=>{
-        console.warn('Use Profile Api PLS:)')
-        defaultAxios.get(`profile/${id}`).then(response=>response.data)
-    }
 }
 
 export const ProfileApi = {
