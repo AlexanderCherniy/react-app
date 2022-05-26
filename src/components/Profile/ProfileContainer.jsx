@@ -7,6 +7,7 @@ import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import AnonimGoLogin from '../../noc/noc'
 import { compose } from 'redux';
 import { getMyUserProfile } from '../../redux/reselects';
+import { ProfileApi } from '../../api/api-dal';
 
 let WithRouter = () => {
     let ComponentWithRouterProp = props => {
@@ -23,8 +24,8 @@ const ProfileContainer = props => {
 
     useEffect(() => {
         if (!userId) userId = props.userData.id
-        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`).then(response =>
-            props.updateProfile(response.data)
+        ProfileApi.getProfile(userId).then(data =>
+            props.updateProfile(data)
         )
         if (isMe === true) {
             isMe = false
@@ -35,8 +36,8 @@ const ProfileContainer = props => {
         if (!userId && isMe === false) {
             isMe = true
             userId = props.userData.id
-            axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`).then(response =>
-                props.updateProfile(response.data)
+            ProfileApi.getProfile(userId).then(data =>
+                props.updateProfile(data)
             )
         }
     }, [userId])

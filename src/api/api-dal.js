@@ -14,7 +14,7 @@ export const UsersApi ={
 }
 
 export const ProfileApi = {
-    getProfile: (id)=> defaultAxios.get(`profile/${id}`).then(response=>response.data) ,
+    getProfile: (userId)=> defaultAxios.get(`profile/${userId}`).then(response=>response.data) ,
     getStatus: (id)=> defaultAxios.get(`profile/status/${id}`),
     updateStatus: (status)=> defaultAxios.put(`profile/status`,{status}),
 }
