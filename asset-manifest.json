@@ -1,11 +1,11 @@
 {
   "files": {
     "main.css": "/react-app/static/css/main.86fb5747.css",
-    "main.js": "/react-app/static/js/main.15b8c05b.js",
+    "main.js": "/react-app/static/js/main.8044a22a.js",
     "static/css/977.0c10004e.chunk.css": "/react-app/static/css/977.0c10004e.chunk.css",
     "static/js/977.95b448c6.chunk.js": "/react-app/static/js/977.95b448c6.chunk.js",
-    "static/css/336.976cc1be.chunk.css": "/react-app/static/css/336.976cc1be.chunk.css",
-    "static/js/336.85bc779f.chunk.js": "/react-app/static/js/336.85bc779f.chunk.js",
+    "static/css/846.f6dc0d22.chunk.css": "/react-app/static/css/846.f6dc0d22.chunk.css",
+    "static/js/846.36ec54a5.chunk.js": "/react-app/static/js/846.36ec54a5.chunk.js",
     "static/css/839.ce3aaee7.chunk.css": "/react-app/static/css/839.ce3aaee7.chunk.css",
     "static/js/839.c0abdf17.chunk.js": "/react-app/static/js/839.c0abdf17.chunk.js",
     "static/css/731.9b8ab484.chunk.css": "/react-app/static/css/731.9b8ab484.chunk.css",
@@ -15,11 +15,11 @@
     "static/js/818.e5654373.chunk.js": "/react-app/static/js/818.e5654373.chunk.js",
     "index.html": "/react-app/index.html",
     "main.86fb5747.css.map": "/react-app/static/css/main.86fb5747.css.map",
-    "main.15b8c05b.js.map": "/react-app/static/js/main.15b8c05b.js.map",
+    "main.8044a22a.js.map": "/react-app/static/js/main.8044a22a.js.map",
     "977.0c10004e.chunk.css.map": "/react-app/static/css/977.0c10004e.chunk.css.map",
     "977.95b448c6.chunk.js.map": "/react-app/static/js/977.95b448c6.chunk.js.map",
-    "336.976cc1be.chunk.css.map": "/react-app/static/css/336.976cc1be.chunk.css.map",
-    "336.85bc779f.chunk.js.map": "/react-app/static/js/336.85bc779f.chunk.js.map",
+    "846.f6dc0d22.chunk.css.map": "/react-app/static/css/846.f6dc0d22.chunk.css.map",
+    "846.36ec54a5.chunk.js.map": "/react-app/static/js/846.36ec54a5.chunk.js.map",
     "839.ce3aaee7.chunk.css.map": "/react-app/static/css/839.ce3aaee7.chunk.css.map",
     "839.c0abdf17.chunk.js.map": "/react-app/static/js/839.c0abdf17.chunk.js.map",
     "731.9b8ab484.chunk.css.map": "/react-app/static/css/731.9b8ab484.chunk.css.map",
@@ -30,6 +30,6 @@
   },
   "entrypoints": [
     "static/css/main.86fb5747.css",
-    "static/js/main.15b8c05b.js"
+    "static/js/main.8044a22a.js"
   ]
 }
