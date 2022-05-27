@@ -6,7 +6,7 @@ let Profile = props=>{
     return(
       <main className={incClass.main}>
       <div className={incClass.container}>
-        <ProfileInfo {...props} state = {props.store.getState().profilePage}/>
+        <ProfileInfo {...props}/>
       </div>
         <PostsContainer />
     </main>

@@ -1,6 +1,5 @@
 import mClas from './Massages.module.css'
 import React from "react";
-import { Navigate } from 'react-router-dom';
 let Massages = props => {
     let createRef = React.createRef()
     let createPost = () => {

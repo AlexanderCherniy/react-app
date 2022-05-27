@@ -12,11 +12,19 @@ export const UsersApi ={
 
     postFollowUsers : (id)=> defaultAxios.post(`follow/${id}`,{}).then(response => response) ,
 }
-
 export const ProfileApi = {
     getProfile: (userId)=> defaultAxios.get(`profile/${userId}`).then(response=>response.data) ,
     getStatus: (id)=> defaultAxios.get(`profile/status/${id}`),
     updateStatus: (status)=> defaultAxios.put(`profile/status`,{status}),
+    updatePhoto: (photo)=> {
+        const formData = new FormData()
+        formData.append("image", photo)
+        return defaultAxios.put(`profile/photo`,formData,{
+            headers:{
+                'Content-Type': 'multipart/form-data'
+            }
+        })
+    }
 }
 
 export const AuthApi={

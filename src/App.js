@@ -36,7 +36,7 @@ const App = props =>{
             <Route path='/profile' element={
               <React.Suspense fallback={<div>Загрузка...</div>}>
                 <ProfileContainer store = {props.store}/>
-              </React.Suspense>}/>
+            </React.Suspense>}/>
             <Route path='/music' element={<div>Music</div>}/>
             <Route path='/friends' element={<FriendsContainer/>}/>
             <Route path='/gays' element={<GaysContainer/>}/>

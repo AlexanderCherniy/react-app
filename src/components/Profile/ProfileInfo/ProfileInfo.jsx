@@ -1,10 +1,16 @@
 import { useState } from 'react';
+
 import incClass from '.././Profile.module.css';
 import ProfileStatusContainer from './ProfileStatus/ProfileStatusContainer';
 let noPhoto = 
     'https://images.theconversation.com/files/449089/original/file-20220301-25-ckck4y.jpeg?ixlib=rb-1.1.0&q=45&auto=format&w=1200&h=1200.0&fit=crop'
 let ProfileInfo = props=>{
   const [useZoom,setUseZoom] = useState(false)
+
+  const selectedPhoto = (e)=>{
+    props.updatePhoto(e.target.files[0])
+  }
+  debugger
   let shortDataProfInfo = props.userProfile.map(item=>{
     return(
     <div key={item.userId}>
@@ -16,6 +22,7 @@ let ProfileInfo = props=>{
               src={item.photos.small === null ? noPhoto : item.photos.small} 
               alt='profilePhoto'
             />
+            {props.isMyProfile === true ? <input type='file' onChange={selectedPhoto}/> : ""}
           </div>
           <div className= {incClass.Profile__text}>
           <div className={incClass.Id}> {item.userId} </div>
