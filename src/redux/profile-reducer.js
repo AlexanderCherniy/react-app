@@ -5,6 +5,7 @@ const CHANGE_POST = 'profile-reducer/CHANGE-POST'
 const UPDATE_PROFILE = 'profile-reducer/UPDATE_PROFILE'
 const SET_STATUS = 'profile-reducer/CHANGE_STATUS'
 const SET_PHOTO = 'profile-reducer/SET_PHOTO'
+const SET_PROFILE = 'profile-reducer/SET_PROFILE'
 let initialState = {
     post:[
         {id:0,img:'https://img.freepik.com/free-vector/man-is-thinking-about-something-and-looking-for-a-solution_376167-16.jpg',comment:'Какие кроссовки купить?'},
@@ -51,10 +52,15 @@ let reducer = (state = initialState,action)=>{
             }
         }
         case SET_PHOTO:{
-            debugger
             return{
                 ...state,
                 profile: [{...state.profile[0], photos: action.newPhoto}]
+            }
+        }
+        case SET_PROFILE:{
+            return{
+                ...state,
+                profile: action.newProfile
             }
         }
         default:{
@@ -76,12 +82,23 @@ export const updateStatus = (status)=> async dispatch=>{
     if(response.data.resultCode === 0){
         dispatch(changeStatus(status))
     }
+    
+}
+export const getUserProfile = (userId)=> async dispatch =>{
+    const response = await ProfileApi.getProfile(userId)
+    dispatch(updateProfile(response))
 }
 export const updatePhoto = (photo)=> async dispatch=>{
     const response = await ProfileApi.updatePhoto(photo)
-    debugger
     if(response.data.resultCode === 0){
         dispatch(changePhoto(response.data.data.photos))
+    }
+}
+export const updateAccountProfile = (profile)=> async (dispatch,getState)=>{
+    const userId = getState().auth.id
+    const response = await ProfileApi.updateProfile(profile)
+    if(response.data.resultCode === 0){ 
+        dispatch(getUserProfile(userId))
     }
 }
 export default reducer

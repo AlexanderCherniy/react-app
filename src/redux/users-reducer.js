@@ -5,6 +5,7 @@ const PAGES_NUMS = 'users-reducer/PAGES_NUMS'
 const TOTAL_COUNT = 'users-reducer/TOTAL_COUNT'
 const LOADER = 'users-reducer/LOADER'
 const IS_BLOCKED = 'users-reducer/IS_BLOCKED'
+const GLOBAL_ERROR = 'users-reducer/GLOBAL_ERROR'
 let initialState = {
     users:[],
     totalCount: 0,
@@ -12,6 +13,7 @@ let initialState = {
     currentPage: 1,
     loader:true,
     isBlocked:[],
+    GlovalError: false
 }
 
 let reducer = (state = initialState,action)=>{
@@ -39,6 +41,12 @@ let reducer = (state = initialState,action)=>{
             isBlocked: action.isBlocked
                 ? [...state.isBlocked,action.userId] 
                 : state.isBlocked.filter(id=> id!==action.userId)
+        }
+        case GLOBAL_ERROR:{
+            return{
+                ...state,
+                GlovalError: action.updateErrorStatus
+            }
         }
         default: return state
     }
@@ -70,12 +78,20 @@ export const downloadUsers = (usersLength,currentPage,pageSize)=>{
     }
 }
 
+export const toggleErrorStatus = (updateErrorStatus)=> ({type:GLOBAL_ERROR, updateErrorStatus})
+
 const followOrUnfollow = async (dispatch,followOrUnfollowMethod,id)=>{
     let apiMethod = followOrUnfollowMethod
     dispatch(blocked(true,id))
-    await apiMethod(id)
-    dispatch(toggleFollow(id))
-    dispatch(blocked(false,id))
+    try{
+        await apiMethod(id)
+        dispatch(toggleFollow(id))
+        dispatch(blocked(false,id))
+        dispatch(toggleErrorStatus(false))
+    }
+    catch(error){
+        dispatch(toggleErrorStatus(true))
+    }
 }
 
 export const followUsers = (id)=> dispatch=>{

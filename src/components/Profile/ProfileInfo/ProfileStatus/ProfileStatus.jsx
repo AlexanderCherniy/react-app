@@ -1,9 +1,10 @@
 import React from 'react';
+import incClass from '../../Profile.module.css';
 let ref = React.createRef()
 const ProfileStatus = (props) => {
     return (
         <div>
-            <span>Обо мне: </span>
+            <span className={incClass.status}>Status: </span>
             {props.item.userId === props.userData.id
                 ? props.changeText === false
                     ? <span onDoubleClick={props.addChangeText}>{props.statusText}</span>

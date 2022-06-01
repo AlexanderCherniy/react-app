@@ -14,11 +14,9 @@ const PostsForm = (props)=>{
         values.newPost = ''
     }}
     >
-      <Form> 
-        <Field className={incClass.inputClass}  placeholder="Your comment..." component={Textarea} type='text' name="newPost"/>
-        <div className={incClass.buttonShell}>
-            <button type='submit' className='buttonSend'>Send</button>
-        </div>
+    <Form > 
+        <Field className={incClass.PostInputForm}  placeholder="Your comment..." component={Textarea} name="newPost"/>
+        <button type='submit' className={incClass.sendButton}>Send</button>
     </Form>
     </Formik>
 }

@@ -2,7 +2,7 @@ import './App.css';
 import './Nullstyle.css';
 import HeaderContainer from './components/Header/HeaderContainer';
 import Help from './components/Help/Help';
-import { HashRouter, Route, Routes } from 'react-router-dom';
+import { HashRouter, Navigate, Route, Routes } from 'react-router-dom';
 import SettingsContainer from './components/Settings/SettingsContainer';
 import SideBarContainer from './components/SideBar/SideBarContainer';
 import FriendsContainer from './components/Friends/FriendsContainer';
@@ -33,6 +33,7 @@ const App = props =>{
               <React.Suspense fallback={<div>Загрузка...</div>}>
                 <ProfileContainer store = {props.store}/>
               </React.Suspense>}/>
+            <Route path="/" element={<Navigate to="/profile" />} />
             <Route path='/profile' element={
               <React.Suspense fallback={<div>Загрузка...</div>}>
                 <ProfileContainer store = {props.store}/>

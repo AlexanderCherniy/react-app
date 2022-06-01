@@ -2,10 +2,12 @@ import classes from './Users.module.css'
 import React from 'react'
 import User from './User/User'
 import SlicedPages from './SlicedPages'
+import ErrorMassage from '../Errors/ErrorUsersPage'
 const Users = props => {
     return (
         <div className={classes.users}>
             <div className="title">USERS</div>
+                {ErrorMassage(props)}
             <div className={classes.numsContainer}>
             <SlicedPages {...props}/>
             </div>

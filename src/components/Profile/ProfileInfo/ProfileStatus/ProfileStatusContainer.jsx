@@ -3,7 +3,6 @@ import ProfileStatus from "./ProfileStatus";
 import React, { useEffect, useState } from 'react';
 import { connect } from "react-redux";
 import { compose } from "redux";
-import TestRenderer, { create } from 'react-test-renderer'
 const ProfileStatusContainer = props =>{
     const [changeText, setChangeText] = useState(false)
     useEffect(()=>{

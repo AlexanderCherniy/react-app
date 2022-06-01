@@ -1,47 +1,67 @@
 import { useState } from 'react';
-
 import incClass from '.././Profile.module.css';
+import ProfileContacts from './ProfileContacts/ProfileContacts';
+import ProfileContactsForm from './ProfileContacts/ProfileContactsForm';
+import { NoPhoto, UsedOrNoUsedZoom } from './ProfileInfoHelper';
 import ProfileStatusContainer from './ProfileStatus/ProfileStatusContainer';
-let noPhoto = 
-    'https://images.theconversation.com/files/449089/original/file-20220301-25-ckck4y.jpeg?ixlib=rb-1.1.0&q=45&auto=format&w=1200&h=1200.0&fit=crop'
-let ProfileInfo = props=>{
-  const [useZoom,setUseZoom] = useState(false)
-
-  const selectedPhoto = (e)=>{
+let ProfileInfo = props => {
+  const [useZoom, setUseZoom] = useState(false)
+  const [changeMode, setChangeMode] = useState(false)
+  const [activeContacts, setActiveContacts] = useState(false)
+  const onSubmit = (formData) => {
+    console.log(formData);
+  }
+  const selectedPhoto = (e) => {
     props.updatePhoto(e.target.files[0])
   }
-  debugger
-  let shortDataProfInfo = props.userProfile.map(item=>{
-    return(
-    <div key={item.userId}>
+  const MyProfile = props => {
+    if (props.isMyProfile === true) {
+      return <input className={incClass.selectedPhoto} type='file' onChange={selectedPhoto} />
+    }
+  }
+  const SelectChangeMode = () => {
+    if (changeMode === false) {
+      return (
+        <div>
+          <ProfileContacts changeMode={changeMode} setChangeMode={setChangeMode} 
+          activeContacts={activeContacts} setActiveContacts={setActiveContacts}
+          {...props} />
+          {props.userData.id === props.userProfile[0].userId 
+          ? <button className={incClass.changeButton} onClick={() => setChangeMode(true)}>CHANGE</button>
+          : ""}
+        </div>
+      )
+    } else {
+      return (
+        <div>
+          <ProfileContactsForm item={props.userProfile[0]} setChangeMode={setChangeMode} 
+          changeMode={changeMode} onSubmit={onSubmit} {...props} 
+          activeContacts={activeContacts} setActiveContacts={setActiveContacts}/>
+        </div>
+      )
+    }
+  }
+  if (props.userProfile.length === 0) return <div>Profile Loading...</div>
+  return (
+    <div>
+      <div key={props.userProfile[0].userId}>
         <div className={incClass.Profile}>
-          <div className={incClass.Profile__img}> 
-            <img 
-              className={useZoom === true ? incClass.usedZoomImg : incClass.noUsedZoomImg}
-              onPointerLeave={()=> setUseZoom(false)} onClick={()=> setUseZoom(true)} 
-              src={item.photos.small === null ? noPhoto : item.photos.small} 
-              alt='profilePhoto'
-            />
-            {props.isMyProfile === true ? <input type='file' onChange={selectedPhoto}/> : ""}
+          <div className={incClass.Profile__img}>
+            <img
+              className={UsedOrNoUsedZoom(useZoom,incClass)}
+              onPointerLeave={() => setUseZoom(false)} onClick={() => setUseZoom(true)}
+              src={NoPhoto(props.userProfile[0].photos.small)} alt='profilePhoto' />
+            <ProfileStatusContainer {...props} item={props.userProfile[0]} />
+            {MyProfile(props)}
           </div>
-          <div className= {incClass.Profile__text}>
-          <div className={incClass.Id}> {item.userId} </div>
-            <div className={incClass.Profile__name}>{item.fullName}</div>
-            <ProfileStatusContainer {...props} item = {item}/>
-              <div className= {incClass.ProfileInfo}>
-                <div className={incClass.ProfileTextStyle}>Поиск работы: {item.lookingForAJobDescription}</div>
-                <div className={incClass.ProfileTextStyle}>twitter: {item.contacts.twitter}</div>
-                <div className={`${incClass.ProfileInfo_learn} ${incClass.ProfileMega}`}>LEARN MORE</div>
-              </div>
+          <div className={incClass.Profile__text}>
+            <div className={incClass.ProfileInfo}>
+              <SelectChangeMode />
+            </div>
           </div>
         </div>
       </div>
-    )
-  })
-    return(
-      <div>
-      {shortDataProfInfo}
-      </div>
-    )
+    </div>
+  )
 }
 export default ProfileInfo

@@ -4,13 +4,15 @@ const GET_DATA = 'auth-reducer/GET_DATA'
 const AUTH_TOGGLE = 'auth-reducer/AUTH_TOGGLE'
 const SET_PHOTO = 'auth-reducer/SET_PHOTO'
 const SET_ERROR = 'auth-reducer/SET_ERROR'
+const SET_CAPTCHA = 'auth-reducer/SET_CAPTCHA'
 let initialState = {
     email:null,
     id:null,
     login:null,
     photo:null,
     isAuth: false,
-    error: null
+    error: null,
+    captcha: null
 }
 let authReducer = (state = initialState,action)=>{
     switch(action.type){
@@ -38,16 +40,24 @@ let authReducer = (state = initialState,action)=>{
                 error: action.error
             }
         }
+        case SET_CAPTCHA:{
+            return{
+                ...state,
+                captcha: action.captcha
+            }
+        }
         default: return state
     }
 }
-export let setUserData = (email,id,login) => ({type:GET_DATA, data:{email,id,login}})
+export const setUserData = (email,id,login) => ({type:GET_DATA, data:{email,id,login}})
 
-export let setPhoto = photo => ({type:SET_PHOTO, photo})
+export const setPhoto = photo => ({type:SET_PHOTO, photo})
 
-export let setError = error => ({type:SET_ERROR, error})
+export const setError = error => ({type:SET_ERROR, error})
 
-export let authToggle = (authStatus) => ({type:AUTH_TOGGLE, authStatus})
+export const authToggle = (authStatus) => ({type:AUTH_TOGGLE, authStatus})
+
+export const setCaptcha = captcha => ({type:SET_CAPTCHA, captcha})
 
 export const setProfile = (isAuth,id)=> dispatch=>{
     return AuthApi.setAuth().then(data=>{
@@ -63,5 +73,11 @@ export const setProfile = (isAuth,id)=> dispatch=>{
         },0)
         }
       })
+}
+
+export const getCaptcha = ()=> dispatch=>{
+    return AuthApi.getCaptcha().then(response=>{
+        dispatch(setCaptcha(response.data.url))
+    })
 }
 export default authReducer

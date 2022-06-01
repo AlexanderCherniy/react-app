@@ -1,6 +1,6 @@
 import Profile from './Profile';
 import React, { useEffect } from 'react';
-import { updatePhoto,getStatus, updateProfile, updateStatus } from '../../redux/profile-reducer'
+import { updatePhoto,getStatus, updateProfile, updateStatus, updateAccountProfile } from '../../redux/profile-reducer'
 import { connect } from 'react-redux';
 import AnonimGoLogin from '../../noc/noc'
 import { compose } from 'redux';
@@ -28,9 +28,8 @@ const mapStateToProps = state => {
         statusText: state.profilePage.statusText,
     }
 }
-
 export default compose(
-    connect(mapStateToProps, { updatePhoto, updateProfile, getStatus, updateStatus }),
+    connect(mapStateToProps, {updateAccountProfile ,updatePhoto, updateProfile, getStatus, updateStatus }),
     WithRouters,
     AnonimGoLogin
 )(ProfileContainer)
