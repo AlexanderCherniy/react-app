@@ -5,7 +5,7 @@ import { Input } from "../../Forms/Forms";
 import { validateLogin } from "../../validate/validate";
 import incClass from '../Profile/Posts/Posts.module.css';
 import c from './Login.module.css';
-const LoginForm = (props) => {
+const LoginForm = ({ captcha, error, ...props }) => {
     const deleteError = () => {
         props.setError(null);
     }
@@ -25,7 +25,7 @@ const LoginForm = (props) => {
                 window.location.reload()
             }
             else {
-                if(data.resultCode === 10){
+                if (data.resultCode === 10) {
                     props.getCaptcha()
                 }
                 props.setError(...[data.messages]);
@@ -39,22 +39,22 @@ const LoginForm = (props) => {
                 <Field className={c.loginInputForm} component={Input} name="passoword" placeholder="Password" />
             </div>
             <div>
-            <label className={c.rememberMeForm}>
-                RememberMe? <Field component={Input} name="remebmerMe" type='checkbox' />
-            </label>
+                <label className={c.rememberMeForm}>
+                    RememberMe? <Field component={Input} name="remebmerMe" type='checkbox' />
+                </label>
             </div>
             <div>
-            {props.captcha !== null 
-            ?             
-            <div className={incClass.captchaContainer}>
-            <Field className={c.loginInputForm} component={Input} name="captcha" placeholder="Captcha" />
-            <img className={c.captchaImg} src={props.captcha} alt="Captcha"/>
-            </div>
-            : 
-            ""
-            }
+                {captcha !== null
+                    ?
+                    <div className={incClass.captchaContainer}>
+                        <Field className={c.loginInputForm} component={Input} name="captcha" placeholder="Captcha" />
+                        <img className={c.captchaImg} src={captcha} alt="Captcha" />
+                    </div>
+                    :
+                    ""
+                }
                 <button className={c.sendButton} onBlur={deleteError} type="submit">GO FORM</button>
-                {props.error === null ? "" : <div className={incClass.errorLogin}>{props.error}</div>}
+                {error === null ? "" : <div className={incClass.errorLogin}>{error}</div>}
             </div>
         </Form>
     </Formik>

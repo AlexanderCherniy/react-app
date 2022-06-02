@@ -2,22 +2,14 @@ import { useState } from 'react';
 import incClass from '.././Profile.module.css';
 import ProfileContacts from './ProfileContacts/ProfileContacts';
 import ProfileContactsForm from './ProfileContacts/ProfileContactsForm';
-import { NoPhoto, UsedOrNoUsedZoom } from './ProfileInfoHelper';
+import { ButtonChange, MyProfile, NoPhoto, UsedOrNoUsedZoom } from './ProfileInfoHelper';
 import ProfileStatusContainer from './ProfileStatus/ProfileStatusContainer';
 let ProfileInfo = props => {
   const [useZoom, setUseZoom] = useState(false)
   const [changeMode, setChangeMode] = useState(false)
   const [activeContacts, setActiveContacts] = useState(false)
-  const onSubmit = (formData) => {
-    console.log(formData);
-  }
   const selectedPhoto = (e) => {
     props.updatePhoto(e.target.files[0])
-  }
-  const MyProfile = props => {
-    if (props.isMyProfile === true) {
-      return <input className={incClass.selectedPhoto} type='file' onChange={selectedPhoto} />
-    }
   }
   const SelectChangeMode = () => {
     if (changeMode === false) {
@@ -26,16 +18,14 @@ let ProfileInfo = props => {
           <ProfileContacts changeMode={changeMode} setChangeMode={setChangeMode} 
           activeContacts={activeContacts} setActiveContacts={setActiveContacts}
           {...props} />
-          {props.userData.id === props.userProfile[0].userId 
-          ? <button className={incClass.changeButton} onClick={() => setChangeMode(true)}>CHANGE</button>
-          : ""}
+          {ButtonChange(props,setChangeMode)}
         </div>
       )
     } else {
       return (
         <div>
           <ProfileContactsForm item={props.userProfile[0]} setChangeMode={setChangeMode} 
-          changeMode={changeMode} onSubmit={onSubmit} {...props} 
+          changeMode={changeMode} {...props} 
           activeContacts={activeContacts} setActiveContacts={setActiveContacts}/>
         </div>
       )
@@ -52,7 +42,7 @@ let ProfileInfo = props => {
               onPointerLeave={() => setUseZoom(false)} onClick={() => setUseZoom(true)}
               src={NoPhoto(props.userProfile[0].photos.small)} alt='profilePhoto' />
             <ProfileStatusContainer {...props} item={props.userProfile[0]} />
-            {MyProfile(props)}
+            {MyProfile(props,selectedPhoto)}
           </div>
           <div className={incClass.Profile__text}>
             <div className={incClass.ProfileInfo}>

@@ -72,7 +72,7 @@ const mapStateToProps = state=>{
 const AppContainer = compose(
   connect(mapStateToProps,{inizializateReady,setProfile})
 )(App)
-const MainApp = props =>{
+const MainApp = ()=>{
   return(
     <HashRouter>
       <Provider store={store}>

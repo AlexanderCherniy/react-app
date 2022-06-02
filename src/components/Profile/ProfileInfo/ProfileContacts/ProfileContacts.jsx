@@ -19,7 +19,7 @@ let ProfileContacts = props => {
               </span>{ShowJobDescription(item)} {ShowJobMark(item)}
             </div>
             <div onClick={()=> props.setActiveContacts(!props.activeContacts)} 
-              className={incClass.ProfileTextHeader}>
+              className={incClass.ContactTitle}>
               <span>Contacts <span>{props.activeContacts === false ? '+' : '-'}</span></span>
             </div> 
             {Object.keys(item.contacts).map(key => {

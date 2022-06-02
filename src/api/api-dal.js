@@ -35,9 +35,7 @@ export const ProfileApi = {
 export const AuthApi={
     setAuth:()=> defaultAxios.get('auth/me').then(response=> response.data),
     loginService: (email,password,rememberMe,captcha,error)=> {
-        defaultAxios.post('auth/login',{email,password,rememberMe,captcha,error}).then(response=> {
-            return response.data
-        })
+        return defaultAxios.post('auth/login',{email,password,rememberMe,captcha,error}).then(response=> response.data)
     },
     unloginService: ()=> defaultAxios.delete('auth/login').then(response=> response.data),
     getCaptcha: ()=> defaultAxios.get('security/get-captcha-url').then(response=> response),

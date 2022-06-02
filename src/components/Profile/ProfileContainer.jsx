@@ -4,7 +4,7 @@ import { updatePhoto,getStatus, updateProfile, updateStatus, updateAccountProfil
 import { connect } from 'react-redux';
 import AnonimGoLogin from '../../noc/noc'
 import { compose } from 'redux';
-import { getMyUserProfile } from '../../redux/reselects';
+import { getMyUserProfile } from '../../redux/profile-reselects';
 import { ProfileApi } from '../../api/api-dal';
 import WithRouters from '../../WithRouter';
 

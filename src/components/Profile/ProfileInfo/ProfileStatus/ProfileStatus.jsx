@@ -7,7 +7,7 @@ const ProfileStatus = (props) => {
             <span className={incClass.status}>Status: </span>
             {props.item.userId === props.userData.id
                 ? props.changeText === false
-                    ? <span onDoubleClick={props.addChangeText}>{props.statusText}</span>
+                    ? <span className={incClass.statusText} onDoubleClick={props.addChangeText}>{props.statusText}</span>
                     : <input ref={ref} autoFocus={true} onBlur={props.removeChangeText}
                         onChange={() => props.changeTextFunc(ref)} value={props.statusText} />
                 : <span>{props.item.aboutMe !== null

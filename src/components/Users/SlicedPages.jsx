@@ -12,7 +12,7 @@ const SlicedPages = ({ totalCount, pageSize, currentPage, checkUsers }) => {
     let slicedPages = pages.slice(curPF, curPL);
     return (
         slicedPages.map(p => {
-            return <span onClick={() => { checkUsers(p) }} className={currentPage === p ? classes.activeNum : classes.noactiveNum}>
+            return <span key={p} onClick={() => { checkUsers(p) }} className={currentPage === p ? classes.activeNum : classes.noactiveNum}>
                 {p}
             </span>
         })

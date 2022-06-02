@@ -6,7 +6,7 @@ import Massages from './Massages';
 import { connect } from 'react-redux';
 import AnonimGoLogin from '../../noc/noc'
 import { compose } from 'redux';
-import { getMassages } from '../../redux/reselects';
+import { getMassages } from '../../redux/massages-reselects';
 const Users = props => {
     let online = props.online
     online === 'true' ? online = '#81b53e' : online = '#f0ad4e'

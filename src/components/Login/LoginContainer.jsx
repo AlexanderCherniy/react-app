@@ -4,7 +4,6 @@ import { compose } from "redux";
 import Login from "./Login";
 import { setError } from '../../redux/auth-reducer'
 import { getCaptcha } from "../../redux/auth-reducer";
-
 const LoginContainer = props => {
     return <Login  {...props} />
 }

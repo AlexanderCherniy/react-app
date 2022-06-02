@@ -13,6 +13,7 @@ const User = props => {
                     </NavLink>
                     <span>{u.id}</span>
                     <span>{u.name}</span>
+                    <span>{u.status}</span>
                     <FollowUnFollowButtons u = {u} {...props}/>
                 </div>
             )

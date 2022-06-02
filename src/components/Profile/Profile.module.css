@@ -26,6 +26,11 @@
     font-weight: 600;
     color: rgb(54, 52, 52);
 }
+.ContactTitle{
+    font-weight: 600;
+    color: rgb(54, 52, 52);
+    cursor: pointer;
+}
 .ProfileJobSearchTitle{
     font-weight: 600;
     color: rgb(54, 52, 52);
@@ -125,4 +130,9 @@
     width: 100%;
     height: 16px;
     font-size: 14px;
+}
+.statusText{
+    font-size: 15px;
+    cursor: pointer;
+    color: rgb(54, 52, 52);
 }

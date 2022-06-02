@@ -2,7 +2,7 @@ import { connect } from "react-redux";
 import {fillUsers, downloadUsers,followUsers,unfollowUsers, blocked, toggleErrorStatus} from "../../redux/users-reducer";
 import Users from "./Users";
 import React, { useEffect } from "react";
-import { getUsers } from "../../redux/reselects";
+import { getError, getUsers } from "../../redux/users-reselects";
 const UsersContainer = props =>{
     useEffect(()=>{
         props.downloadUsers(props.usersState.length, props.currentPage, props.pageSize)
@@ -19,7 +19,7 @@ const mapStateToProps = state=>{
         currentPage: state.usersPage.currentPage,
         loaderState: state.usersPage.loader,
         isBlocked: state.usersPage.isBlocked,
-        error: state.usersPage.GlovalError
+        error: getError(state)
     }
 }
 
