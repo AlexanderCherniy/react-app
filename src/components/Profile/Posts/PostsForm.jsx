@@ -3,6 +3,8 @@ import React from "react";
 import { validatePost } from '../../../validate/validate';
 import {Form, Field, Formik} from "formik"
 import { Textarea } from '../../../Forms/Forms';
+const noPhoto =
+    'https://images.theconversation.com/files/449089/original/file-20220301-25-ckck4y.jpeg?ixlib=rb-1.1.0&q=45&auto=format&w=1200&h=1200.0&fit=crop'
 const PostsForm = (props)=>{
     return <Formik initialValues={{
         newPost:'',
@@ -10,7 +12,7 @@ const PostsForm = (props)=>{
     validate={validatePost}
     onSubmit = {values=>{
         props.changeNewPost(values.newPost)
-        props.addPosts(props.newPost)
+        props.addPosts(props.userData.photo === null ? noPhoto : props.userData.photo )
         values.newPost = ''
     }}
     >

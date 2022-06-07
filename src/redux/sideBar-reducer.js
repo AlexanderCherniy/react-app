@@ -1,3 +1,5 @@
+const SET_SHOW_SIDEBAR = 'sideBar-reducer/SET_SHOW_SIDEBAR'
+
 let initialState = {
     sideBarLinks:[
         {id:1,to:'/profile',text:'PROFILE'},
@@ -9,10 +11,21 @@ let initialState = {
         {id:7,to:'/help',text:'HELP'},
         {id:8,to:'/settings',text:'SETTINGS'},
         {id:9,to:'/users',text:'USERS!'},
-    ],  
+    ],
+    showSideBar: true  
 }
 
-let reducer = (state = initialState,action)=>{
+const reducer = (state = initialState,action)=>{
+    switch(action.type){
+        case SET_SHOW_SIDEBAR:{
+            return{
+                ...state,
+                showSideBar: action.showSideBar
+            }
+        }
+    }
     return state
 }
+
+export const setShowSideBar = (showSideBar) => ({type:SET_SHOW_SIDEBAR, showSideBar})
 export default reducer

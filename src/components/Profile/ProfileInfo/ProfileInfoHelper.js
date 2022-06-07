@@ -16,9 +16,9 @@ export  const NoPhoto = (smallPhoto) => {
       return smallPhoto
     }
 }
-export const MyProfile = (props,func) => {
+export const MyProfile = (props) => {
   if (props.isMyProfile === true) {
-    return <input className={incClass.selectedPhoto} type='file' onChange={func} />
+    return <input className={incClass.selectedPhoto} type='file' onChange={props.selectedPhoto} />
   }
 }
 export const ButtonChange = (props, func)=>{

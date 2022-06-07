@@ -7,6 +7,14 @@
 .title{
     font-size: 30px;
     font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.cross{
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
 }
 .form{
     margin: 10px 0;

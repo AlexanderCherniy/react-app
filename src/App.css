@@ -1,8 +1,18 @@
+
 .wrapper {
-}
-body{
     font-family: Arial;
     background-color: #ecf0f1;
+    height: 100%;
+    width: 100%;
+}
+
+.wrapper.blackTheme{
+    background-color: #333637;
+    color: white;
+}
+
+body{
+
 }
 .shellMainSide {
     display: flex;

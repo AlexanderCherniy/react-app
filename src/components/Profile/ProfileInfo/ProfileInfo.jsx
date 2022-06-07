@@ -42,7 +42,7 @@ let ProfileInfo = props => {
               onPointerLeave={() => setUseZoom(false)} onClick={() => setUseZoom(true)}
               src={NoPhoto(props.userProfile[0].photos.small)} alt='profilePhoto' />
             <ProfileStatusContainer {...props} item={props.userProfile[0]} />
-            {MyProfile(props,selectedPhoto)}
+            <MyProfile {...props} selectedPhoto={selectedPhoto}/>
           </div>
           <div className={incClass.Profile__text}>
             <div className={incClass.ProfileInfo}>

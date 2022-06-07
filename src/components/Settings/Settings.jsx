@@ -11,6 +11,9 @@ let Settings = props => {
             <div className={SettingsClass.container}>
                 <div className='title'>Settings</div>
                 <input type="text" ref={createRef} onChange={changeSettingsFunc} value={props.newText} />
+                {props.blackTheme === false 
+                ? <button className={SettingsClass.useBlack} onClick={()=> props.setBlackTheme(!props.blackTheme)}>Use Black Theme</button>
+                : <button className={SettingsClass.useWhite} onClick={()=> props.setBlackTheme(!props.blackTheme)}>Use White Theme</button>}
             </div>
         </div>
     )

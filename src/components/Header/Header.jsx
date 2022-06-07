@@ -5,6 +5,7 @@ let noPhoto =
   'https://images.theconversation.com/files/449089/original/file-20220301-25-ckck4y.jpeg?ixlib=rb-1.1.0&q=45&auto=format&w=1200&h=1200.0&fit=crop'
 let Header = props => {
   const HeaderArh = props => {
+    if(props.text === 'SETTINGS') return <NavLink className={incapsClasses.header__li} to='/settings'>SETTINGS</NavLink>
     return (
       <li className={incapsClasses.header__li}>{props.text}</li>
     )

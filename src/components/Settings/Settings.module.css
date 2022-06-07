@@ -1,0 +1,10 @@
+.useBlack{
+    padding: 5px 10px;
+    background: black;
+    color: white;
+}
+.useWhite{
+    padding: 5px 10px;
+    background: white;
+    color: black;
+}
