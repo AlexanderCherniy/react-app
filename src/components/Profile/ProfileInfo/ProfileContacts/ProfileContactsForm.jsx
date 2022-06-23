@@ -3,8 +3,10 @@ import { Input } from "../../../../Forms/Forms";
 import { validateProfile } from "../../../../validate/validate";
 import incClass from '../../../Profile/Posts/Posts.module.css'
 import classProfile from '../../Profile.module.css';
-let ProfileContactsForm = props => {
-    let validateProfileHelper = validateProfile(props)
+import ProfileStatusContainer from "../ProfileStatus/ProfileStatusContainer";
+
+const ProfileContactsForm = props => {
+    const validateProfileHelper = validateProfile(props)
     return <Formik initialValues={{ ...props.userProfile[0], someUrlIsWrong: "" }}
         validate={validateProfileHelper}
         onSubmit={async values => {
@@ -24,7 +26,7 @@ let ProfileContactsForm = props => {
                                 <span className={classProfile.ProfileTextHeader}>UserName:</span>
                                 <Field className={classProfile.form} component={Input} placeholder="FullName" type='text' name="fullName" />
                             </div>
-
+                                <ProfileStatusContainer {...props} item={props.userProfile[0]} />
                             <div className={classProfile.ProfileTextStyle}>
                                 <span className={classProfile.ProfileTextHeader}>
                                     AboutMe:

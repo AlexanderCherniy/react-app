@@ -1,10 +1,12 @@
 import { setProfile } from "./auth-reducer"
 
 const INIZIALIZATION = 'app-reducer/INIZIALIZATION'
-let initialState = {
+
+const initialState = {
     inizializated: false
 }
-let appReducer = (state = initialState,action)=>{
+type initialStateType = typeof initialState
+let appReducer = (state = initialState,action: any):initialStateType=>{
     switch(action.type){
         case INIZIALIZATION:{
             return{
@@ -16,7 +18,7 @@ let appReducer = (state = initialState,action)=>{
     }
 }
 export let inizializateApp = () => ({type:INIZIALIZATION})
-export let inizializateReady = (Auth, Id)=> dispatch=>{
+export let inizializateReady = (Auth: boolean, Id:number)=> (dispatch:any)=>{
     let promise = dispatch(setProfile(Auth, Id))
     promise.then(()=>dispatch(inizializateApp()))
 }

@@ -29,3 +29,22 @@
   font-weight: 500;
   color: white;
 }
+.login{
+  font-size: 16px;
+  font-weight: 500;
+  color: white;
+}
+.loginLink{
+  font-size: 16px;
+  font-weight: 500;
+  color: rgb(196, 220, 254);
+}
+.unlogin{
+  font-size: 14px;
+  font-weight: 500;
+  color: white;
+  background-color: transparent;
+  border: 1px black solid;
+  padding: 5px 10px;
+  border-radius: 5px;
+}

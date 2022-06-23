@@ -10,7 +10,7 @@ import usersReducer from "./users-reducer";
 import AuthReducer from "./auth-reducer";
 import middleWare from 'redux-thunk'
 import appReducer from "./app-reducer";
-let reducers = combineReducers({
+const reducers = combineReducers({
     massagesPage:massagesReducer,
     profilePage:profileReducer,
     settings:settingsReducer,
@@ -22,7 +22,14 @@ let reducers = combineReducers({
     auth: AuthReducer,
     app: appReducer
 })
+type reducersType = typeof reducers
+export type AppState = ReturnType<reducersType> 
+
+
+
+//@ts-ignore
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(reducers, composeEnhancers(applyMiddleware(middleWare)));
+//@ts-ignore
 window.store = store
 export default store

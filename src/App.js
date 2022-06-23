@@ -31,40 +31,22 @@ const App = props =>{
         <HeaderContainer/>
         <div className='shellMainSide'>
           <SideBarContainer/>
+          <React.Suspense fallback={<div>Loading...</div>}>
           <Routes>
-            <Route path='/profile/:userId' element={
-              <React.Suspense fallback={<div>Загрузка...</div>}>
-                <ProfileContainer/>
-              </React.Suspense>}/>
+            <Route path='/profile/:userId' element={<ProfileContainer/>}/>
             <Route path="/" element={<Navigate to="/profile" />} />
-            <Route path='/profile' element={
-              <React.Suspense fallback={<div>Загрузка...</div>}>
-                <ProfileContainer/>
-            </React.Suspense>}/>
+            <Route path='/profile' element={<ProfileContainer/>}/>
             <Route path='/music' element={<div>Music</div>}/>
             <Route path='/friends' element={<FriendsContainer/>}/>
             <Route path='/gays' element={<GaysContainer/>}/>
             <Route path='/games' element={<div>Games</div>}/>
-            <Route path='/massages/*' element={
-            <React.Suspense fallback={<div>Загрузка...</div>}>
-              <MassagesContainer/>
-            </React.Suspense>
-            }/>
+            <Route path='/massages/*' element={<MassagesContainer/>}/>
             <Route path='/help' element={<Help/>}/>
-            <Route path='/settings' element={
-            <React.Suspense fallback={<div>Загрузка...</div>}>
-              <SettingsContainer/>
-            </React.Suspense>
-            }/>
-            <Route path='/users' element={
-              <React.Suspense fallback={<div>Загрузка...</div>}>
-                <UsersContainer/>
-              </React.Suspense>}/>
-            <Route path='/login' element={
-              <React.Suspense fallback={<div>Загрузка...</div>}>
-                <LoginContainer/>
-              </React.Suspense>}/>
+            <Route path='/settings' element={<SettingsContainer/>}/>
+            <Route path='/users' element={<UsersContainer/>}/>
+            <Route path='/login' element={<LoginContainer/>}/>
           </Routes>
+          </React.Suspense>
         </div>
       </div>
   );
@@ -84,7 +66,7 @@ const MainApp = ()=>{
   return(
     <HashRouter>
       <Provider store={store}>
-        <AppContainer store = {store}/>
+        <AppContainer/>
       </Provider>
     </HashRouter>
   )

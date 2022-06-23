@@ -21,7 +21,7 @@ const ProfileContainer = props => {
     }, [userId])
     return <Profile isMyProfile = {!props.router.params.userId} {...props} />
 }
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
     return {
         userProfile: getMyUserProfile(state),
         userData: state.auth,

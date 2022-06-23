@@ -5,8 +5,8 @@ let initialState = {
         {id:3,text:'SETTINGS'},
     ],
 }
-
-let reducer = (state = initialState,action)=>{
+type initialStateType = typeof initialState
+let reducer = (state = initialState,action:any):initialStateType=>{
     return state
 }
 export default reducer

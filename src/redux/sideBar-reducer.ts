@@ -12,10 +12,10 @@ let initialState = {
         {id:8,to:'/settings',text:'SETTINGS'},
         {id:9,to:'/users',text:'USERS!'},
     ],
-    showSideBar: true  
+    showSideBar: true as boolean
 }
-
-const reducer = (state = initialState,action)=>{
+type initialStateType = typeof initialState
+const reducer = (state = initialState,action:any):initialStateType=>{
     switch(action.type){
         case SET_SHOW_SIDEBAR:{
             return{
@@ -26,6 +26,9 @@ const reducer = (state = initialState,action)=>{
     }
     return state
 }
-
-export const setShowSideBar = (showSideBar) => ({type:SET_SHOW_SIDEBAR, showSideBar})
+type setShowSideBarActionType = {
+    type: typeof SET_SHOW_SIDEBAR
+    showSideBar: boolean
+}
+export const setShowSideBar = (showSideBar:boolean):setShowSideBarActionType => ({type:SET_SHOW_SIDEBAR, showSideBar})
 export default reducer

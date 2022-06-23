@@ -1,5 +1,6 @@
 import incClass from '../../Profile.module.css';
 import { ShowAboutMe, ShowJobDescription, ShowJobMark } from './ProfileContactsHelper';
+import ProfileStatusContainer from "../ProfileStatus/ProfileStatusContainer";
 let ProfileContacts = props => {
   const shortDataProfInfo = props.userProfile.map(item => {
     return (
@@ -8,6 +9,7 @@ let ProfileContacts = props => {
           <div className={incClass.ProfileInfo}>
           <div className={incClass.Id}> <span className={incClass.ProfileTextHeader}>ID:</span> {props.userProfile[0].userId} </div>
             <div className={incClass.Profile__name}><span className={incClass.ProfileTextHeader}>UserName:</span> {props.userProfile[0].fullName}</div>
+            {/* <ProfileStatusContainer {...props} item={props.userProfile[0]} /> */}
             <div className={incClass.ProfileTextStyle}>
               <span className={incClass.ProfileTextHeader}>
                 AboutMe:

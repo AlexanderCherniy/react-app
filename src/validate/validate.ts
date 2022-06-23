@@ -1,7 +1,7 @@
 
 
-export const validatePost = values => {
-    const errors = {};
+export const validatePost = (values: any) => {
+    const errors:any = {};
     if (!values.newPost) {
       errors.newPost = 'error!';
     } else if (values.newPost.length > 50) {
@@ -10,8 +10,8 @@ export const validatePost = values => {
     return errors;
 };
 
-export const validateLogin = values => {
-    const errors = {};
+export const validateLogin = (values:any) => {
+    const errors:any = {};
     if (!values.login) {
       errors.login = 'Login Request!';
     } else if (values.login.length > 30) {
@@ -26,8 +26,8 @@ export const validateLogin = values => {
     return errors;
 };
 
-export const validateProfile = (props)=> values => {
-    const errors = {};
+export const validateProfile = ()=> (values:any) => {
+    const errors:any = {};
     if (values.aboutMe.length > 65) {
       errors.aboutMe = 'Must be 65 characters or less';
     }
@@ -37,7 +37,7 @@ export const validateProfile = (props)=> values => {
     if (values.lookingForAJobDescription.length > 50) {
       errors.lookingForAJobDescription = 'Must be 50 characters or less';
     }
-    const bigURL = Object.values(values.contacts).filter(item => item.length > 50)
+    const bigURL = Object.values(values.contacts).filter((item:any) => item.length > 50)
     if(bigURL.length > 0){
       errors.someUrlIsWrong = `Some URL (${bigURL}) Is Wrong`
     }
