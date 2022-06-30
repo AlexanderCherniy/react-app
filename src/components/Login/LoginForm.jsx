@@ -7,7 +7,7 @@ import incClass from '../Profile/Posts/Posts.module.css';
 import c from './Login.module.css';
 const LoginForm = ({ captcha, error, ...props }) => {
     const deleteError = () => {
-        props.setError(null);
+        props.actions.setError(null);
     }
     if (props.userData.email != null && props.userData.login != null) {
         return <Navigate to={'/profile'} />
@@ -28,7 +28,7 @@ const LoginForm = ({ captcha, error, ...props }) => {
                 if (data.resultCode === 10) {
                     props.getCaptcha()
                 }
-                props.setError(...[data.messages]);
+                props.actions.setError(...[data.messages]);
             }
         }}>
         <Form>

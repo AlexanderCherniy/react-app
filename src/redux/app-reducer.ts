@@ -1,15 +1,15 @@
-import { setProfile } from "./auth-reducer"
-
+import { Dispatch } from 'react';
+import { setProfile } from './auth-reducer';
 const INIZIALIZATION = 'app-reducer/INIZIALIZATION'
 
 const initialState = {
     inizializated: false
 }
 type initialStateType = typeof initialState
-let appReducer = (state = initialState,action: any):initialStateType=>{
-    switch(action.type){
-        case INIZIALIZATION:{
-            return{
+const appReducer = (state = initialState, action: ActionType): initialStateType => {
+    switch (action.type) {
+        case INIZIALIZATION: {
+            return {
                 ...state,
                 inizializated: true
             }
@@ -17,9 +17,13 @@ let appReducer = (state = initialState,action: any):initialStateType=>{
         default: return state
     }
 }
-export let inizializateApp = () => ({type:INIZIALIZATION})
-export let inizializateReady = (Auth: boolean, Id:number)=> (dispatch:any)=>{
-    let promise = dispatch(setProfile(Auth, Id))
-    promise.then(()=>dispatch(inizializateApp()))
+type ActionType = inizializateAppActionType
+type inizializateAppActionType = {
+    type: typeof INIZIALIZATION
+}
+export const inizializateApp = (): inizializateAppActionType => ({ type: INIZIALIZATION })
+export const inizializateReady = (Auth: boolean, Id: number) => (dispatch: any) => {
+    dispatch(setProfile(Auth, Id))
+        .then(() => dispatch(inizializateApp()))
 }
 export default appReducer

@@ -1,5 +1,4 @@
 import { Dispatch } from "react"
-//@ts-ignore
 import { UsersApi } from "../api/api-dal"
 const TOGGLE_FOLLOWER = 'users-reducer/TOGGLE-FOLLOWER'
 const USERS = 'users-reducer/USERS'
@@ -8,7 +7,7 @@ const TOTAL_COUNT = 'users-reducer/TOTAL_COUNT'
 const LOADER = 'users-reducer/LOADER'
 const IS_BLOCKED = 'users-reducer/IS_BLOCKED'
 const GLOBAL_ERROR = 'users-reducer/GLOBAL_ERROR'
-type UserType = {
+export type UserType = {
     id: number
     name: string
     status: string

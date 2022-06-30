@@ -11,7 +11,6 @@ import GaysContainer from './components/GAYS/GaysContainer';
 import React, { useEffect } from 'react';
 import { compose } from 'redux';
 import { inizializateReady } from './redux/app-reducer';
-import { setProfile } from './redux/auth-reducer';
 import store from './redux/store-redux';
 import { LazyLoaderHOC } from './noc/lazyLoad';
 import { setBlackTheme } from './redux/settings-reducer';
@@ -60,7 +59,7 @@ const mapStateToProps = state=>{
 }
 
 const AppContainer = compose(
-  connect(mapStateToProps,{inizializateReady,setProfile,setBlackTheme})
+  connect(mapStateToProps,{inizializateReady,setBlackTheme})
 )(App)
 const MainApp = ()=>{
   return(

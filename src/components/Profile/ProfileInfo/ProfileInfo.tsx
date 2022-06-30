@@ -12,7 +12,23 @@ import cn from 'classnames'
 
 type Props = {
   userProfile: any
+  statusText: string
+  ProfileItem: {
+      userId: number
+      fullName: string
+      aboutMe: string | null
+  }
+  userData:{
+      id: number
+  }
+  changeText: boolean
+  changeTextFunc: (ref:any)=> void
+  addChangeText: ()=> void
+  removeChangeText: ()=> void
   updatePhoto: (e:HTMLInputElement)=> void
+  getStatus: (id:number)=> void
+  updateStatus: (statusText:string|null)=> void
+  changeStatus: (ref: any)=> void
 }
 const ProfileInfo: React.FC<Props> = (props) => {
   const [useZoom, setUseZoom] = useState(false)

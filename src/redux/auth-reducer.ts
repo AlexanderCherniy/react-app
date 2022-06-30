@@ -1,14 +1,11 @@
-// @ts-ignore
+import { Dispatch } from 'react';
 import { AuthApi, ProfileApi } from "../api/api-dal"
+import { AllActionType, TypeFunction } from './store-redux';
 
-const GET_DATA = 'auth-reducer/GET_DATA'
-const AUTH_TOGGLE = 'auth-reducer/AUTH_TOGGLE'
-const SET_PHOTO = 'auth-reducer/SET_PHOTO'
-const SET_ERROR = 'auth-reducer/SET_ERROR'
-const SET_CAPTCHA = 'auth-reducer/SET_CAPTCHA'
-let initialState = {
+const initialState = {
     email: null as null | string,
-    id: null as null | number,
+    // id: null as null | number,
+    id: null as any,
     login: null as null | string,
     photo: null as null | string,
     isAuth: false as boolean,
@@ -16,33 +13,33 @@ let initialState = {
     captcha: null as null | string
 }
 type initialStateType = typeof initialState
-let authReducer = (state = initialState, action: any):initialStateType => {
+const authReducer = (state = initialState, action: ActionType): initialStateType => {
     switch (action.type) {
-        case GET_DATA: {
+        case 'auth-reducer/GET_DATA': {
             return {
                 ...state,
                 ...action.data
             }
         }
-        case SET_PHOTO: {
+        case 'auth-reducer/SET_PHOTO': {
             return {
                 ...state,
                 photo: action.photo
             }
         }
-        case AUTH_TOGGLE: {
+        case 'auth-reducer/AUTH_TOGGLE': {
             return {
                 ...state,
                 isAuth: action.authStatus
             }
         }
-        case SET_ERROR: {
+        case 'auth-reducer/SET_ERROR': {
             return {
                 ...state,
                 error: action.error
             }
         }
-        case SET_CAPTCHA: {
+        case 'auth-reducer/SET_CAPTCHA': {
             return {
                 ...state,
                 captcha: action.captcha
@@ -51,56 +48,60 @@ let authReducer = (state = initialState, action: any):initialStateType => {
         default: return state
     }
 }
-type dataType = {
+type ActionType = ReturnType<AllActionType<typeof actions>>
+export type dataType = {
     email: null | string
     id: null | number
     login: null | string
 }
-type setUserDataActionType = {
-    type: typeof GET_DATA
-    data: dataType
-}
-export const setUserData = (email: string, id:number, login: string):setUserDataActionType => ({ type: GET_DATA, data: {email,id,login}})
-type setPhotoActionType = {
-    type: typeof SET_PHOTO
-    photo: null | string
-}
-export const setPhoto = (photo: null | string):setPhotoActionType => ({ type: SET_PHOTO, photo })
-type setErrorActionType = {
-    type: typeof SET_ERROR
-    error: null | string | boolean
-}
-export const setError = (error: null | string | boolean):setErrorActionType => ({ type:SET_ERROR, error })
-type authToggleActionType = {
-    type: typeof AUTH_TOGGLE
-    authStatus: boolean | string
-}
-export const authToggle = (authStatus: boolean | string):authToggleActionType => ({ type: AUTH_TOGGLE, authStatus })
-type setCaptchaActionType = {
-    type: typeof SET_CAPTCHA
-    captcha: null | string
-}
-export const setCaptcha = (captcha: null | string):setCaptchaActionType => ({ type: SET_CAPTCHA, captcha })
+export const actions = {
+    setUserData : (email: string, id: number, login: string) => ({ type: TypeFunction("auth-reducer/GET_DATA"), data: { email, id, login } }),
 
-export const setProfile = (isAuth: boolean, id: null | number) => (dispatch: any) => {
-    return AuthApi.setAuth().then((data: any) => {
-        if (data.resultCode === 0) {
-            dispatch(setUserData(data.data.email, data.data.id, data.data.login))
-            dispatch(authToggle(true))
+    setPhoto : (photo: null | string) => ({ type: TypeFunction("auth-reducer/SET_PHOTO"), photo }),
+
+    setError : (error: null | string | boolean) => ({ type: TypeFunction("auth-reducer/SET_ERROR"), error }),
+
+    authToggle : (authStatus: boolean) => ({ type: TypeFunction("auth-reducer/AUTH_TOGGLE"), authStatus }),
+
+    setCaptcha : (captcha: null | string) => ({ type: TypeFunction("auth-reducer/SET_CAPTCHA"), captcha }),
+}
+
+export const setProfile = (isAuth: boolean, id: number) => (dispatch: Dispatch<ActionType>) => {
+    return AuthApi.setAuth().then((data: setProfileType) => {
+        if (data.resultCode === ProfileStatusCodes.Good) {
+            dispatch(actions.setUserData(data.data.email, data.data.id, data.data.login))
+            dispatch(actions.authToggle(true))
             setTimeout(() => {
                 if (isAuth === true) {
-                    ProfileApi.getProfile(id).then((data:any) => {
-                        dispatch(setPhoto(data.photos.small))
+                    ProfileApi.getProfile(id).then((data: any) => {
+                        dispatch(actions.setPhoto(data.photos.small))
                     })
                 }
             }, 0)
         }
     })
 }
-
-export const getCaptcha = () => (dispatch: any) => {
-    return AuthApi.getCaptcha().then((response:any) => {
-        dispatch(setCaptcha(response.data.url))
+export const getCaptcha = () => (dispatch: Dispatch<ActionType>) => {
+    return AuthApi.getCaptcha().then((response: captchaDataType) => {
+        dispatch(actions.setCaptcha(response.data.url))
     })
 }
+export type setProfileType = {
+    resultCode: number
+    data:{
+        email: string
+        id: number
+        login: string
+    }
+}
+enum ProfileStatusCodes {
+    Good = 0,
+}
+
+type captchaDataType = {
+    data: {
+        url: string
+    }
+}
+
 export default authReducer

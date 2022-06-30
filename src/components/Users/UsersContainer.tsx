@@ -1,17 +1,33 @@
 import { connect } from "react-redux";
-import {fillUsers, downloadUsers,followUsers,unfollowUsers, blocked, toggleErrorStatus} from "../../redux/users-reducer";
+import {fillUsers, downloadUsers,followUsers,unfollowUsers, blocked, toggleErrorStatus, UserType} from "../../redux/users-reducer";
 import Users from "./Users";
 import React, { useEffect } from "react";
 import { getError, getUsers } from "../../redux/users-reselects";
-const UsersContainer = props =>{
+import { AppState } from "../../redux/store-redux";
+type Props = {
+    usersState: UserType[]
+    currentPage: number
+    pageSize: number
+    error: boolean
+    loaderState: boolean
+    isBlocked: number[]
+    totalCount: number
+    followUsers: (id:number)=> void
+    unfollowUsers: (id:number)=> void
+    toggleErrorStatus: (status:boolean)=> void
+    checkUsers: (p:number)=> void
+    downloadUsers: (usersStateLength: number, currentPage:number, pageSize:number)=> void
+    fillUsers:  (p:number,pageSize:number) => void
+}
+const UsersContainer:React.FC<Props> = props =>{
     useEffect(()=>{
         props.downloadUsers(props.usersState.length, props.currentPage, props.pageSize)
     },[props.usersState])
-    const checkUsers = (p)=> props.fillUsers(p,props.pageSize)
+    const checkUsers = (p:number)=> props.fillUsers(p,props.pageSize)
 
     return <Users  {...props} checkUsers={checkUsers}/>     
 }
-const mapStateToProps = state=>{
+const mapStateToProps = (state:AppState)=>{
     return{
         usersState: getUsers(state),
         pageSize: state.usersPage.pageSize,

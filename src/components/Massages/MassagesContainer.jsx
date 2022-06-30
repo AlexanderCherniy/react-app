@@ -1,10 +1,10 @@
 import { NavLink } from 'react-router-dom';
 import mClas from './Massages.module.css'
 import React from "react";
-import { massageChangeActionCreator, massageActionCreator } from '../../redux/massages-reducer'
+import { actions } from '../../redux/massages-reducer'
 import Massages from './Massages';
 import { connect } from 'react-redux';
-import AnonimGoLogin from '../../noc/noc'
+import AnonimGoLogin from '../../noc/hoc'
 import { compose } from 'redux';
 import { getMassages } from '../../redux/massages-reselects';
 const Users = props => {
@@ -38,10 +38,10 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         createPost: () => {
-            dispatch(massageActionCreator())
+            dispatch(actions.massageActionCreator())
         },
         massageChange: (text) => {
-            dispatch(massageChangeActionCreator(text))
+            dispatch(actions.massageChangeActionCreator(text))
         }
     }
 }

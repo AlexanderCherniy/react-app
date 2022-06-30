@@ -1,5 +1,12 @@
+import { UserType } from '../../../redux/users-reducer'
 import classes from '../Users.module.css'
-const FollowUnFollowButtons = ({u, isBlocked, unfollowUsers, followUsers}) =>{
+type Props = {
+    u: UserType
+    isBlocked: number[]
+    followUsers: (id: number)=> void
+    unfollowUsers: (id:number)=> void
+}
+const FollowUnFollowButtons:React.FC<Props> = ({u, isBlocked, unfollowUsers, followUsers}) =>{
     return(
         u.followed === true
             ? <button disabled={isBlocked.some(id => id === u.id)} className={classes.unfollow} onClick={() => {

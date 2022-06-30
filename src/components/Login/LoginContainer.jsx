@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from "react-redux";
 import { compose } from "redux";
 import Login from "./Login";
-import { setError } from '../../redux/auth-reducer'
+import { actions } from '../../redux/auth-reducer'
 import { getCaptcha } from "../../redux/auth-reducer";
 const LoginContainer = props => {
     return <Login  {...props} />
@@ -16,5 +16,5 @@ let mapStateToProps = (state) => {
     }
 }
 export default compose(
-    connect(mapStateToProps, { setError, getCaptcha })
+    connect(mapStateToProps, { actions, getCaptcha })
 )(LoginContainer)

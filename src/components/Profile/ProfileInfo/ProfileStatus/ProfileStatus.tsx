@@ -1,7 +1,22 @@
 import React from 'react';
 import incClass from '../../Profile.module.css';
-let ref = React.createRef()
-const ProfileStatus = (props) => {
+type Props = {
+    statusText: string
+    item: {
+        userId: number
+        fullName: string
+        aboutMe: string | null
+    }
+    userData:{
+        id: number
+    }
+    changeText: boolean
+    changeTextFunc: (ref:any)=> void
+    addChangeText: ()=> void
+    removeChangeText: ()=> void
+}
+const ProfileStatus:React.FC<Props> = (props) => {
+    const ref = React.useRef<HTMLInputElement>(null)
     return (
         <div>
             <span className={incClass.status}>Status: </span>

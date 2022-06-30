@@ -23,8 +23,11 @@ const reducers = combineReducers({
     app: appReducer
 })
 type reducersType = typeof reducers
-export type AppState = ReturnType<reducersType> 
-
+export type AppState = ReturnType<reducersType>
+export type AllActionType<T> = T extends {[key: string]:infer U} ? U : never
+export function TypeFunction<T extends string>(arg: T):T{
+    return arg
+}
 
 
 //@ts-ignore

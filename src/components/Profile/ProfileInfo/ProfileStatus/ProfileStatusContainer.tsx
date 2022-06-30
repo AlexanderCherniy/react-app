@@ -1,9 +1,20 @@
-import { changeStatus } from "../../../../redux/profile-reducer";
+import { actions } from "../../../../redux/profile-reducer";
 import ProfileStatus from "./ProfileStatus";
 import React, { useEffect, useState } from 'react';
 import { connect } from "react-redux";
 import { compose } from "redux";
-const ProfileStatusContainer = props =>{
+import { AppState } from "../../../../redux/store-redux";
+type Props = {
+    statusText: string
+    item: any
+    userData:{
+        id:number
+    }
+    getStatus: (id:number)=> void
+    updateStatus: (statusText:string|null)=> void
+    changeStatus: (ref: any)=> void
+}
+const ProfileStatusContainer:React.FC<Props> = props =>{
     const [changeText, setChangeText] = useState(false)
     useEffect(()=>{
         props.getStatus(props.userData.id)
@@ -13,7 +24,7 @@ const ProfileStatusContainer = props =>{
         setChangeText(false)
         props.updateStatus(props.statusText)
     }
-    const changeTextFunc = (ref)=>{
+    const changeTextFunc = (ref:any)=>{
         props.changeStatus(ref.current.value)
     }
     return(
@@ -21,11 +32,11 @@ const ProfileStatusContainer = props =>{
                        changeTextFunc={changeTextFunc} changeText={changeText}/>
     )
 }
-let mapStateToProps = (state)=>{
+const mapStateToProps = (state:AppState)=>{
     return{
         usersState: state.usersPage.users
     }
 }
 export default compose(
-    connect(mapStateToProps,{changeStatus}),
+    connect(mapStateToProps,{changeStatus: actions.changeStatus}),
 )(ProfileStatusContainer)

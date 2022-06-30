@@ -1,6 +1,8 @@
-const ADD_MASSAGE = 'massages-reducer/ADD-MASSAGE'
-const CHANGE_MASSAGE = 'massages-reducer/CHANGE-MASSAGE'
-const ADD_USERS = "massages-reducer/ADD_USERS"
+import { AllActionType, TypeFunction } from "./store-redux"
+
+// const ADD_MASSAGE = 'massages-reducer/ADD-MASSAGE'
+// const CHANGE_MASSAGE = 'massages-reducer/CHANGE-MASSAGE'
+// const ADD_USERS = "massages-reducer/ADD_USERS"
 let initialState = {
     users: [
         { userId: 1, userName: 'Svetlana', userPhoto: 'https://i.pinimg.com/736x/1d/1e/47/1d1e471310a3b0e6f3a154fc6d71b323.jpg', online: 'true' },
@@ -41,9 +43,9 @@ let initialState = {
     newMassageText: ''
 }
 type initialStateType = typeof initialState
-const reducer = (state = initialState, action: any): initialStateType => {
+const reducer = (state = initialState, action: ActionType): initialStateType => {
     switch (action.type) {
-        case ADD_MASSAGE: {
+        case "massages-reducer/ADD_MASSAGE": {
             let massagesId = state.massages
             let IdLast = massagesId[massagesId.length - 1].Id
             let newMassage = { Id: IdLast + 1, massage: state.newMassageText }
@@ -53,13 +55,13 @@ const reducer = (state = initialState, action: any): initialStateType => {
                 newMassageText: ''
             }
         }
-        case CHANGE_MASSAGE: {
+        case "massages-reducer/CHANGE-MASSAGE": {
             return {
                 ...state,
                 newMassageText: action.MassageText
             }
         }
-        case ADD_USERS: {
+        case "massages-reducer/ADD_USERS": {
             return {
                 ...state,
                 users: action.newUsers
@@ -70,18 +72,18 @@ const reducer = (state = initialState, action: any): initialStateType => {
         }
     }
 }
-type massageChangeActionCreatorType = {
-    type: typeof CHANGE_MASSAGE
-    MassageText: string
+type UserType = {
+    userId: number
+    userName: string
+    userPhoto: string
+    online: string
 }
-export let massageChangeActionCreator = (MassageText: string): massageChangeActionCreatorType => ({ type: CHANGE_MASSAGE, MassageText })
-type addUsersActionType = {
-    type: typeof ADD_USERS
-    newUsers: Object
+type UsersType = Array<UserType>
+type ActionType = ReturnType<AllActionType<typeof actions>>
+export const actions = {
+    massageChangeActionCreator: (MassageText: string) => ({ type: TypeFunction("massages-reducer/CHANGE-MASSAGE"), MassageText }),
+    addUsers: (newUsers: UsersType) => ({ type: TypeFunction("massages-reducer/ADD_USERS"), newUsers }),
+    massageActionCreator: () => ({ type: TypeFunction("massages-reducer/ADD_MASSAGE") })
 }
-export const addUsers = (newUsers: Object):addUsersActionType => ({ type: ADD_USERS, newUsers })
-type massageActionCreatorType = {
-    type: typeof ADD_MASSAGE
-}
-export let massageActionCreator = ():massageActionCreatorType => ({ type: ADD_MASSAGE })
+
 export default reducer
