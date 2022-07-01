@@ -50,9 +50,9 @@ const authReducer = (state = initialState, action: ActionType): initialStateType
 }
 type ActionType = ReturnType<AllActionType<typeof actions>>
 export type dataType = {
-    email: null | string
-    id: null | number
-    login: null | string
+    email: string | null
+    id: number
+    login: string | null
 }
 export const actions = {
     setUserData : (email: string, id: number, login: string) => ({ type: TypeFunction("auth-reducer/GET_DATA"), data: { email, id, login } }),

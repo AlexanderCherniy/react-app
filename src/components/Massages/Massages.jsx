@@ -1,4 +1,4 @@
-import mClas from './Massages.module.css'
+import mClas from './Massages.module.scss'
 import React from "react";
 let Massages = props => {
     let createRef = React.createRef()

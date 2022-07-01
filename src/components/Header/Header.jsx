@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import incapsClasses from './Header.module.css';
+import incapsClasses from './Header.module.scss';
 import Login from './Login';
 import UnLogin from './Unlogin';
 let noPhoto =

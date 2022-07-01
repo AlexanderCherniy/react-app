@@ -1,4 +1,4 @@
-import incClass from '../../Profile.module.css';
+import incClass from '../../Profile.module.scss';
 import { ShowAboutMe, ShowJobDescription, ShowJobMark } from './ProfileContactsHelper';
 import ProfileStatusContainer from "../ProfileStatus/ProfileStatusContainer";
 let ProfileContacts = props => {

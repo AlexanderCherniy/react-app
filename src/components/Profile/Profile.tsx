@@ -1,7 +1,7 @@
 //@ts-ignore
 import AnonimGoLogin from '../../noc/hoc';
 import PostsContainer from './Posts/PostsContainer';
-import incClass from './Profile.module.css';
+import incClass from './Profile.module.scss';
 import ProfileInfo from './ProfileInfo/ProfileInfo';
 type Props = {
   userProfile: any

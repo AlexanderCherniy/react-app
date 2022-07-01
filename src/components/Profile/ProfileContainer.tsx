@@ -23,8 +23,6 @@ type Props = {
     updateStatus: () => void
 }
 const ProfileContainer: React.FC<Props> = (props) => {
-    console.log(props);
-    
     let userId = props.router.params.userId
     const getProfileHelper = () => {
         ProfileApi.getProfile(userId).then(data => {

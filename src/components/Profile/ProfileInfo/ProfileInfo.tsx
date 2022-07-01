@@ -1,26 +1,24 @@
 import { useState } from 'react';
-import incClass from '.././Profile.module.css';
+import incClass from '.././Profile.module.scss';
 //@ts-ignore
 import ProfileContacts from './ProfileContacts/ProfileContacts';
 //@ts-ignore
-import ProfileContactsForm from './ProfileContacts/ProfileContactsForm';
-//@ts-ignore
+import ProfileContactsForm, { ItemType } from './ProfileContacts/ProfileContactsForm';
+
 import { ButtonChange, MyProfile, NoPhoto } from './ProfileInfoHelper';
-//@ts-ignore
+
 import ProfileStatusContainer from './ProfileStatus/ProfileStatusContainer';
 import cn from 'classnames'
+import { dataType } from '../../../redux/auth-reducer';
+import { ProfileType } from '../../../api/api-dal';
 
 type Props = {
-  userProfile: any
+  userProfile: Array<ProfileType>
   statusText: string
-  ProfileItem: {
-      userId: number
-      fullName: string
-      aboutMe: string | null
-  }
-  userData:{
-      id: number
-  }
+  activeContactsProps: boolean
+  // item: ItemType
+  userData: dataType
+  ProfileItem: ProfileType
   changeText: boolean
   changeTextFunc: (ref:any)=> void
   addChangeText: ()=> void
@@ -54,9 +52,12 @@ const ProfileInfo: React.FC<Props> = (props) => {
     } else {
       return (
         <div>
-          <ProfileContactsForm item={props.userProfile[0]} setChangeMode={setChangeMode}
-            changeMode={changeMode} {...props}
-            activeContacts={activeContacts} setActiveContacts={setActiveContacts} />
+          <ProfileContactsForm 
+            item={props.userProfile[0]} setChangeMode={setChangeMode}
+            //@ts-ignore
+            changeMode={changeMode} 
+            {...props}
+            activeContacts={activeContacts} setActiveContacts={setActiveContacts}/>
         </div>
       )
     }
@@ -71,7 +72,10 @@ const ProfileInfo: React.FC<Props> = (props) => {
               onPointerLeave={() => setUseZoom(false)} onClick={() => setUseZoom(true)}
               src={NoPhoto(props.userProfile[0].photos.small)} alt='profilePhoto' />
             <ProfileStatusContainer {...props} item={props.userProfile[0]} />
-            <MyProfile {...props} selectedPhoto={selectedPhoto} />
+            
+            <MyProfile {...props}
+            //@ts-ignore
+            selectedPhoto={selectedPhoto} />
           </div>
           <div className={incClass.Profile__text}>
             <div className={incClass.ProfileInfo}>

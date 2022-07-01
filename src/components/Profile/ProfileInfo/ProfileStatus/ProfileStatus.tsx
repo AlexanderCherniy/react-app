@@ -1,5 +1,5 @@
 import React from 'react';
-import incClass from '../../Profile.module.css';
+import incClass from '../../Profile.module.scss';
 type Props = {
     statusText: string
     item: {

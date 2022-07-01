@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import c from './Header.module.css';
+import c from './Header.module.scss';
 let Login = ({isAuth,login}) => {
     return (
         <div>

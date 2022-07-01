@@ -1,5 +1,5 @@
 import { AuthApi } from '../../api/api-dal';
-import c from './Header.module.css';
+import c from './Header.module.scss';
 const UnLogin = ({isAuth}) => {
     const unLoginFunc = () => AuthApi.unloginService().then(data => {
         if (data.resultCode === 0) {

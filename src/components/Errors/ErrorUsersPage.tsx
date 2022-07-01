@@ -1,4 +1,4 @@
-import classes from '../Users/Users.module.css'
+import classes from '../Users/Users.module.scss'
 type Props = {
     error: boolean
     toggleErrorStatus: (status:boolean)=> void

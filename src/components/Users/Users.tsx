@@ -1,4 +1,4 @@
-import classes from './Users.module.css'
+import classes from './Users.module.scss'
 import React from 'react'
 import User from './User/User'
 import SlicedPages from './SlicedPages'

@@ -1,5 +1,5 @@
 import { UserType } from '../../../redux/users-reducer'
-import classes from '../Users.module.css'
+import classes from '../Users.module.scss'
 type Props = {
     u: UserType
     isBlocked: number[]

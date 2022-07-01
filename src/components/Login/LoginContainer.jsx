@@ -16,5 +16,5 @@ let mapStateToProps = (state) => {
     }
 }
 export default compose(
-    connect(mapStateToProps, { actions, getCaptcha })
+    connect(mapStateToProps, { setError: actions.setError, getCaptcha })
 )(LoginContainer)

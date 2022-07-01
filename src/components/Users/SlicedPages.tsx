@@ -1,4 +1,4 @@
-import classes from './Users.module.css'
+import classes from './Users.module.scss'
 type Props = {
     totalCount: number
     pageSize: number

@@ -1,6 +1,6 @@
 import React from "react";
 import Post from './Post/Post';
-import incClass from './Posts.module.css';
+import incClass from './Posts.module.scss';
 import PostsForm from './PostsForm';
 type Props = {
   post: any

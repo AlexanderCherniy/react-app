@@ -4,15 +4,24 @@ import React, { useEffect, useState } from 'react';
 import { connect } from "react-redux";
 import { compose } from "redux";
 import { AppState } from "../../../../redux/store-redux";
+import { ProfileType } from "../../../../api/api-dal";
+import { ItemType } from "../ProfileContacts/ProfileContactsForm";
+import { dataType } from "../../../../redux/auth-reducer";
 type Props = {
-    statusText: string
-    item: any
-    userData:{
-        id:number
-    }
+    userProfile: Array<ProfileType>
+    activeContactsProps: boolean
+    item: ItemType
+    userData: dataType
+    ProfileItem: ProfileType
+    changeText: boolean
+    changeTextFunc: (ref:any)=> void
+    addChangeText: ()=> void
+    removeChangeText: ()=> void
+    updatePhoto: (e:HTMLInputElement)=> void
     getStatus: (id:number)=> void
     updateStatus: (statusText:string|null)=> void
     changeStatus: (ref: any)=> void
+    statusText: string
 }
 const ProfileStatusContainer:React.FC<Props> = props =>{
     const [changeText, setChangeText] = useState(false)

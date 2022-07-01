@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import mClas from './Massages.module.css'
+import mClas from './Massages.module.scss'
 import React from "react";
 import { actions } from '../../redux/massages-reducer'
 import Massages from './Massages';

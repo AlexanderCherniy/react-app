@@ -2,22 +2,39 @@ import { Form, Field, Formik } from "formik"
 import { Navigate } from "react-router-dom";
 import { AuthApi } from "../../api/api-dal"
 import { Input } from "../../Forms/Forms";
+import { dataType } from "../../redux/auth-reducer";
 import { validateLogin } from "../../validate/validate";
-import incClass from '../Profile/Posts/Posts.module.css';
-import c from './Login.module.css';
-const LoginForm = ({ captcha, error, ...props }) => {
+import incClass from '../Profile/Posts/Posts.module.scss';
+import c from './Login.module.scss';
+
+type Props = {
+    captcha: string | null
+    error: string | null
+    userData: dataType
+    getCaptcha: ()=> void
+    setError: (error: string | null)=> void
+}
+export type FormValues = {
+    login: string,
+    passoword: string,
+    captcha: string,
+    remebmerMe: boolean
+}
+const LoginForm:React.FC<Props> = ({ captcha, error, ...props }) => {
+    
     const deleteError = () => {
-        props.actions.setError(null);
+        props.setError(null);
     }
-    if (props.userData.email != null && props.userData.login != null) {
-        return <Navigate to={'/profile'} />
-    }
-    return <Formik initialValues={{
+    const initialValues: FormValues = {
         login: '',
         passoword: '',
         captcha: '',
         remebmerMe: false
-    }}
+    }
+    if (props.userData.email != null && props.userData.login != null) {
+        return <Navigate to={'/profile'} />
+    }
+    return <Formik initialValues={initialValues}
         validate={validateLogin}
         onSubmit={async values => {
             const data = await AuthApi.loginService(values.login, values.passoword, values.remebmerMe, values.captcha)
@@ -28,7 +45,7 @@ const LoginForm = ({ captcha, error, ...props }) => {
                 if (data.resultCode === 10) {
                     props.getCaptcha()
                 }
-                props.actions.setError(...[data.messages]);
+                props.setError(data.messages[0]);
             }
         }}>
         <Form>

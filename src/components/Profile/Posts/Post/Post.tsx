@@ -1,4 +1,4 @@
-import './Post.css';
+import './Post.scss';
 type Props = {
   img: string
   comment: string
