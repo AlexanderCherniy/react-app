@@ -1,19 +1,16 @@
 //@ts-ignore
+import { ProfileType } from '../../api/api-dal';
 import AnonimGoLogin from '../../noc/hoc';
+import { dataType } from '../../redux/auth-reducer';
 import PostsContainer from './Posts/PostsContainer';
 import incClass from './Profile.module.scss';
 import ProfileInfo from './ProfileInfo/ProfileInfo';
 type Props = {
   userProfile: any
   statusText: string
-  ProfileItem: {
-      userId: number
-      fullName: string
-      aboutMe: string | null
-  }
-  userData:{
-      id: number
-  }
+  activeContactsProps: boolean
+  ProfileItem: ProfileType
+  userData: dataType
   changeText: boolean
   changeTextFunc: (ref:any)=> void
   addChangeText: ()=> void
