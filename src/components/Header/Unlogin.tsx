@@ -1,6 +1,9 @@
 import { AuthApi } from '../../api/api-dal';
 import c from './Header.module.scss';
-const UnLogin = ({isAuth}) => {
+type UnLoginType = {
+    isAuth: boolean
+}
+const UnLogin:React.FC<UnLoginType> = ({isAuth}) => {
     const unLoginFunc = () => AuthApi.unloginService().then(data => {
         if (data.resultCode === 0) {
           window.location.reload()

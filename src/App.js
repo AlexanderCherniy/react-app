@@ -1,9 +1,9 @@
 import './App.css';
 import './Nullstyle.css';
-import HeaderContainer from './components/Header/HeaderContainer';
+import Header from './components/Header/Header';
 import Help from './components/Help/Help';
 import { HashRouter, Navigate, Route, Routes } from 'react-router-dom';
-import SettingsContainer from './components/Settings/SettingsContainer';
+import {Settings} from './components/Settings/Settings';
 import SideBarContainer from './components/SideBar/SideBarContainer';
 import FriendsContainer from './components/Friends/FriendsContainer';
 import { connect, Provider } from 'react-redux'
@@ -14,10 +14,10 @@ import { inizializateReady } from './redux/app-reducer';
 import store from './redux/store-redux';
 import { LazyLoaderHOC } from './noc/lazyLoad';
 import { setBlackTheme } from './redux/settings-reducer';
-const MassagesContainer = React.lazy(() => import('./components/Massages/MassagesContainer'));
+const Massages = React.lazy(() => import('./components/Massages/Massages'));
 const ProfileContainer = React.lazy(() => import('./components/Profile/ProfileContainer'));
 const UsersContainer = React.lazy(() => import('./components/Users/UsersContainer'));
-const LoginContainer = React.lazy(() => import('./components/Login/LoginContainer'));
+const Login = React.lazy(() => import('./components/Login/Login'));
 const App = props =>{
   localStorage.setItem('blackTheme', props.blackTheme);
   const blackTheme = localStorage.getItem('blackTheme') === 'true';
@@ -27,7 +27,7 @@ const App = props =>{
     if(!props.inizializated) return <div className='inizializating'></div> 
     return (
       <div className={blackTheme ? "wrapper blackTheme" : "wrapper"}>
-        <HeaderContainer/>
+        <Header/>
         <div className='shellMainSide'>
           <SideBarContainer/>
           <React.Suspense fallback={<div>Loading...</div>}>
@@ -39,11 +39,11 @@ const App = props =>{
             <Route path='/friends' element={<FriendsContainer/>}/>
             <Route path='/gays' element={<GaysContainer/>}/>
             <Route path='/games' element={<div>Games</div>}/>
-            <Route path='/massages/*' element={<MassagesContainer/>}/>
+            <Route path='/massages/*' element={<Massages/>}/>
             <Route path='/help' element={<Help/>}/>
-            <Route path='/settings' element={<SettingsContainer/>}/>
+            <Route path='/settings' element={<Settings/>}/>
             <Route path='/users' element={<UsersContainer/>}/>
-            <Route path='/login' element={<LoginContainer/>}/>
+            <Route path='/login' element={<Login/>}/>
           </Routes>
           </React.Suspense>
         </div>

@@ -23,7 +23,7 @@ export const Textarea:React.FC<ValidComponentArgType<any,any>> = ({...props})=>{
 export const Input:React.FC<ValidComponentArgType<any,any>> = ({...props})=>{
     return <ValidComponent {...props} ><input {...props.field} {...props}/></ValidComponent>
 } 
-export function createField<NameType = string>(className:string, name: NameType, component: React.FC<ValidComponentArgType<any,any>> ,
+export function createField<NameType = string>(className:string | undefined, name: NameType, component: React.FC<ValidComponentArgType<any,any>> ,
                             placeholder?: string ,type?: string  ){
     return <Field className={className} component={component} placeholder={placeholder} type={type} name={name} />
 }

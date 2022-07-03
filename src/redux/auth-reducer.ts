@@ -48,7 +48,7 @@ const authReducer = (state = initialState, action: ActionType): initialStateType
         default: return state
     }
 }
-type ActionType = ReturnType<AllActionType<typeof actions>>
+export type ActionType = ReturnType<AllActionType<typeof actions>>
 export type dataType = {
     email: string | null
     id: number

@@ -1,6 +1,11 @@
 import { NavLink } from 'react-router-dom';
 import c from './Header.module.scss';
-let Login = ({isAuth,login}) => {
+
+type LoginType = {
+    isAuth: boolean
+    login: string | null
+}
+const Login: React.FC<LoginType> = ({ isAuth, login }) => {
     return (
         <div>
             {isAuth !== true

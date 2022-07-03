@@ -1,8 +1,9 @@
 import LoginForm from "./LoginForm";
-const Login = props => {
+const Login:React.FC = props => {
+
     return <div>
         <div className="title">LOGIN</div>
-        <LoginForm {...props} />
+        <LoginForm />
     </div>
 }
 export default Login

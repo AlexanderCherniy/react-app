@@ -38,11 +38,13 @@ export type PhotosType = {
     small: string | null
     large: string | null
 }
+type RequestValuesType = ItemType
+type RequestValuesKeysType = keyof RequestValuesType
 const ProfileContactsForm: React.FC<Props> = (props) => {
     const validateProfileHelper = validateProfile(props.item)
     return <Formik initialValues={{ ...props.userProfile[0], someUrlIsWrong: "" }}
         // validate={validateProfileHelper}
-        onSubmit={async values => {
+        onSubmit={async (values:RequestValuesType) => {
             await props.updateAccountProfile(values)
             props.setChangeMode(false)
         }}>
@@ -57,19 +59,19 @@ const ProfileContactsForm: React.FC<Props> = (props) => {
                             </div>
                             <div className={classProfile.Profile__name}>
                                 <span className={classProfile.ProfileTextHeader}>UserName:</span>
-                                {createField(classProfile.form, "fullName", Input, "FullName")}
+                                {createField<RequestValuesKeysType>(classProfile.form, "fullName", Input, "FullName")}
                             </div>
                             <ProfileStatusContainer {...props} item={props.userProfile[0]} />
                             <div className={classProfile.ProfileTextStyle}>
                                 <span className={classProfile.ProfileTextHeader}>
                                     AboutMe:
-                                </span> {createField(classProfile.form, "aboutMe", Input, "AboutMe")}
+                                </span> {createField<RequestValuesKeysType>(classProfile.form, "aboutMe", Input, "AboutMe")}
                             </div>
                             <div>
                                 <div className={classProfile.ProfileJobSearch}>
                                     <span className={classProfile.ProfileJobSearchTitle}>Job Search:</span>
-                                    {createField(classProfile.form, "lookingForAJob", Input, "LookingForAJob", "checkbox")}
-                                    {createField(classProfile.form, "lookingForAJobDescription", Input, "LookingForAJobDescription")}
+                                    {createField<RequestValuesKeysType>(classProfile.form, "lookingForAJob", Input, "LookingForAJob", "checkbox")}
+                                    {createField<RequestValuesKeysType>(classProfile.form, "lookingForAJobDescription", Input, "LookingForAJobDescription")}
                                 </div>
                             </div>
                             <ErrorMessage className={incClass.errorLogin} name="someUrlIsWrong" component={'div'} />
@@ -94,11 +96,12 @@ type ContactsType = {
     contactValue: string
     activeContacts: boolean
 }
+
 const Contacts = ({ contactTitle, contactValue, activeContacts }: ContactsType) => {
-    console.log(activeContacts);
+    type contactTitleKey = typeof contactTitle
     return <div className={activeContacts === true ? classProfile.ContactsFormContainer : classProfile.ContactsFormContainer + ' ' + classProfile.active}>
         <span className={classProfile.ContactLinkHeader}>{contactValue}: </span>
-        {createField(classProfile.form, contactTitle, Input, contactValue)}
+        {createField<contactTitleKey>(classProfile.form, contactTitle, Input, contactValue)}
     </div>
 }
 export default ProfileContactsForm
