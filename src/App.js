@@ -4,7 +4,7 @@ import Header from './components/Header/Header';
 import Help from './components/Help/Help';
 import { HashRouter, Navigate, Route, Routes } from 'react-router-dom';
 import {Settings} from './components/Settings/Settings';
-import SideBarContainer from './components/SideBar/SideBarContainer';
+import SideBar from './components/SideBar/SideBar';
 import FriendsContainer from './components/Friends/FriendsContainer';
 import { connect, Provider } from 'react-redux'
 import GaysContainer from './components/GAYS/GaysContainer';
@@ -29,7 +29,7 @@ const App = props =>{
       <div className={blackTheme ? "wrapper blackTheme" : "wrapper"}>
         <Header/>
         <div className='shellMainSide'>
-          <SideBarContainer/>
+          <SideBar/>
           <React.Suspense fallback={<div>Loading...</div>}>
           <Routes>
             <Route path='/profile/:userId' element={<ProfileContainer/>}/>

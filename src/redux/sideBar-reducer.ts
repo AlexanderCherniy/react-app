@@ -1,5 +1,10 @@
 const SET_SHOW_SIDEBAR = 'sideBar-reducer/SET_SHOW_SIDEBAR'
 
+type SideBarLink = {
+    id?: number
+    to: string
+    text: string
+}
 let initialState = {
     sideBarLinks:[
         {id:1,to:'/profile',text:'PROFILE'},
@@ -11,8 +16,8 @@ let initialState = {
         {id:7,to:'/help',text:'HELP'},
         {id:8,to:'/settings',text:'SETTINGS'},
         {id:9,to:'/users',text:'USERS!'},
-    ],
-    showSideBar: true as boolean
+    ] as Array<SideBarLink>,
+    showSideBar: true
 }
 type initialStateType = typeof initialState
 const reducer = (state = initialState,action:any):initialStateType=>{
