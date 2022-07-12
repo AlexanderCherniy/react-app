@@ -1,9 +1,6 @@
 import { AllActionType, TypeFunction } from "./store-redux"
 
-// const ADD_MASSAGE = 'massages-reducer/ADD-MASSAGE'
-// const CHANGE_MASSAGE = 'massages-reducer/CHANGE-MASSAGE'
-// const ADD_USERS = "massages-reducer/ADD_USERS"
-let initialState = {
+const initialState = {
     users: [
         { userId: 1, userName: 'Svetlana', userPhoto: 'https://i.pinimg.com/736x/1d/1e/47/1d1e471310a3b0e6f3a154fc6d71b323.jpg', online: 'true' },
         {
@@ -40,7 +37,6 @@ let initialState = {
         { Id: 6, massage: 'I am a gungster!' },
         { Id: 7, massage: '你不認識我！高的' },
     ],
-    newMassageText: ''
 }
 type initialStateType = typeof initialState
 const reducer = (state = initialState, action: ActionType): initialStateType => {
@@ -48,17 +44,10 @@ const reducer = (state = initialState, action: ActionType): initialStateType => 
         case "massages-reducer/ADD_MASSAGE": {
             let massagesId = state.massages
             let IdLast = massagesId[massagesId.length - 1].Id
-            let newMassage = { Id: IdLast + 1, massage: state.newMassageText }
+            let newMassage = { Id: IdLast + 1, massage: action.message }
             return {
                 ...state,
                 massages: [...state.massages, newMassage],
-                newMassageText: ''
-            }
-        }
-        case "massages-reducer/CHANGE-MASSAGE": {
-            return {
-                ...state,
-                newMassageText: action.MassageText
             }
         }
         case "massages-reducer/ADD_USERS": {
@@ -81,9 +70,8 @@ type UserType = {
 type UsersType = Array<UserType>
 type ActionType = ReturnType<AllActionType<typeof actions>>
 export const actions = {
-    massageChangeActionCreator: (MassageText: string) => ({ type: TypeFunction("massages-reducer/CHANGE-MASSAGE"), MassageText }),
     addUsers: (newUsers: UsersType) => ({ type: TypeFunction("massages-reducer/ADD_USERS"), newUsers }),
-    massageActionCreator: () => ({ type: TypeFunction("massages-reducer/ADD_MASSAGE") })
+    massageActionCreator: (message: string) => ({ type: TypeFunction("massages-reducer/ADD_MASSAGE"), message })
 }
 
 export default reducer

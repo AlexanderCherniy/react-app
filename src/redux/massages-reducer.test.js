@@ -1,6 +1,7 @@
-import { massageActionCreator, massageChangeActionCreator } from "./massages-reducer"
+import { actions } from "./massages-reducer"
 import massagesReducer from './massages-reducer'
 import { newUsers } from "./friends-reducer"
+
 let state = {
     users:[
         {userId:1 ,userName:'Svetlana',userPhoto:'https://i.pinimg.com/736x/1d/1e/47/1d1e471310a3b0e6f3a154fc6d71b323.jpg', online:'true'},
@@ -29,14 +30,9 @@ let state = {
     newMassageText:''
 }
 
-test("input massages changed", ()=>{
-    const action = massageChangeActionCreator("HI, HOW ARE YOU!?")
-    const newState = massagesReducer(state,action)
-    expect(newState.newMassageText).toBe("HI, HOW ARE YOU!?")
-})
 test("massages added", ()=>{
     state.newMassageText = 'as'
-    const action = massageActionCreator()
+    const action = actions.massageActionCreator()
     const newState = massagesReducer(state,action)
     expect(newState.massages.length).toBe(state.massages.length + 1)
 })

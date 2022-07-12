@@ -4,9 +4,9 @@ import React, { useEffect, useState } from 'react';
 import { connect } from "react-redux";
 import { compose } from "redux";
 import { AppState } from "../../../../redux/store-redux";
-import { ProfileType } from "../../../../api/api-dal";
 import { ItemType } from "../ProfileContacts/ProfileContactsForm";
 import { dataType } from "../../../../redux/auth-reducer";
+import { ProfileType } from "../../../../redux/GlobalTypes";
 type Props = {
     userProfile: Array<ProfileType>
     activeContactsProps: boolean

@@ -1,4 +1,4 @@
-import { AuthApi } from '../../api/api-dal';
+import { AuthApi } from '../../api/auth-api';
 import c from './Header.module.scss';
 type UnLoginType = {
     isAuth: boolean

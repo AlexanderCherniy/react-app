@@ -1,5 +1,6 @@
-import { UserType } from '../../../redux/users-reducer'
+import { UserType } from '../../../redux/GlobalTypes'
 import classes from '../Users.module.scss'
+import {UserAddOutlined, UserDeleteOutlined } from '@ant-design/icons';
 type Props = {
     u: UserType
     isBlocked: number[]
@@ -11,10 +12,11 @@ const FollowUnFollowButtons:React.FC<Props> = ({u, isBlocked, unfollowUsers, fol
         u.followed === true
             ? <button disabled={isBlocked.some(id => id === u.id)} className={classes.unfollow} onClick={() => {
                 unfollowUsers(u.id)
-            }}>UNFOLLOWED</button>
+            }}><UserDeleteOutlined style={{fontSize: '23px', color:'rgb(240, 59, 59)'}}/></button>
             : <button disabled={isBlocked.some(id => id === u.id)} className={classes.follow} onClick={() => {
                 followUsers(u.id)
-        }}>FOLLOWED</button>
+        }}><UserAddOutlined style={{fontSize: '23px', color:'rgb(41, 181, 41)'}}/></button>
+        
     )
 }
 export default FollowUnFollowButtons

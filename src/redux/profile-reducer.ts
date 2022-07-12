@@ -1,32 +1,29 @@
 import { Dispatch } from 'react';
-import { ProfileApi, ProfileType } from "../api/api-dal"
+import { ProfileApi } from '../api/profile-api';
+import { ProfileType } from './GlobalTypes';
 import { AllActionType, AppState, TypeFunction } from './store-redux';
 
-
-
-const ADD_POST = 'profile-reducer/ADD-POST'
-const CHANGE_POST = 'profile-reducer/CHANGE-POST'
-const UPDATE_PROFILE = 'profile-reducer/UPDATE_PROFILE'
-const SET_STATUS = 'profile-reducer/CHANGE_STATUS'
-const SET_PHOTO = 'profile-reducer/SET_PHOTO'
-const DELETE_POSTS = 'profile-reducer/DELETE_POSTS'
-const CHECK_POSTS = 'profile-reducer/CHECK_POSTS'
-let initialState = {
-    post: JSON.parse(localStorage.getItem("posts") as any) !== null
-        ? JSON.parse(localStorage.getItem("posts") as any)
+const initialState = {
+    post: JSON.parse(localStorage.getItem("posts") as string) !== null
+        ? JSON.parse(localStorage.getItem("posts") as string)
         : [{ id: 0, img: 'https://gimn4vn.ru/wp-content/uploads/2015/09/27/%D0%B0%D0%B4%D0%BC%D0%B8%D0%BD.jpg', comment: 'Hello we were waiting for you!' },],
     newPost: '',
     profile: [
 
-    ] as any,
+    ] as Array<ProfileType>,
     statusText: 'Напишите о себе',
 }
+export type PostType = {
+    id: number
+    img: string
+    comment: string 
+}
 type initialStateType = typeof initialState
-let reducer = (state = initialState, action: ActionType): initialStateType => {
+const reducer = (state = initialState, action: ActionType): initialStateType => {
     switch (action.type) {
         case 'profile-reducer/ADD-POST': {
-            let IdLast = state.post[state.post.length - 1].id
-            let newPost = {
+            const IdLast = state.post[state.post.length - 1].id
+            const newPost = {
                 id: IdLast + 1,
                 img: action.avatar,
                 comment: state.newPost,
@@ -69,8 +66,8 @@ let reducer = (state = initialState, action: ActionType): initialStateType => {
         case 'profile-reducer/CHECK_POSTS': {
             return {
                 ...state,
-                post: JSON.parse(localStorage.getItem("posts") as any) !== null
-                    ? JSON.parse(localStorage.getItem("posts") as any)
+                post: JSON.parse(localStorage.getItem("posts") as string) !== null
+                    ? JSON.parse(localStorage.getItem("posts") as string)
                     : [{ id: 0, img: 'https://gimn4vn.ru/wp-content/uploads/2015/09/27/%D0%B0%D0%B4%D0%BC%D0%B8%D0%BD.jpg', comment: 'Hello we were waiting for you!' },]
             }
         }
@@ -86,7 +83,7 @@ export const actions = {
     changePostsCreateAction: (text: string) => ({ type: TypeFunction("profile-reducer/CHANGE_POST"), text }),
     updateProfile: (newProfile: ProfileType) => ({ type: TypeFunction("profile-reducer/UPDATE_PROFILE"), newProfile }),
     changeStatus: (newStatusText: string) => ({ type: TypeFunction("profile-reducer/SET_STATUS"), newStatusText }),
-    changePhoto: (newPhoto: string) => ({ type: TypeFunction("profile-reducer/SET_PHOTO"), newPhoto }),
+    changePhoto: (newPhoto: string | {large: string , small: string}) => ({ type: TypeFunction("profile-reducer/SET_PHOTO"), newPhoto }),
     deletePosts: () => ({ type: TypeFunction("profile-reducer/DELETE_POSTS")}),
     checkPosts: () => ({ type: TypeFunction("profile-reducer/CHECK_POSTS")})
 }
@@ -95,7 +92,7 @@ export const getStatus = (id: number) => async (dispatch: Dispatch<ActionType>) 
     const response = await ProfileApi.getStatus(id)
     dispatch(actions.changeStatus(response.data))
 }
-enum ProfileCodes{
+export enum ProfileCodes{
     Good = 0
 }
 export const updateStatus = (status: string) => async (dispatch: Dispatch<ActionType>) => {

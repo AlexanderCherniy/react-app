@@ -1,7 +1,7 @@
 import { Form, Field, Formik, ErrorMessage } from "formik"
-import { ProfileContactsType, ProfileType } from "../../../../api/api-dal";
 import { createField, Input } from "../../../../Forms/Forms";
 import { dataType } from "../../../../redux/auth-reducer";
+import { ProfileContactsType, ProfileType } from "../../../../redux/GlobalTypes";
 import { validateProfile } from "../../../../validate/validate";
 import incClass from '../../../Profile/Posts/Posts.module.scss'
 import classProfile from '../../Profile.module.scss';
@@ -37,7 +37,7 @@ export type ItemType = {
 export type PhotosType = {
     small: string | null
     large: string | null
-}
+} | string
 type RequestValuesType = ItemType
 type RequestValuesKeysType = keyof RequestValuesType
 const ProfileContactsForm: React.FC<Props> = (props) => {

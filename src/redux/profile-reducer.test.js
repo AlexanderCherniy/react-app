@@ -1,4 +1,4 @@
-import { addPostsCreateAction, changePostsCreateAction } from "./profile-reducer";
+import { actions } from "./profile-reducer";
 import profileReducer from './profile-reducer'
 let state = {
     post:[
@@ -11,12 +11,12 @@ let state = {
 }
 describe("test posts", ()=>{
     test('posts added', () => {
-        let action = addPostsCreateAction("HAHAHAHA")
+        let action = actions.addPostsCreateAction("HAHAHAHA")
         let newState = profileReducer(state,action)
         expect(newState.post.length).toBe(5)
     }); 
     test('new post worked', () => {
-        let action = changePostsCreateAction("YES")
+        let action = actions.changePostsCreateAction("YES")
         let newState = profileReducer(state,action)
         expect(newState.newPost).toBe("YES")
     });     

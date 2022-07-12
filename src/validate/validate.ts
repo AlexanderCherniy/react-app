@@ -1,4 +1,4 @@
-import { ProfileContactsType } from "../api/api-dal"
+import { ProfileContactsType } from "../redux/GlobalTypes"
 
 type validateType<T> = (values: T) => {}
 

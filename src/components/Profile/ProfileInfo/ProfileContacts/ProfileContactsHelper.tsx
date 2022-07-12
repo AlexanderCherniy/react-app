@@ -1,4 +1,4 @@
-import { ProfileType } from '../../../../api/api-dal';
+import { ProfileType } from '../../../../redux/GlobalTypes';
 import incClass from '../../Profile.module.scss';
 
 export const ShowJobMark = (item: ProfileType)=>{

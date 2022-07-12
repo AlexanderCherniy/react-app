@@ -1,6 +1,7 @@
-import { render, screen } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import MainApp from './App';
-import ReactDOM from "react-dom"
+globalThis.IS_REACT_ACT_ENVIRONMENT = true;
+
 test('renders learn react link', () => {
   render(<MainApp />);
   const linkElement = "APP"

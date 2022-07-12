@@ -5,11 +5,12 @@ import { connect } from 'react-redux';
 import AnonimGoLogin from '../../noc/hoc'
 import { compose } from 'redux';
 import { getMyUserProfile } from '../../redux/profile-reselects';
-import { ProfileApi, ProfileType } from '../../api/api-dal';
 import WithRouters from '../../WithRouter';
 import { dataType } from '../../redux/auth-reducer';
 import { AppState } from '../../redux/store-redux';
-
+import { ProfileType } from '../../redux/GlobalTypes';
+import { OldURL } from '../../noc/oldURL';
+import { ProfileApi } from '../../api/profile-api';
 type Props = {
     userProfile: ProfileType
     userData: dataType
@@ -23,6 +24,7 @@ type Props = {
     updateStatus: () => void
 }
 const ProfileContainer: React.FC<Props> = (props) => {
+    //сделай HOC над каждой высшей компонентой и проверяй URL, сетай его, так у тебя будут самые новые данные о URL
     let userId = props.router.params.userId
     const getProfileHelper = () => {
         ProfileApi.getProfile(userId).then(data => {
@@ -46,5 +48,6 @@ const mapStateToProps = (state: AppState) => {
 export default compose(
     connect(mapStateToProps, { updateAccountProfile, updatePhoto, getStatus, updateStatus, updateProfile: actions.updateProfile }),
     WithRouters,
-    AnonimGoLogin
+    AnonimGoLogin,
+    OldURL
 )(ProfileContainer)

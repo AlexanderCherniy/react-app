@@ -1,4 +1,5 @@
 import { NavLink } from 'react-router-dom';
+import { OldURL } from '../../noc/oldURL';
 import c from './Header.module.scss';
 
 type LoginType = {
@@ -14,4 +15,5 @@ const Login: React.FC<LoginType> = ({ isAuth, login }) => {
         </div>
     )
 }
-export default Login
+const LoginContainer = OldURL(Login)
+export default LoginContainer

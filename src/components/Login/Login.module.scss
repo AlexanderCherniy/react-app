@@ -6,15 +6,70 @@
     display: flex;
     gap: 10px;
 }
+.ShieldWrapper{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.wrapper{
+    max-width: 450px;
+    margin: 130px 0;
+    padding: 25px 24px;
+    border-radius: 8px;
+    background-color: #fff;
+    border-radius: 10px;
+}
+.LoginLink{
+    background-color: #0077ff;  
+    color: white;
+    border-radius: 8px;
+    padding: 0 16px;
+    margin-top: 12px;
+    width: 100%;
+    text-align: center;
+}
+.title{
+    text-align: center;
+    margin-top: 16px;
+    margin-bottom: 8px;
+    font-size: 20px;
+    line-height: 24px;
+}
+.LoginMessage{
+    padding: 16px;
+    margin-top: 24px;
+    margin-bottom: 30px;
+    border-radius: 8px;
+    background-color: #f0f2f5;
+    border: 1px solid #dce1e6;
+    line-height: 16px;
+    display: inline-block;
+    vertical-align: middle;
+}
 .loginInputForm{
-    margin-bottom: 10px;
+    margin-bottom: 15px;
     padding: 10px;
     border-radius: 6px;
     border: solid 1px #555555;
-    max-width: 480px;
-    width: 100%;
+    max-width: 300px;
+    width: 100vw;
+    // width: 300px;
     height: 40px;
     font-size: 15px;
+}
+.selectionPageWrapper{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.selectionPage{
+    display: inline-block;
+    max-width: 350px;
+    margin: 130px 0;
+    padding: 32px 24px;
+    border-radius: 8px;
+    background-color: #fff;
+    border-radius: 10px;
 }
 .rememberMeForm{
     display: flex;
@@ -25,7 +80,6 @@
     background-color: #fff;
     border-radius: 6px;
     padding: 5px 20px;
-    text-transform: uppercase;
     font-size: 15px;
     border: solid 1px #555555;
 }

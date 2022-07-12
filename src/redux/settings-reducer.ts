@@ -1,20 +1,20 @@
-const CHANGE_SETTINGS_TEXT = 'settings-reducer/CHANGE-SETTINGS-TEXT'
-const SET_BLACK_THEME = 'settings-reducer/SET_BLACK_THEME'
+import { AllActionType, TypeFunction } from "./store-redux"
+
 const blackThemeIsTrue = localStorage.getItem('blackTheme') === 'true'
 let initialState = {
     newText: 'Settings',
-    blackTheme: blackThemeIsTrue,
+    blackTheme: blackThemeIsTrue as any,
 }
 type initialStateType = typeof initialState
-const reducer = (state = initialState, action: any): initialStateType => {
+const reducer = (state = initialState, action: ActionType): initialStateType => {
     switch (action.type) {
-        case CHANGE_SETTINGS_TEXT: {
+        case "settings-reducer/CHANGE-SETTINGS-TEXT": {
             return {
                 ...state,
                 newText: action.text
             }
         }
-        case SET_BLACK_THEME: {
+        case "settings-reducer/SET_BLACK_THEME": {
             return {
                 ...state,
                 blackTheme: action.blackTheme
@@ -23,14 +23,10 @@ const reducer = (state = initialState, action: any): initialStateType => {
         default: return state
     }
 }
-type changeSettingsActionType = {
-    type: typeof CHANGE_SETTINGS_TEXT
-    text: string
+type ActionType = ReturnType<AllActionType<typeof actions>>
+export const actions = {
+    changeSettingsAction : (text: string) => ({ type: TypeFunction("settings-reducer/CHANGE-SETTINGS-TEXT"), text }),
+    setBlackTheme : (blackTheme: boolean) => ({ type: TypeFunction('settings-reducer/SET_BLACK_THEME'), blackTheme })
 }
-export const changeSettingsAction = (text: string): changeSettingsActionType => ({ type: CHANGE_SETTINGS_TEXT, text })
-type setBlackTheme = {
-    type: typeof SET_BLACK_THEME
-    blackTheme: boolean
-}
-export const setBlackTheme = (blackTheme: boolean): setBlackTheme => ({ type: SET_BLACK_THEME, blackTheme })
+
 export default reducer

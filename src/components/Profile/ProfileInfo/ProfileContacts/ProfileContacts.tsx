@@ -1,8 +1,18 @@
 import incClass from '../../Profile.module.scss';
 import { ShowAboutMe, ShowJobDescription, ShowJobMark } from './ProfileContactsHelper';
 import ProfileStatusContainer from "../ProfileStatus/ProfileStatusContainer";
-let ProfileContacts = props => {
-  const shortDataProfInfo = props.userProfile.map(item => {
+import { ProfileContactsType, ProfileType } from '../../../../redux/GlobalTypes';
+
+
+type Props = {
+  userProfile: Array<ProfileType>
+  changeMode: boolean
+  setChangeMode: (boolean: boolean)=> void
+  activeContacts: boolean
+  setActiveContacts: (activeContacts: boolean)=> void
+}
+const ProfileContacts:React.FC<Props> = props => {
+  const shortDataProfInfo = props.userProfile.map((item: ProfileType) => {
     return (
       <div key={item.userId}>
         <div className={incClass.Profile__text}>
@@ -24,10 +34,11 @@ let ProfileContacts = props => {
               className={incClass.ContactTitle}>
               <span>Contacts <span>{props.activeContacts === false ? '+' : '-'}</span></span>
             </div> 
-            {Object.keys(item.contacts).map(key => {
-              return <Contacts key={key}
+            {Object.keys(item.contacts).map((key ) => {
+              
+              return <Contacts key={key as keyof ProfileContactsType}
                 contactTitle={key}
-                contactValue={item.contacts[key]} props = {props} />
+                contactValue={item.contacts[key as keyof ProfileContactsType]} activeContacts = {props.activeContacts} />
             })}
           </div>
         </div>
@@ -40,9 +51,15 @@ let ProfileContacts = props => {
     </div>
   )
 }
-const Contacts = ({ contactTitle, contactValue, props }) => {
+type ContactsPropsType = {
+  contactTitle: string
+  contactValue: string
+  activeContacts: boolean
+}
+type ContactsType = (args: ContactsPropsType)=> any
+const Contacts:ContactsType = ({ contactTitle, contactValue, activeContacts }) => {
   return (
-    <div className={props.activeContacts === true ? incClass.ContactsFormContainer : incClass.ContactsFormContainer + ' ' + incClass.active}>
+    <div className={activeContacts === true ? incClass.ContactsFormContainer : incClass.ContactsFormContainer + ' ' + incClass.active}>
       <span className={incClass.ContactLinkHeader}>{contactTitle}: </span>
       <span>{contactValue}</span>
     </div>

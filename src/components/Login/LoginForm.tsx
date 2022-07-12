@@ -1,6 +1,5 @@
 import { Form, Field, Formik } from "formik"
 import { Navigate } from "react-router-dom";
-import { AuthApi } from "../../api/api-dal"
 import { createField, Input } from "../../Forms/Forms";
 import { dataType } from "../../redux/auth-reducer";
 import { validateLogin } from "../../validate/validate";
@@ -10,7 +9,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { actions } from "../../redux/auth-reducer";
 import { AppState } from "../../redux/store-redux";
 import { getCaptcha } from "../../redux/auth-reducer";
-import { ThunkDispatch } from "redux-thunk";
+import { Button } from "antd";
+import { AuthApi } from "../../api/auth-api";
 
 export type FormValues = {
     login: string,
@@ -27,10 +27,7 @@ const LoginForm:React.FC = (props) => {
     const setError = (error: string | null)=> dispatch(actions.setError(error))
     //@ts-ignore
     const getCaptchaFunc = ()=> dispatch(getCaptcha())
-
-
     const deleteError = () => setError(null);
-    
     const initialValues: FormValues = {
         login: '',
         passoword: '',
@@ -56,7 +53,7 @@ const LoginForm:React.FC = (props) => {
         }}>
         <Form>
             <div>
-                {createField<FormValuesKeys>(c.loginInputForm, 'login', Input, "Login")}
+                {createField<FormValuesKeys>(c.loginInputForm, 'login', Input, "Email")}
             </div>
             <div>
                 {createField<FormValuesKeys>(c.loginInputForm, 'passoword', Input, "Password")}
@@ -76,7 +73,7 @@ const LoginForm:React.FC = (props) => {
                     :
                     ""
                 }
-                <button className={c.sendButton} onBlur={deleteError} type="submit">GO FORM</button>
+                <Button type='primary' htmlType="submit" style={{backgroundColor: '#0077ff', width: '100%', borderRadius: '8px', marginBottom: '12px' }} className={c.sendButton} onBlur={deleteError}>LogIn</Button>
                 {error === null ? "" : <div className={incClass.errorLogin}>{error}</div>}
             </div>
         </Form>

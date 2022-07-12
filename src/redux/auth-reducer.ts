@@ -1,10 +1,10 @@
+import { AuthApi } from './../api/auth-api';
 import { Dispatch } from 'react';
-import { AuthApi, ProfileApi } from "../api/api-dal"
+import { setProfileType } from './GlobalTypes';
 import { AllActionType, TypeFunction } from './store-redux';
-
+import { ProfileApi } from '../api/profile-api';
 const initialState = {
     email: null as null | string,
-    // id: null as null | number,
     id: null as any,
     login: null as null | string,
     photo: null as null | string,
@@ -55,15 +55,11 @@ export type dataType = {
     login: string | null
 }
 export const actions = {
-    setUserData : (email: string, id: number, login: string) => ({ type: TypeFunction("auth-reducer/GET_DATA"), data: { email, id, login } }),
-
-    setPhoto : (photo: null | string) => ({ type: TypeFunction("auth-reducer/SET_PHOTO"), photo }),
-
-    setError : (error: null | string | boolean) => ({ type: TypeFunction("auth-reducer/SET_ERROR"), error }),
-
-    authToggle : (authStatus: boolean) => ({ type: TypeFunction("auth-reducer/AUTH_TOGGLE"), authStatus }),
-
-    setCaptcha : (captcha: null | string) => ({ type: TypeFunction("auth-reducer/SET_CAPTCHA"), captcha }),
+    setUserData: (email: string, id: number, login: string) => ({ type: TypeFunction("auth-reducer/GET_DATA"), data: { email, id, login } }),
+    setPhoto: (photo: null | string) => ({ type: TypeFunction("auth-reducer/SET_PHOTO"), photo }),
+    setError: (error: null | string | boolean) => ({ type: TypeFunction("auth-reducer/SET_ERROR"), error }),
+    authToggle: (authStatus: boolean) => ({ type: TypeFunction("auth-reducer/AUTH_TOGGLE"), authStatus }),
+    setCaptcha: (captcha: null | string) => ({ type: TypeFunction("auth-reducer/SET_CAPTCHA"), captcha }),
 }
 
 export const setProfile = (isAuth: boolean, id: number) => (dispatch: Dispatch<ActionType>) => {
@@ -81,27 +77,19 @@ export const setProfile = (isAuth: boolean, id: number) => (dispatch: Dispatch<A
         }
     })
 }
+
 export const getCaptcha = () => (dispatch: Dispatch<ActionType>) => {
-    return AuthApi.getCaptcha().then((response: captchaDataType) => {
-        dispatch(actions.setCaptcha(response.data.url))
+    return AuthApi.getCaptcha().then((response: captchaDataType) => { // убери any потом
+        dispatch(actions.setCaptcha(response.url))
     })
 }
-export type setProfileType = {
-    resultCode: number
-    data:{
-        email: string
-        id: number
-        login: string
-    }
-}
+
 enum ProfileStatusCodes {
     Good = 0,
 }
 
-type captchaDataType = {
-    data: {
-        url: string
-    }
+export type captchaDataType = {
+    url: string | null
 }
 
 export default authReducer

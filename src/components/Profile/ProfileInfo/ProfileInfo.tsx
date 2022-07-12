@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 import incClass from '.././Profile.module.scss';
 //@ts-ignore
 import ProfileContacts from './ProfileContacts/ProfileContacts';
@@ -10,7 +10,7 @@ import { ButtonChange, MyProfile, NoPhoto } from './ProfileInfoHelper';
 import ProfileStatusContainer from './ProfileStatus/ProfileStatusContainer';
 import cn from 'classnames'
 import { dataType } from '../../../redux/auth-reducer';
-import { ProfileType } from '../../../api/api-dal';
+import { ProfileType } from '../../../redux/GlobalTypes';
 
 type Props = {
   userProfile: Array<ProfileType>
@@ -20,13 +20,13 @@ type Props = {
   userData: dataType
   ProfileItem: ProfileType
   changeText: boolean
-  changeTextFunc: (ref:any)=> void
-  addChangeText: ()=> void
-  removeChangeText: ()=> void
-  updatePhoto: (e:HTMLInputElement)=> void
-  getStatus: (id:number)=> void
-  updateStatus: (statusText:string|null)=> void
-  changeStatus: (ref: any)=> void
+  changeTextFunc: (ref: React.RefObject<HTMLInputElement>) => void
+  addChangeText: () => void
+  removeChangeText: () => void
+  updatePhoto: (e: HTMLInputElement) => void
+  getStatus: (id: number) => void
+  updateStatus: (statusText: string | null) => void
+  changeStatus: (ref: React.RefObject<HTMLInputElement>) => void
 }
 const ProfileInfo: React.FC<Props> = (props) => {
   const [useZoom, setUseZoom] = useState(false)
@@ -36,8 +36,11 @@ const ProfileInfo: React.FC<Props> = (props) => {
     { [incClass.usedZoomImg]: useZoom === true },
     { [incClass.noUsedZoomImg]: useZoom === false }
   )
-  const selectedPhoto = (e:any) => {
-    props.updatePhoto(e.target.files[0])
+  const selectedPhoto = (e: ChangeEvent<HTMLInputElement>) => {
+    if(e.target.files?.length){
+       //@ts-ignore
+      props.updatePhoto(e.target.files[0])
+    }
   }
   const SelectChangeMode = () => {
     if (changeMode === false) {
@@ -52,12 +55,12 @@ const ProfileInfo: React.FC<Props> = (props) => {
     } else {
       return (
         <div>
-          <ProfileContactsForm 
+          <ProfileContactsForm
             item={props.userProfile[0]} setChangeMode={setChangeMode}
             //@ts-ignore
-            changeMode={changeMode} 
+            changeMode={changeMode}
             {...props}
-            activeContacts={activeContacts} setActiveContacts={setActiveContacts}/>
+            activeContacts={activeContacts} setActiveContacts={setActiveContacts} />
         </div>
       )
     }
@@ -72,10 +75,10 @@ const ProfileInfo: React.FC<Props> = (props) => {
               onPointerLeave={() => setUseZoom(false)} onClick={() => setUseZoom(true)}
               src={NoPhoto(props.userProfile[0].photos.small)} alt='profilePhoto' />
             <ProfileStatusContainer {...props} item={props.userProfile[0]} />
-            
+
             <MyProfile {...props}
-            //@ts-ignore
-            selectedPhoto={selectedPhoto} />
+              //@ts-ignore
+              selectedPhoto={selectedPhoto} />
           </div>
           <div className={incClass.Profile__text}>
             <div className={incClass.ProfileInfo}>
