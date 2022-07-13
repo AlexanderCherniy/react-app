@@ -24,8 +24,10 @@ const PoliticsNews: React.FC = props => {
                 <h2>Politics News</h2>
             </div>
             <Form className={c.ShieldRequestForm}>
-                {createField(c.userRequestForm, 'request', Input, "Enter your request...")}
-                <SubmitButton>FIND</SubmitButton>
+                <div >
+                    {createField(c.userRequestForm, 'request', Input, "Enter your request...")}
+                    <SubmitButton >FIND</SubmitButton>
+                </div>
                 {news !== [] ? <News/> : <Familiarization/>}
             </Form>
         </div>
@@ -35,17 +37,24 @@ const PoliticsNews: React.FC = props => {
 const News: React.FC = props => {
     const news = useSelector((state: AppState)=> state.news.news)
     return(
-        <div>
-            {news.map((item, index) =>{
+        <div> 
+            {news.filter(item=> item.language === "en").map((item, index) =>{
                 return (
-                    <div key={index + 1}>
-                        <h2>Title: {item.title}</h2>
-                        <h3>Author: {item.author}</h3>
-                        <div>Content: {item.content}</div>
-                        <div>Description: {item.description}</div>
-                        <div>Date: {item.publishedAt}</div>
-                        <div>Official State: {item.url}</div>
-                        <img style={{width: '600px'}} src={item.urlToImage} alt="photo"/>
+                    <div className={c.newsItem}>
+                        <div className={c.gridContainer} key={index + 1}>
+                            <div className={c.mainText}>
+                                <div className={c.Date}>{item.published_date}</div>
+                                <h2 className={c.Title}>{item.title} <span className={c.Authors}>(c) {item.authors !== "" ? item.authors : "..."}</span> </h2>
+                                <div className={c.Excerpt}>{item.excerpt}</div>
+                                <div>Contacts: <span>Twitter: {item.twitter_account}</span></div>
+                            </div>
+                            <div className={c.img}>
+                                <a href={item.link} target='_blank'>
+                                    <img  src={item.media} alt="photo"/>
+                                </a>
+                                <div className={c.topic}>{item.topic}</div>
+                            </div>
+                        </div>
                     </div>
                 )
             })}
@@ -53,9 +62,10 @@ const News: React.FC = props => {
     )
 }
 const Familiarization: React.FC = props => {
+    //эта api не очень, работает только на локальном хосте, попробуй найти другие api и стилизуй если найдешь
     return(
-        <div>
-            Familiarization
+        <div> 
+            Sorry, News is temporarily down on GitHub and Other Stites besides Localhost, I'll try to find another api soon
         </div>
     )
 }

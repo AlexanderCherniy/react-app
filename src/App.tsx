@@ -23,6 +23,7 @@ const Massages = React.lazy(() => import('./components/Massages/Massages'));
 //@ts-ignore
 const ProfileContainer = React.lazy(() => import('./components/Profile/ProfileContainer'));
 const UsersContainer = React.lazy(() => import('./components/Users/Users'));
+const ChatPage = React.lazy(() => import('./components/ChatPage/ChatPage'));
 const Login = React.lazy(() => import('./components/Login/Login'));
 
 const App: React.FC = props => {
@@ -63,11 +64,12 @@ const App: React.FC = props => {
                 <Route path='/profile/:userId' element={<ProfileContainer />} />
                 <Route path="/" element={<Navigate to="/profile" />} />
                 <Route path='/profile' element={<ProfileContainer />} />
+                <Route path='/massages/*' element={<Massages />} />
+                <Route path='/chat' element={<ChatPage />} />
                 <Route path='/music' element={<div>Music</div>} />
                 <Route path='/friends' element={<FriendsContainer />} />
                 <Route path='/gays' element={<GaysContainer />} />
                 <Route path='/games' element={<div>Games</div>} />
-                <Route path='/massages/*' element={<Massages />} />
                 <Route path='/help' element={<Help />} />
                 <Route path='/settings' element={<Settings />} />
                 <Route path='/users' element={<UsersContainer />} />

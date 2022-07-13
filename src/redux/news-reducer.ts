@@ -2,17 +2,26 @@ import { Dispatch } from 'react';
 import { NewsApi } from '../api/news-api';
 import { AllActionType, TypeFunction } from './store-redux';
 type New = {
-    author: string
-    content: string
-    description: string
-    publishedAt: string
-    source: {
-        id: string
-        name: string
-    }
+    author: string | null
+    authors: string | null
     title: string
+    media: string
+    clean_url: string
+    country: string
+    excerpt: string
+    is_opinion: false
+    language: string
+    link: string
+    published_date: string
+    published_date_precision: string
+    rank: number
+    rights: string
+    summary: string
+    topic: string
+    twitter_account: string
     url: string
-    urlToImage: string
+    _id: string
+    _score: number
 }
 const initialState = {
     news: [] as Array<New>

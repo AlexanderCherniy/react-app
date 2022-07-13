@@ -30,30 +30,6 @@ const ArraySideBar = [{ id: 1, to: '/profile', text: 'PROFILE' },
 { id: 9, to: '/friends', text: 'FRIENDS' },
 { id: 10, to: '/news', text: 'NEWS' },
 ]
-
-// const items2TypeArray = [UserOutlined, LaptopOutlined,UserOutlined, NotificationOutlined, UserOutlined,
-//   UserOutlined, UserOutlined, UserOutlined, UserOutlined, UserOutlined]
-//@ts-ignore
-// const items2: MenuProps['items'] = items2TypeArray.map(
-//   (icon, index) => {
-//     if(ArraySideBar.length >= items2TypeArray.length ){
-//     const key = String(index + 1);
-//       return {
-//         key: `sub${key}`,
-//         icon: React.createElement(icon),
-//         label: ` ${[ArraySideBar].map((object,j)=> object[index].text)}`,
-//         children: new Array(1).fill(ArraySideBar).map((object, j) => {
-//         const subKey = index * 1 + j + 1;
-//           return {
-//             key: subKey,
-//             label: <NavLink style={{backgroundColor: '#f0f2f5'}} to={object[index].to}>{object[index].text}</NavLink> ,
-//           }
-//         })
-
-//       }
-//     }
-//   }
-// );
 type MenuItem = Required<MenuProps>['items'][number];
 
 function getItem(
@@ -85,6 +61,7 @@ const items: MenuItem[] = [
     getItem(<NavLink style={{backgroundColor: '#f0f2f5'}} to={'/news/games'}>{'Games'}</NavLink>, '12',<PlayCircleOutlined />),
   ]),
   getItem('Files', '15', <FileOutlined />),
+  getItem(<NavLink style={{backgroundColor: '#f0f2f5'}} to={'/chat'}>{'Chat'}</NavLink>, '16', <FileOutlined />),
 ];
 
 

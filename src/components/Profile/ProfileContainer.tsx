@@ -24,8 +24,9 @@ type Props = {
     updateStatus: () => void
 }
 const ProfileContainer: React.FC<Props> = (props) => {
-    //сделай HOC над каждой высшей компонентой и проверяй URL, сетай его, так у тебя будут самые новые данные о URL
     let userId = props.router.params.userId
+    console.log(props.userProfile);
+    
     const getProfileHelper = () => {
         ProfileApi.getProfile(userId).then(data => {
             return props.updateProfile(data)
