@@ -11,6 +11,7 @@ import AuthReducer from "./auth-reducer";
 import middleWare from 'redux-thunk'
 import appReducer from "./app-reducer";
 import newsReducer from "./news-reducer";
+import chatReducer from "./chat-reducer";
 const reducers = combineReducers({
     massagesPage:massagesReducer,
     profilePage:profileReducer,
@@ -22,7 +23,8 @@ const reducers = combineReducers({
     usersPage: usersReducer,
     auth: AuthReducer,
     app: appReducer,
-    news: newsReducer
+    news: newsReducer,
+    chat: chatReducer
 })
 type reducersType = typeof reducers
 export type AppState = ReturnType<reducersType>

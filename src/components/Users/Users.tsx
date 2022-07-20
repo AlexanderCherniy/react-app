@@ -97,12 +97,15 @@ const Users: React.FC = props => {
                         <User isBlocked={isBlocked} usersState={usersState}
                             followUsers={followUsers} unfollowUsers={unfollowUsers} />
                     </div>
-                    <div style={{ maxWidth: "400px" }} className={classes.instructation}>
-                        <div>Who are they?</div>
-                        <div>These are people from the "IT-KAMASUTRA" channel who started learning React</div>
-                        <div>You can write to them on their social networks, if you have any questions, go to their profile</div>
+                    <div className={classes.instructation}>
+                        <h2 className={classes.instructationTitle}>Who are they?</h2>
+                        <div>These are people from the <b>"IT-KAMASUTRA"</b> channel who started learning <b>React</b></div>
+                        <div>You can write to them in the <b>"Messages"</b> section, find out their <b>ID</b> here, or write to their social networks, which are in their <b>Profile</b></div>
+                        <div style={{ textAlign: 'center' }}>
+                        // Please note that some developers have not yet gotten around to customizing their profile using the <b>API</b>, they may not have data //
+                        </div>
                         <div>
-                        // Please note that some developers have not yet gotten around to customizing their profile using the API, they may not have data //
+                            If the user does not respond to messages or social networks indicated by him in the profile, you can try to write in the <b>Chat</b>, he may see your message
                         </div>
                     </div>
                 </div>

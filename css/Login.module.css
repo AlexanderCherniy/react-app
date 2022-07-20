@@ -1,0 +1,121 @@
+.formsContainer {
+  padding: 10px;
+  border-radius: 0 0 4px 4px;
+  -webkit-box-shadow: 0 1px 0 0 #ecf0f1,0 0 0 1px #ecf0f1;
+          box-shadow: 0 1px 0 0 #ecf0f1,0 0 0 1px #ecf0f1;
+  background-color: #ffffff;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 10px;
+}
+
+.ShieldWrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.wrapper {
+  max-width: 450px;
+  margin: 130px 0;
+  padding: 25px 24px;
+  border-radius: 8px;
+  background-color: #fff;
+  border-radius: 10px;
+}
+
+.LoginLink {
+  background-color: #0077ff;
+  color: white;
+  border-radius: 8px;
+  padding: 0 16px;
+  margin-top: 12px;
+  width: 100%;
+  text-align: center;
+}
+
+.title {
+  text-align: center;
+  margin-top: 16px;
+  margin-bottom: 8px;
+  font-size: 20px;
+  line-height: 24px;
+}
+
+.LoginMessage {
+  padding: 16px;
+  margin-top: 24px;
+  margin-bottom: 30px;
+  border-radius: 8px;
+  background-color: #f0f2f5;
+  border: 1px solid #dce1e6;
+  line-height: 16px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.loginInputForm {
+  margin-bottom: 15px;
+  padding: 10px;
+  border-radius: 6px;
+  border: solid 1px #555555;
+  max-width: 300px;
+  width: 100vw;
+  height: 40px;
+  font-size: 15px;
+}
+
+.selectionPageWrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.selectionPage {
+  display: inline-block;
+  max-width: 350px;
+  margin: 130px 0;
+  padding: 32px 24px;
+  border-radius: 8px;
+  background-color: #fff;
+  border-radius: 10px;
+}
+
+.rememberMeForm {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 7px;
+  margin-bottom: 10px;
+}
+
+.sendButton {
+  background-color: #fff;
+  border-radius: 6px;
+  padding: 5px 20px;
+  font-size: 15px;
+  border: solid 1px #555555;
+}
+
+.captchaImg {
+  max-width: 200px;
+  max-height: 100px;
+  height: 100%;
+  width: 100%;
+  margin-bottom: 10px;
+  border: solid 1px #6c6b6b;
+  border-radius: 2px;
+}

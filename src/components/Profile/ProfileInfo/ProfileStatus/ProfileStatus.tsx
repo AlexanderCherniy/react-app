@@ -1,13 +1,13 @@
 import React from 'react';
 import incClass from '../../Profile.module.scss';
 type Props = {
-    statusText: string
-    item: {
+    statusTextProps: string
+    itemProps: {
         userId: number
         fullName: string
         aboutMe: string | null
     }
-    userData:{
+    userDataProps:{
         id: number
     }
     changeText: boolean
@@ -20,14 +20,14 @@ const ProfileStatus:React.FC<Props> = (props) => {
     return (
         <div>
             <span className={incClass.status}>Status: </span>
-            {props.item.userId === props.userData.id
+            {props.itemProps.userId === props.userDataProps.id
                 ? props.changeText === false
-                    ? <span className={incClass.statusText} onDoubleClick={props.addChangeText}>{props.statusText}</span>
+                    ? <span className={incClass.statusText} onDoubleClick={props.addChangeText}>{props.statusTextProps}</span>
                     : <input ref={ref} autoFocus={true} onBlur={props.removeChangeText}
-                        onChange={() => {props.changeTextFunc(ref)}} value={props.statusText} />
-                : <span>{props.item.aboutMe !== null
-                    ? props.item.aboutMe
-                    : `Я ${props.item.fullName} и я крут :)`}</span>
+                        onChange={() => {props.changeTextFunc(ref)}} value={props.statusTextProps} />
+                : <span>{props.itemProps.aboutMe !== null
+                    ? props.itemProps.aboutMe
+                    : `Я ${props.itemProps.fullName} и я крут :)`}</span>
             }
         </div>
     )

@@ -10,8 +10,8 @@ const UnLogin:React.FC<UnLoginType> = ({isAuth}) => {
         }
     })
     return (
-        <div>
-            {isAuth === true ? <button className={c.unlogin} onClick={unLoginFunc}>UNLOGIN</button> : ""}
+        <div >
+            {isAuth === true ? <button style={{background: 'white'}} className={c.unlogin} onClick={unLoginFunc}>UNLOGIN</button> : ""}
         </div>
     )
 }

@@ -16,7 +16,6 @@ type Props = {
   userProfile: Array<ProfileType>
   statusText: string
   activeContactsProps: boolean
-  // item: ItemType
   userData: dataType
   ProfileItem: ProfileType
   changeText: boolean
@@ -27,7 +26,10 @@ type Props = {
   getStatus: (id: number) => void
   updateStatus: (statusText: string | null) => void
   changeStatus: (ref: React.RefObject<HTMLInputElement>) => void
+  updateAccountProfile: (values: any) => void
+  item: ItemType
 }
+
 const ProfileInfo: React.FC<Props> = (props) => {
   const [useZoom, setUseZoom] = useState(false)
   const [changeMode, setChangeMode] = useState(false)
@@ -56,8 +58,7 @@ const ProfileInfo: React.FC<Props> = (props) => {
       return (
         <div>
           <ProfileContactsForm
-            item={props.userProfile[0]} setChangeMode={setChangeMode}
-            //@ts-ignore
+            itemProfile={props.userProfile[0]} setChangeMode={setChangeMode}
             changeMode={changeMode}
             {...props}
             activeContacts={activeContacts} setActiveContacts={setActiveContacts} />
@@ -74,10 +75,8 @@ const ProfileInfo: React.FC<Props> = (props) => {
             <img className={imgZoomClass}
               onPointerLeave={() => setUseZoom(false)} onClick={() => setUseZoom(true)}
               src={NoPhoto(props.userProfile[0].photos.small)} alt='profilePhoto' />
-            <ProfileStatusContainer {...props} item={props.userProfile[0]} />
-
+            <ProfileStatusContainer removeChangeText={props.removeChangeText} addChangeText={props.addChangeText} changeTextFunc={props.changeTextFunc} changeText={props.changeText} userDataProps={props.userData} itemProps = {props.item} updateStatus={props.updateStatus} statusText={props.statusText} statusTextProps = {props.statusText} getStatus={props.getStatus} item={props.userProfile[0]} />
             <MyProfile {...props}
-              //@ts-ignore
               selectedPhoto={selectedPhoto} />
           </div>
           <div className={incClass.Profile__text}>

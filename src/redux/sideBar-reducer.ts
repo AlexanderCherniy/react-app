@@ -21,6 +21,7 @@ let initialState = {
 
         ,
     ] as Array<SideBarLink | any>,
+    // selectedSideBarLinks: [undefined] as any,
     selectedSideBarLinks: [{id:1,to:'/profile',text:'PROFILE', isSelected: true}] as any,
     showSideBar: true,
     oldURL: ''

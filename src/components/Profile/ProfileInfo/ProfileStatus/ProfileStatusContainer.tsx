@@ -1,51 +1,58 @@
 import { actions } from "../../../../redux/profile-reducer";
 import ProfileStatus from "./ProfileStatus";
 import React, { useEffect, useState } from 'react';
-import { connect } from "react-redux";
+import { connect, useDispatch } from "react-redux";
 import { compose } from "redux";
 import { AppState } from "../../../../redux/store-redux";
 import { ItemType } from "../ProfileContacts/ProfileContactsForm";
 import { dataType } from "../../../../redux/auth-reducer";
 import { ProfileType } from "../../../../redux/GlobalTypes";
 type Props = {
-    userProfile: Array<ProfileType>
-    activeContactsProps: boolean
+    // userProfile: Array<ProfileType>
+    // activeContactsProps: boolean
     item: ItemType
-    userData: dataType
-    ProfileItem: ProfileType
+    // userData: dataType
+    // ProfileItem: ProfileType
+    // changeText: boolean
+    // changeTextFunc: (ref:any)=> void
+    // addChangeText: ()=> void
+    // removeChangeText: ()=> void
+    // updatePhoto: (e:HTMLInputElement)=> void
+    getStatus: (id:number)=> void
+    updateStatus: (statusText:string|null)=> void
+    // changeStatus: (ref: any)=> void
+    statusText: string
+    // changeMode: boolean
+    // setChangeMode: (boolean: boolean)=> void
+    // activeContacts: boolean
+    // setActiveContacts: (activeContacts: boolean)=> void
+    // updateAccountProfile: (values: any) => void
+    statusTextProps: string
+    itemProps: ItemType
+    userDataProps: dataType
     changeText: boolean
     changeTextFunc: (ref:any)=> void
     addChangeText: ()=> void
     removeChangeText: ()=> void
-    updatePhoto: (e:HTMLInputElement)=> void
-    getStatus: (id:number)=> void
-    updateStatus: (statusText:string|null)=> void
-    changeStatus: (ref: any)=> void
-    statusText: string
 }
 const ProfileStatusContainer:React.FC<Props> = props =>{
     const [changeText, setChangeText] = useState(false)
+    const dispatch = useDispatch()
+    const changeStatus = (newStatus: string)=> dispatch(actions.changeStatus(newStatus))
     useEffect(()=>{
-        props.getStatus(props.userData.id)
-    }, [props.userData.id])
+        props.getStatus(props.userDataProps.id)
+    }, [props.userDataProps.id])
     const addChangeText = ()=> setChangeText(true)
     const removeChangeText = ()=>{
         setChangeText(false)
         props.updateStatus(props.statusText)
     }
     const changeTextFunc = (ref:any)=>{
-        props.changeStatus(ref.current.value)
+        changeStatus(ref.current.value)
     }
     return(
-        <ProfileStatus  {...props} addChangeText={addChangeText} removeChangeText={removeChangeText}
+        <ProfileStatus statusTextProps = {props.statusText} itemProps = {props.item} userDataProps = {props.userDataProps} addChangeText={addChangeText} removeChangeText={removeChangeText}
                        changeTextFunc={changeTextFunc} changeText={changeText}/>
     )
 }
-const mapStateToProps = (state:AppState)=>{
-    return{
-        usersState: state.usersPage.users
-    }
-}
-export default compose(
-    connect(mapStateToProps,{changeStatus: actions.changeStatus}),
-)(ProfileStatusContainer)
+export default ProfileStatusContainer

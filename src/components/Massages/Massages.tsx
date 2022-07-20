@@ -1,95 +1,88 @@
 import mClas from './Massages.module.scss'
-import React from "react";
-import { NavLink } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { AppState } from '../../redux/store-redux';
 import { getMassages } from '../../redux/massages-reselects';
-import { actions } from '../../redux/massages-reducer'
+import { getAllDialogs, getConcreteUserMessages, sendMessageToUser } from '../../redux/massages-reducer'
 import { OldURL } from '../../noc/oldURL';
-import { createField, Textarea } from '../../Forms/Forms';
+import { createField, Textarea, Input } from '../../Forms/Forms';
 import { Form, Formik } from 'formik';
 import { Breadcrumb } from 'antd';
-const Massages: React.FC = (props) => {
+import { putDialogWithUsers } from "../../redux/massages-reducer";
+import UsersMassages from './UsersMessages/UsersMessages';
+import SelectUsers from './SelectUsers/SelectUsers';
+import { SubmitButton } from 'formik-antd';
+const Massages: React.FC = () => {
+    const [userIdURL, setUserIdUrl] = useState<any>(window.location.href.split('/')[5])
+    const myId = useSelector((state: AppState) => state.auth.id)
+    const shortUsers = useSelector((state: AppState) => state.massagesPage.users.map((user) => <SelectUsers setUserIdUrl={setUserIdUrl} key={user.id} hasNewMessages={user.hasNewMessages}
+        userPhoto={user.photos.small}
+        userId={user.id} userName={user.userName} />))
 
-    const shortUsers = useSelector((state: AppState) => state.massagesPage.users.map(user => <Users key={user.userId} online={user.online}
-        userPhoto={user.userPhoto}
-        userId={user.userId} userName={user.userName} />))
-
-    const shortMassages = useSelector((state: AppState) => getMassages(state).map(massage => <UsersMassages key={massage.Id} massage={massage.massage} />))
-
+    const shortMassages = useSelector((state: AppState) => getMassages(state).map((massage, index) => <UsersMassages userId={userIdURL} id={massage.id} viewed={massage.viewed} myId={myId} senderId={massage.senderId} key={index} body={massage.body} />))
     const dispatch = useDispatch()
-    const createPostDispatch = (message: string) => dispatch(actions.massageActionCreator(message))
-    const createPost = (message: string) => {
-        createPostDispatch(message)
-    }
     type MessagesValues = {
         message: string
+        userId: number | string
     }
     type MessagesValuesKeys = keyof MessagesValues
     const initialValues: MessagesValues = {
-        message: ''
+        message: '',
+        userId: ''
     }
+    useEffect(() => {
+        //@ts-ignore
+        dispatch(getAllDialogs())
+        //@ts-ignore
+        dispatch(getConcreteUserMessages(userIdURL))
+    }, [userIdURL])
     return <Formik initialValues={initialValues}
         onSubmit={async values => {
             if (values.message !== '' && values.message !== ' ') {
-                createPost(values.message)
+                //@ts-ignore
+                await dispatch(sendMessageToUser(userIdURL, values.message))
                 values.message = ''
+                //@ts-ignore
+                dispatch(getConcreteUserMessages(userIdURL))
+            }
+            if (values.userId !== '') {
+                //@ts-ignore
+                await dispatch(putDialogWithUsers(values.userId))
+                //@ts-ignore
+                dispatch(getAllDialogs())
             }
         }}>
-        <Form>
-            <main className={mClas.massages}>
-                <Breadcrumb style={{ margin: '16px 0', }}>
-                    <Breadcrumb.Item>Start</Breadcrumb.Item>
-                    <Breadcrumb.Item>MessagesPage</Breadcrumb.Item>
-                    <Breadcrumb.Item>Messages</Breadcrumb.Item>
-                </Breadcrumb>
-                <div className={mClas.container}>
-                    <div className={mClas.users}>
-                        {shortUsers}
+        <main className={mClas.massages}>
+            <Breadcrumb style={{ margin: '16px 0', }}>
+                <Breadcrumb.Item>Start</Breadcrumb.Item>
+                <Breadcrumb.Item>MessagesPage</Breadcrumb.Item>
+                <Breadcrumb.Item>Messages</Breadcrumb.Item>
+            </Breadcrumb>
+            <Form className={mClas.SearchUsersFlexContainer}>
+                {createField(mClas.InputSearchUsers, 'userId', Input, "Введите ID собеседника")}
+                <SubmitButton type='default'>Send</SubmitButton>
+            </Form>
+            <div className={window.innerWidth <= 1300 ? mClas.containerSmallWidth : mClas.container}>
+                <div className={window.innerWidth <= 1300 ? window.innerWidth <= 990 ? window.innerWidth <= 750 ? mClas.users750Width  : mClas.users990Width : mClas.usersSmallWidth : mClas.users}>
+                    {shortUsers}
+                </div>
+                <div className={mClas.userMassages}>
+                    <div className={mClas.massage}>
+                        {shortMassages}
                     </div>
-                    <div className={mClas.userMassages}>
-                        <div className={mClas.massage}>
-                            {shortMassages}
-                        </div>
+                    <Form>
                         <div className={mClas.formsContainer}>
                             {createField<MessagesValuesKeys>(mClas.textarea, 'message', Textarea, "Напишите сообщение...")}
-                            <button className={mClas.button} type='submit' >Send</button>
+                            <SubmitButton className={mClas.button}>Send</SubmitButton>
                         </div>
-                    </div>
+                    </Form>
                 </div>
-            </main>
-        </Form>
+            </div>
+        </main>
     </Formik>
 
 }
-type UsersType = {
-    online: string
-    userPhoto: string
-    userName: string
-    userId: number
-}
-export const Users: React.FC<UsersType> = props => {
-    let online = props.online
-    online === 'true' ? online = '#81b53e' : online = '#f0ad4e'
-    return (
-        <div className={mClas.user}>
-            <NavLink to={'/massages/' + props.userId} className={link => link.isActive ? mClas.activeUser : mClas.user}>
-                <img src={props.userPhoto} alt="" />
-                {props.userName}
-                <div style={{ background: online }} className={mClas.online}></div>
-            </NavLink>
-        </div>
-    )
-}
-type UsersMassagesType = {
-    massage: string
-}
-export const UsersMassages: React.FC<UsersMassagesType> = props => {
-    return (
-        <div className={mClas.massage}>
-            {props.massage}
-        </div>
-    )
-}
+
 const MassagesUrlContainer = OldURL(Massages)
 export default MassagesUrlContainer;
+

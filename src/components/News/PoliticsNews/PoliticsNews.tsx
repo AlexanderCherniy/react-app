@@ -34,7 +34,7 @@ const PoliticsNews: React.FC = props => {
     </Formik>
 
 }
-const News: React.FC = props => {
+const News: React.FC = () => {
     const news = useSelector((state: AppState)=> state.news.news)
     return(
         <div> 
@@ -62,7 +62,6 @@ const News: React.FC = props => {
     )
 }
 const Familiarization: React.FC = props => {
-    //эта api не очень, работает только на локальном хосте, попробуй найти другие api и стилизуй если найдешь
     return(
         <div> 
             Sorry, News is temporarily down on GitHub and Other Stites besides Localhost, I'll try to find another api soon

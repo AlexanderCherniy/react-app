@@ -1,59 +1,25 @@
+import { Dispatch } from "react"
+import { DialogsApi } from "../api/messages-api"
 import { AllActionType, TypeFunction } from "./store-redux"
-
+const MessagesPageInstructation = "This is the Messages page, select the panel on the top & left and select the interlocutor and write to him, if the panel is empty, or you want to add a new interlocutor, then enter his ID in the form."
+const Photo = 'https://play-lh.googleusercontent.com/8ddL1kuoNUB5vUvgDVjYY3_6HwQcrg1K2fd_R8soD-e2QYj8fT9cfhfh3G0hnSruLKec'
 const initialState = {
-    users: [
-        { userId: 1, userName: 'Svetlana', userPhoto: 'https://i.pinimg.com/736x/1d/1e/47/1d1e471310a3b0e6f3a154fc6d71b323.jpg', online: 'true' },
-        {
-            userId: 2, userName: 'Vlad', userPhoto: 'https://sunmag.me/wp-content/uploads/2020/08/sunmag-2-kachestva-nastoyashchego-muzhchiny.jpg',
-            online: 'true'
-        },
-        {
-            userId: 3, userName: 'Alex', userPhoto: 'https://img.huffingtonpost.com/asset/5d02cac22400008c1790be69.jpeg?ops=scalefit_720_noupscale',
-            online: 'true'
-        },
-        {
-            userId: 4, userName: 'Vika', userPhoto: 'https://cs13.pikabu.ru/avatars/3323/x3323473-1169033777.png',
-            online: 'false'
-        },
-        {
-            userId: 5, userName: 'Mike', userPhoto: 'https://i.redd.it/uyv2gsmqcwh61.jpg',
-            online: 'true'
-        },
-        {
-            userId: 6, userName: 'Karl', userPhoto: 'https://i.pinimg.com/736x/e3/ee/94/e3ee945d31d61e6ea2a43c95d793df5c.jpg',
-            online: 'false'
-        },
-        {
-            userId: 7, userName: 'Anonim', userPhoto: 'https://stihi.ru/pics/2017/02/05/6700.jpg',
-            online: 'false'
-        },
-    ],
-    massages: [
-        { Id: 1, massage: 'HI! I Svetlana!' },
-        { Id: 2, massage: 'HAHAHAHAHHAH YOU IN THIS SITE!!!! FAGAHAHAHHAHA' },
-        { Id: 3, massage: "Let's go play basketball! Go to the school along the path!" },
-        { Id: 4, massage: 'Are you free in the evening? :)' },
-        { Id: 5, massage: 'Are you going to the party tonight?' },
-        { Id: 6, massage: 'I am a gungster!' },
-        { Id: 7, massage: '你不認識我！高的' },
-    ],
+    users: [{ id: 111, userName: 'Anonim', photos: {small: Photo, large: null}, hasNewMessages: false }],
+    massages: [{ senderId: 0, body: MessagesPageInstructation, photo: Photo, viewed: false, id: '' }],
 }
 type initialStateType = typeof initialState
 const reducer = (state = initialState, action: ActionType): initialStateType => {
     switch (action.type) {
-        case "massages-reducer/ADD_MASSAGE": {
-            let massagesId = state.massages
-            let IdLast = massagesId[massagesId.length - 1].Id
-            let newMassage = { Id: IdLast + 1, massage: action.message }
-            return {
-                ...state,
-                massages: [...state.massages, newMassage],
-            }
-        }
         case "massages-reducer/ADD_USERS": {
             return {
                 ...state,
                 users: action.newUsers
+            }
+        }
+        case "massages-reducer/ADD_MESSAGES": {
+            return {
+                ...state,
+                massages: action.newMessages
             }
         }
         default: {
@@ -70,8 +36,35 @@ type UserType = {
 type UsersType = Array<UserType>
 type ActionType = ReturnType<AllActionType<typeof actions>>
 export const actions = {
-    addUsers: (newUsers: UsersType) => ({ type: TypeFunction("massages-reducer/ADD_USERS"), newUsers }),
-    massageActionCreator: (message: string) => ({ type: TypeFunction("massages-reducer/ADD_MASSAGE"), message })
+    addUsers: (newUsers: any) => ({ type: TypeFunction("massages-reducer/ADD_USERS"), newUsers }),
+    addMessages: (newMessages: any) => ({ type: TypeFunction("massages-reducer/ADD_MESSAGES"), newMessages }),
+    setMessagePhoto: (photo: string) => ({ type: TypeFunction("massages-reducer/SET_MESSAGE_PHOTO"), photo }),
+}
+export const putDialogWithUsers = (userId: number) => async (dispatch: Dispatch<ActionType>) => {
+    const response = await DialogsApi.putDialogWithUsers(userId)
+    console.log(response);
+    return response
+}
+export const getAllDialogs = () => async (dispatch: Dispatch<ActionType>) => {
+    const response = await DialogsApi.getAllDialogs()
+    
+    dispatch(actions.addUsers(response))
+}
+export const getConcreteUserMessages = (userId: number) => async (dispatch: Dispatch<ActionType>) => {
+    const response = await DialogsApi.getConcreteUserMessages(userId)
+    console.log(response);
+    
+    dispatch(actions.addMessages(response.items))
+}
+export const sendMessageToUser = (userId: number, body: string) => async (dispatch: Dispatch<ActionType>) => {
+    const response = await DialogsApi.sendMessageToUser(userId, body)
+    return response
+}
+export const deleteYourMessage = (messageId: string, userId: number) => async (dispatch: Dispatch<ActionType>) => {
+    const response = await DialogsApi.deleteYourMessage(messageId)
+    //@ts-ignore
+    dispatch(getConcreteUserMessages(userId))
+    return response
 }
 
 export default reducer

@@ -53,7 +53,11 @@ const App: React.FC = props => {
 
           <Content
             className="site-layout-background"
-            style={{
+            style={ window.innerWidth <= 600 ? {
+              padding: 0,
+              margin: 0,
+              minHeight: 280,
+            } : {
               padding: 24,
               margin: 0,
               minHeight: 280,
@@ -74,11 +78,7 @@ const App: React.FC = props => {
                 <Route path='/settings' element={<Settings />} />
                 <Route path='/users' element={<UsersContainer />} />
                 <Route path='/selectionPage' element={<SelectionPage />} />
-                <Route path='/news/politics' element={<PoliticsNews/>} />
-                <Route path='/news/fun' element={<div>FUN NEWS</div>} />
-                <Route path='/news/sport' element={<div>SPORT NEWS</div>} />
-                <Route path='/news/games' element={<div>GAMES NEWS</div>} />
-                <Route path='/news' element={<div>NEWS</div>} />
+                <Route path='/news' element={<PoliticsNews/>} />
                 <Route path='/login' element={<Login />} />
               </Routes>
             </React.Suspense>

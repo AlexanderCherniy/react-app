@@ -1,45 +1,24 @@
-.massages{
-    width: 80%;
-}
 .users{
     background: white;
     padding: 20px;
 }
-.user{
+.usersSmallWidth{
+    background: white;
+    padding: 20px;
     display: grid;
-    grid-template-rows: 1fr;
-    grid-template-columns: 1fr 1fr 1fr;
-    color: #212121;
-    font-size: 20px;
-    cursor: pointer;
-    margin-bottom: 10px;
-    align-items: center;
-    line-height: 50px;
-    gap: 20px;
+    grid-template-columns: repeat(3, 1fr);
 }
-.user a.activeUser{
+.users990Width{
+    background: white;
+    padding: 20px;
     display: grid;
-    grid-template-rows: 1fr;
-    grid-template-columns: 1fr 1fr 1fr;
-    color: #2b42c5;
-    font-size: 20px;
-    cursor: pointer;
-    align-items: center;
-    margin-bottom: 10px;
-    line-height: 50px;
-    gap: 20px;
+    grid-template-columns: repeat(2, 1fr);
 }
-.online{
-    width:10px;
-    height:10px;
-    border-radius:50%;
-}
-.userName{
-}
-.user img{
-    width:45px;
-    height:45px;
-    border-radius: 50%;
+.users750Width{
+    background: white;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: 1fr;
 }
 .userMassages{
     background: white;
@@ -47,6 +26,7 @@
     display: flex;
     flex-direction: column;
     min-height: 100%;
+    width: 100%;
     white-space: pre-wrap;
 }
 .massage{
@@ -55,31 +35,42 @@
 }
 .container{
     display: grid;
-    grid-template-columns: 2fr 4fr 2fr;
+    grid-template-columns: 2fr 5fr 2fr;
+    grid-template-rows: 1fr;
     white-space: pre-wrap;
-    gap: 15px;
     overflow: hidden;
+    gap: 15px;
+}
+.containerSmallWidth{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: minmax(0.5fr, 1fr) minmax(0.5fr, 2fr) ;
+    white-space: pre-wrap;
+    overflow: hidden;
+    gap: 15px;
+}
+.container990Width{
+
 }
 .massage{
-    font-size: 20px;
-    margin-bottom:10px;
+    padding: 0 40px 0 30px;
     color: #212121;
-    max-width: 600px;
     overflow: hidden;
 }
+
 .formsContainer{
     padding: 10px;
     border-radius: 0 0 4px 4px;
     box-shadow: 0 1px 0 0 #ecf0f1,0 0 0 1px #ecf0f1;
     background-color: #ffffff;
-    display: flex;
+    display: grid;
+    grid-template-columns: 4fr 0.5fr;
     gap: 10px;
 }
 .textarea{
     padding: 10px;
     border-radius: 6px;
     border: solid 1px #555555;
-    max-width: 480px;
     width: 100%;
     height: 50px;
     font-size: 15px;
@@ -91,5 +82,16 @@
     padding: 0px 20px;
     text-transform: uppercase;
     font-size: 15px;
+    height: 100%;
+    color: black;
     border: solid 1px #555555;
+}
+.InputSearchUsers{
+    max-width: 450px;
+    width: 100%;
+}
+.SearchUsersFlexContainer{
+    display: flex;
+    gap: 15px;
+    margin-bottom: 10px;
 }

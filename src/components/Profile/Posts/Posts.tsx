@@ -22,7 +22,7 @@ const Posts:React.FC = (props) => {
   return (
     <div className={incClass.posts}>
       <div className={incClass.container}>
-        <h2 className={incClass.title}>Posts <img className={incClass.cross} onClick={()=> deletePosts()} src="https://icon-library.com/images/cross-png-icon/cross-png-icon-3.jpg" alt="cross"/></h2>
+        <h2 className={incClass.title}>Posts <img className={incClass.cross} onClick={()=> deletePosts()} title="Delete Posts" src="https://icon-library.com/images/cross-png-icon/cross-png-icon-3.jpg" alt="cross"/></h2>
         <PostsForm userData={userData} changeNewPost={changeNewPost} addPosts={addPosts}/>
       </div>
       <div className={incClass.flexReverse}>

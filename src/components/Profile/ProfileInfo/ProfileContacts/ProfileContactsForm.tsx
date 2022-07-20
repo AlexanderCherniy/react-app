@@ -15,6 +15,8 @@ type Props = {
     activeContactsProps: boolean
     ProfileItem: ProfileType
     changeText: boolean
+    changeMode: boolean
+    itemProfile: any
     addChangeText: ()=> void
     removeChangeText: ()=> void
     updatePhoto: (e:HTMLInputElement)=> void
@@ -41,14 +43,14 @@ export type PhotosType = {
 type RequestValuesType = ItemType
 type RequestValuesKeysType = keyof RequestValuesType
 const ProfileContactsForm: React.FC<Props> = (props) => {
-    const validateProfileHelper = validateProfile(props.item)
+    const validateProfileHelper = validateProfile(props.itemProfile)
     return <Formik initialValues={{ ...props.userProfile[0], someUrlIsWrong: "" }}
         // validate={validateProfileHelper}
         onSubmit={async (values:RequestValuesType) => {
             await props.updateAccountProfile(values)
             props.setChangeMode(false)
         }}>
-        <div key={props.item.userId}>
+        <div key={props.itemProfile.userId}>
             <div className={incClass.Profile__text}>
                 <div className={incClass.ProfileInfo}>
                     <div className={incClass.ProfileTextStyle}>
@@ -61,7 +63,10 @@ const ProfileContactsForm: React.FC<Props> = (props) => {
                                 <span className={classProfile.ProfileTextHeader}>UserName:</span>
                                 {createField<RequestValuesKeysType>(classProfile.form, "fullName", Input, "FullName")}
                             </div>
-                            <ProfileStatusContainer {...props} item={props.userProfile[0]} />
+                            <div className={classProfile.Profile__name}>
+                                {/* <ProfileStatusContainer {...props} item={props.userProfile[0]} /> */}
+                                <ProfileStatusContainer removeChangeText={props.removeChangeText} addChangeText={props.addChangeText} changeTextFunc={props.changeTextFunc} changeText={props.changeText} userDataProps={props.userData} itemProps = {props.item} updateStatus={props.updateStatus} statusText={props.statusText} statusTextProps = {props.statusText} getStatus={props.getStatus} item={props.userProfile[0]} />
+                            </div>
                             <div className={classProfile.ProfileTextStyle}>
                                 <span className={classProfile.ProfileTextHeader}>
                                     AboutMe:

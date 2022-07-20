@@ -1,20 +1,15 @@
 import Profile from './Profile';
 import React, { useEffect } from 'react';
 import { updatePhoto, getStatus, updateStatus, updateAccountProfile, actions } from '../../redux/profile-reducer'
-import { connect } from 'react-redux';
+import { connect, useSelector } from 'react-redux';
 import AnonimGoLogin from '../../noc/hoc'
 import { compose } from 'redux';
 import { getMyUserProfile } from '../../redux/profile-reselects';
 import WithRouters from '../../WithRouter';
-import { dataType } from '../../redux/auth-reducer';
 import { AppState } from '../../redux/store-redux';
-import { ProfileType } from '../../redux/GlobalTypes';
 import { OldURL } from '../../noc/oldURL';
 import { ProfileApi } from '../../api/profile-api';
 type Props = {
-    userProfile: ProfileType
-    userData: dataType
-    statusText: string
     router: any
     actions: any
     updateAccountProfile: () => void
@@ -24,9 +19,10 @@ type Props = {
     updateStatus: () => void
 }
 const ProfileContainer: React.FC<Props> = (props) => {
+    const userProfile = useSelector(getMyUserProfile)
+    const userData = useSelector((state:AppState)=> state.auth)
+    const statusText = useSelector((state:AppState)=> state.profilePage.statusText)
     let userId = props.router.params.userId
-    console.log(props.userProfile);
-    
     const getProfileHelper = () => {
         ProfileApi.getProfile(userId).then(data => {
             return props.updateProfile(data)
@@ -34,20 +30,15 @@ const ProfileContainer: React.FC<Props> = (props) => {
         )
     }
     useEffect(() => {
-        if (!userId) userId = props.userData.id
+        if (!userId) userId = userData.id
         getProfileHelper()
     }, [userId])
-    return <Profile isMyProfile={!props.router.params.userId} {...props} />
-}
-const mapStateToProps = (state: AppState) => {
-    return {
-        userProfile: getMyUserProfile(state),
-        userData: state.auth,
-        statusText: state.profilePage.statusText,
-    }
+    //@ts-ignore
+    return <Profile userProfile = {userProfile}
+     userData = {userData} statusText = {statusText} isMyProfile={!props.router.params.userId} {...props} />
 }
 export default compose(
-    connect(mapStateToProps, { updateAccountProfile, updatePhoto, getStatus, updateStatus, updateProfile: actions.updateProfile }),
+    connect(null, { updateAccountProfile, updatePhoto, getStatus, updateStatus, updateProfile: actions.updateProfile }),
     WithRouters,
     AnonimGoLogin,
     OldURL

@@ -1,0 +1,68 @@
+.header {
+  background-color: #262626;
+  color: white;
+  padding: 10px 0;
+  margin-bottom: 15px;
+}
+
+.header__container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.header .header__list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.header .header__logo {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 20px;
+}
+
+.header .header__logo img {
+  width: 75px;
+  height: 75px;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.header .header__li {
+  font-size: 18px;
+  font-weight: 500;
+  color: white;
+}
+
+.header .login {
+  font-size: 16px;
+  font-weight: 500;
+  color: white;
+}
+
+.header .loginLink {
+  font-size: 16px;
+  font-weight: 500;
+  color: #c4dcfe;
+}
+
+.header .unlogin {
+  font-size: 14px;
+  font-weight: 500;
+  color: white;
+  background-color: transparent;
+  border: 1px black solid;
+  padding: 5px 10px;
+  border-radius: 5px;
+}

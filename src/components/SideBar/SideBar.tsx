@@ -3,14 +3,17 @@ import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { AppState } from '../../redux/store-redux';
 import itemSideBar from './SideBar.module.css';
-import {SmileOutlined, CustomerServiceOutlined,FileTextOutlined,BellOutlined, PlayCircleOutlined, 
-  ThunderboltOutlined,
-  UserOutlined, UserAddOutlined, MessageOutlined , SettingOutlined , FileOutlined, QuestionCircleOutlined } from '@ant-design/icons';
-import {  Col, MenuProps,  } from 'antd';
-import {  Layout, Menu } from 'antd';
+import {
+  WechatOutlined, CustomerServiceOutlined, FileTextOutlined, PlayCircleOutlined,
+  UserOutlined, UserAddOutlined, MessageOutlined, SettingOutlined, QuestionCircleOutlined,
+  MenuUnfoldOutlined, MenuFoldOutlined
+} from '@ant-design/icons';
+import { Button, Col, MenuProps, } from 'antd';
+import { Layout, Menu } from 'antd';
 import 'antd/dist/antd.css';
-import React, { useEffect } from 'react'
+import React, { useState } from 'react'
 import { OldURL } from '../../noc/oldURL';
+import { SideBarActions } from '../../redux/sideBar-reducer';
 type ShowProps = {
   isAuth: boolean
   SideBarInfo: any
@@ -18,18 +21,6 @@ type ShowProps = {
 }
 
 const { Header, Content, Sider } = Layout;
-
-const ArraySideBar = [{ id: 1, to: '/profile', text: 'PROFILE' },
-{ id: 2, to: '/massages', text: 'MESSAGES' },
-{ id: 3, to: '/users', text: 'USERS!' },
-{ id: 4, to: '/music', text: 'MUSIC' },
-{ id: 5, to: '/games', text: 'GAMES' },
-{ id: 6, to: '/gays', text: 'GAYS' },
-{ id: 7, to: '/help', text: 'HELP' },
-{ id: 8, to: '/settings', text: 'SETTINGS' },
-{ id: 9, to: '/friends', text: 'FRIENDS' },
-{ id: 10, to: '/news', text: 'NEWS' },
-]
 type MenuItem = Required<MenuProps>['items'][number];
 
 function getItem(
@@ -37,40 +28,29 @@ function getItem(
   key: React.Key,
   icon?: React.ReactNode,
   children?: MenuItem[],
+  type?: 'group'
 ): MenuItem {
   return {
     key,
     icon,
     children,
-    label
+    label,
+    type
   } as MenuItem;
 }
 
 const items: MenuItem[] = [
-  getItem(<NavLink style={{backgroundColor: '#f0f2f5'}} to={'/profile'}>{'PROFILE'}</NavLink>, '1', <UserOutlined />),
-  getItem(<NavLink style={{backgroundColor: '#f0f2f5'}} to={'/massages'}>{'MESSAGES'}</NavLink>, '2', <MessageOutlined />),
-  getItem(<NavLink style={{backgroundColor: '#f0f2f5'}} to={'/users'}>{'USERS'}</NavLink>, '3', <UserAddOutlined />),
-  getItem(<NavLink style={{backgroundColor: '#f0f2f5'}} to={'/music'}>{'MUSIC'}</NavLink>, '4', <CustomerServiceOutlined />),
-  getItem(<NavLink style={{backgroundColor: '#f0f2f5'}} to={'/games'}>{'GAMES'}</NavLink>, '5', <PlayCircleOutlined />),
-  getItem(<NavLink style={{backgroundColor: '#f0f2f5'}} to={'/help'}>{'HELP'}</NavLink>, '6', <QuestionCircleOutlined />),
-  getItem(<NavLink style={{backgroundColor: '#f0f2f5'}} to={'/settings'}>{'SETTINGS'}</NavLink>, '7', <SettingOutlined />),
-  getItem('News', 'sub2', <BellOutlined />, [
-    getItem(<NavLink style={{backgroundColor: '#f0f2f5'}} to={'/news/politics'}>{'Politics'}</NavLink>, '9', <FileTextOutlined />),
-    getItem(<NavLink style={{backgroundColor: '#f0f2f5'}} to={'/news/fun'}>{'Fun'}</NavLink>, '10', <SmileOutlined />),
-    getItem(<NavLink style={{backgroundColor: '#f0f2f5'}} to={'/news/sport'}>{'Sport'}</NavLink>, '11',<ThunderboltOutlined />),
-    getItem(<NavLink style={{backgroundColor: '#f0f2f5'}} to={'/news/games'}>{'Games'}</NavLink>, '12',<PlayCircleOutlined />),
-  ]),
-  getItem('Files', '15', <FileOutlined />),
-  getItem(<NavLink style={{backgroundColor: '#f0f2f5'}} to={'/chat'}>{'Chat'}</NavLink>, '16', <FileOutlined />),
+  getItem(<NavLink style={{ backgroundColor: '#f0f2f5' }} to={'/profile'}>{'PROFILE'}</NavLink>, '1', <UserOutlined />),
+  getItem(<NavLink style={{ backgroundColor: '#f0f2f5' }} to={'/massages'}>{'MESSAGES'}</NavLink>, '2', <MessageOutlined />),
+  getItem(<NavLink style={{ backgroundColor: '#f0f2f5' }} to={'/chat'}>{'Chat'}</NavLink>, '3', <WechatOutlined />),
+  getItem(<NavLink style={{ backgroundColor: '#f0f2f5' }} to={'/users'}>{'USERS'}</NavLink>, '4', <UserAddOutlined />),
+  getItem(<NavLink style={{ backgroundColor: '#f0f2f5' }} to={'/news'}>{'News'}</NavLink>, '5', <FileTextOutlined />),
+  getItem(<NavLink style={{ backgroundColor: '#f0f2f5' }} to={'/music'}>{'MUSIC'}</NavLink>, '6', <CustomerServiceOutlined />),
+  getItem(<NavLink style={{ backgroundColor: '#f0f2f5' }} to={'/games'}>{'GAMES'}</NavLink>, '7', <PlayCircleOutlined />),
+  getItem(<NavLink style={{ backgroundColor: '#f0f2f5' }} to={'/help'}>{'HELP'}</NavLink>, '8', <QuestionCircleOutlined />),
+  getItem(<NavLink style={{ backgroundColor: '#f0f2f5' }} to={'/settings'}>{'SETTINGS'}</NavLink>, '9', <SettingOutlined />),
 ];
 
-
-const Show: React.FC<ShowProps> = (props) => {
-
-  if (props.isAuth === true) {
-    return props.SideBarInfo
-  } else return props.AnonimSideBarInfo
-}
 type SideBarArhType = {
   to: string
   text: string
@@ -83,39 +63,36 @@ export const SideBarArh: React.FC<SideBarArhType> = props => {
     </li>
   )
 }
-let SideBar: React.FC = props => {
-  const selectedSideBarLinks = useSelector((state:AppState)=>state.sideBar.selectedSideBarLinks)
-    return (
-      <Col span={5}> 
-        <div>
-        <Sider style={{float: 'right'}} width={200} className="site-layout-background">
-          <Menu
-            mode="inline"
-            // defaultSelectedKeys={[`${selectedSideBarLinks[0].id}`]}
-            defaultSelectedKeys={[`1`]}
-            // defaultOpenKeys={[`sub${selectedSideBarLinks[0].id}`]}
-            defaultOpenKeys={[`sub1`]}
-            style={{ height: '100%',backgroundColor: '#f0f2f5',borderRight: 0 }}
-            items={items}
-          />
-        </Sider>
-      </div>
-      </Col>
-    )
-  // }
-  // else return (
-  //   <div>
-  //   <Sider width={250} className="site-layout-background">
-  //     <Menu
-  //       mode="inline"
-  //       defaultSelectedKeys={[`${selectedSideBarLinks[0].id}`]}
-  //       defaultOpenKeys={[`sub${selectedSideBarLinks[0].id}`]}
-  //       style={{ height: '100%', borderRight: 0 }}
-  //       items={items2}
-  //     />
-  //   </Sider>
-  // </div>
-  // )
+let SideBar: React.FC = () => {
+  const [collapsed, setCollapsed] = useState(true);
+  const toggleCollapsed = () => {
+    setCollapsed(!collapsed);
+  };
+
+  const selectedSideBarLinks = useSelector((state: AppState) => state.sideBar.selectedSideBarLinks)
+  const dispatch = useDispatch()
+  const setSelectedSideBarLinks = () => dispatch(SideBarActions.setSelectedSideBarLinks())
+  return (
+    <div style={window.innerWidth <= 600 ? { display: 'grid', gridTemplateColumns: '1fr' } : { display: 'grid', gridTemplateColumns: '0.85fr 3fr' } }>
+      {window.innerWidth <= 600 ? <></> : <div></div>} 
+
+      <Sider collapsed={window.innerWidth <= 1000 ? collapsed : undefined} style={collapsed === true ? window.innerWidth <= 600 ? {float: 'right', background: 'transparent'}  : {float: 'right', marginLeft: '25px', background: 'transparent'} : { float: 'right', background: 'transparent' }} width={200} className="site-layout-background">
+        {window.innerWidth <= 1000
+          ? <Button type="primary" onClick={toggleCollapsed} style={{marginBottom: 16, marginLeft: 10}}>
+            {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+          </Button>
+          : <></>}
+        <Menu
+          mode="inline"
+          defaultSelectedKeys={[`${selectedSideBarLinks[0]?.id}`]}
+          defaultOpenKeys={[`sub${selectedSideBarLinks[0]?.id}`]}
+          style={{ height: '100%', backgroundColor: '#f0f2f5', borderRight: 0 }}
+          items={items}
+        />
+      </Sider>
+    </div>
+  )
 }
+
 const SideBarUrlContainer = OldURL(SideBar)
 export default SideBarUrlContainer

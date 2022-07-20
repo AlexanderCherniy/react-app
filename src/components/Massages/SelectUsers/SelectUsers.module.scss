@@ -1,0 +1,29 @@
+.user{
+    display: flex;
+    color: #212121;
+    font-size: 18px;
+    cursor: pointer;
+    margin-bottom: 5px;
+    align-items: center;
+    gap: 20px;
+}
+.user a.activeUser{
+    display: flex;
+    color: #2b42c5;
+    font-size: 18px;
+    cursor: pointer;
+    align-items: center;
+    margin-bottom: 5px;
+    gap: 20px;
+}
+
+.online{
+    width:10px;
+    height:10px;
+    border-radius:50%;
+}
+.user img{
+    width:45px;
+    height:45px;
+    border-radius: 50%;
+}
