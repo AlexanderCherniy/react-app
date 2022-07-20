@@ -1,0 +1,31 @@
+.messageViewed{
+    position: absolute;
+    bottom: 3px;
+    right: -23px;
+    font-size: 15px;
+}
+.messageNotViewed{
+    position: absolute;
+    bottom: 7px;
+    right: -23px;
+    font-size: 15px;
+    opacity: 0.8;
+    transform: rotate(180deg);
+}
+.myMessage{
+    margin-bottom:10px;
+    color: #212121;
+    display: flex;
+    justify-content: end;
+}
+.messageHelper{
+    position: relative;
+    max-width: 600px;
+}
+.userMassage{
+    margin-bottom:10px;
+    color: #212121;
+    max-width: 600px;
+    overflow: hidden;
+    display: grid;
+}

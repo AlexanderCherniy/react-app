@@ -1,0 +1,127 @@
+.massages {
+  /* width: 100%; */
+}
+
+.users {
+  background: white;
+  padding: 20px;
+}
+
+.user {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: 1fr;
+      grid-template-rows: 1fr;
+  -ms-grid-columns: 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr;
+  color: #212121;
+  font-size: 20px;
+  cursor: pointer;
+  margin-bottom: 10px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  line-height: 50px;
+  gap: 20px;
+}
+
+.user a.activeUser {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: 1fr;
+      grid-template-rows: 1fr;
+  -ms-grid-columns: 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr;
+  color: #2b42c5;
+  font-size: 20px;
+  cursor: pointer;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 10px;
+  line-height: 50px;
+  gap: 20px;
+}
+
+.online {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.user img {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+}
+
+.userMassages {
+  background: white;
+  padding-top: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  min-height: 100%;
+  white-space: pre-wrap;
+}
+
+.massage {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 auto;
+          flex: 1 1 auto;
+  padding: 0px 10px;
+}
+
+.container {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 2fr 4fr 2fr;
+      grid-template-columns: 2fr 4fr 2fr;
+  white-space: pre-wrap;
+  gap: 15px;
+  overflow: hidden;
+}
+
+.massage {
+  font-size: 20px;
+  margin-bottom: 10px;
+  color: #212121;
+  max-width: 600px;
+  overflow: hidden;
+}
+
+.formsContainer {
+  padding: 10px;
+  border-radius: 0 0 4px 4px;
+  -webkit-box-shadow: 0 1px 0 0 #ecf0f1,0 0 0 1px #ecf0f1;
+          box-shadow: 0 1px 0 0 #ecf0f1,0 0 0 1px #ecf0f1;
+  background-color: #ffffff;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 10px;
+}
+
+.textarea {
+  padding: 10px;
+  border-radius: 6px;
+  border: solid 1px #555555;
+  max-width: 480px;
+  width: 100%;
+  height: 50px;
+  font-size: 15px;
+  resize: none;
+}
+
+.button {
+  background-color: #fff;
+  border-radius: 6px;
+  padding: 0px 20px;
+  text-transform: uppercase;
+  font-size: 15px;
+  border: solid 1px #555555;
+}

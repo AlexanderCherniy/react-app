@@ -1,0 +1,35 @@
+.line {
+  height: 2px;
+  width: 100%;
+  background-color: #ddd6d6;
+}
+
+.flexContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-bottom: 5px;
+  gap: 20px;
+}
+
+.message {
+  margin-bottom: 10px;
+}
+
+.messageText {
+  font-size: 19px;
+}
+
+.userId {
+  font-size: 17px;
+}
+
+.userName {
+  font-size: 20px;
+}
+
+.ScrollContainer {
+  height: 500px;
+  overflow-y: auto;
+  margin-bottom: 20px;
+}
