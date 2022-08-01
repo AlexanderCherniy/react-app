@@ -8,12 +8,12 @@ import React, { useEffect, useState } from "react";
 import { getError, getUsers } from "../../redux/users-reselects";
 import { AppState } from "../../redux/store-redux";
 import { OldURL } from "../../noc/oldURL";
-import { Breadcrumb, Button } from 'antd'
+import { Breadcrumb } from 'antd'
 import { createField, Input } from '../../Forms/Forms'
 import { Formik } from 'formik'
 import { Form, Select, SubmitButton } from 'formik-antd'
 import 'antd/dist/antd.css';
-import { useLocation, useNavigate, useParams, useSearchParams } from 'react-router-dom';
+import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 const Users: React.FC = props => {
     const { Option } = Select;
     const [usersNotFound, setUsersNotFound] = useState(false)
@@ -72,9 +72,9 @@ const Users: React.FC = props => {
                 <Breadcrumb.Item>Users</Breadcrumb.Item>
             </Breadcrumb>
             <Form >
-                <div style={{ display: 'flex' }}>
+                <div style={window.innerWidth <= 450 ? {  } : { display: 'flex', gap: 5 }}>
                     {createField(classes.findUsers, 'term', Input, "Find Users...")}
-                    <Select name="searchParams" style={{ width: '130px' }} defaultValue="null">
+                    <Select name="searchParams" style={{ width: '130px', marginRight: 5 }} defaultValue="null">
                         <Option value="null">All</Option>
                         <Option value="true">Only Followed</Option>
                         <Option value="false">Only UnFollowed</Option>
@@ -84,18 +84,22 @@ const Users: React.FC = props => {
             </Form>
             {usersNotFound === true ? <div>NOT FOUND</div>
 
-                : <div style={{ display: 'flex', gap: '50px' }}>
+                : <div style={window.innerWidth <= 1200 ? { display: 'flex', flexDirection: 'column' , gap: '50px' } : { display: 'flex', gap: '50px' }}>
                     <div style={{ maxWidth: '650px' }} className={classes.users}>
                         <ErrorMassage toggleErrorStatus={toggleErrorStatus} error={error} />
                         <div className={classes.numsContainer}>
+                            <div>
                             <SlicedPages searchParams={searchParams} term={term} totalCount={totalCount} pageSize={pageSize}
                                 currentPage={currentPage} checkUsers={checkUsers} />
+                            </div>
                         </div>
                         <div className={classes.loaderContainer}>
                             {loaderState === true ? <div className={classes.loaderSpin}></div> : ""}
                         </div>
-                        <User isBlocked={isBlocked} usersState={usersState}
+                        <div style={window.innerWidth <= 597 ? {display: 'flex', flexDirection: 'column', alignItems: 'center'} : {}}>
+                            <User isBlocked={isBlocked} usersState={usersState}
                             followUsers={followUsers} unfollowUsers={unfollowUsers} />
+                        </div>
                     </div>
                     <div className={classes.instructation}>
                         <h2 className={classes.instructationTitle}>Who are they?</h2>
@@ -107,6 +111,7 @@ const Users: React.FC = props => {
                         <div>
                             If the user does not respond to messages or social networks indicated by him in the profile, you can try to write in the <b>Chat</b>, he may see your message
                         </div>
+                        <div>Сделай потом, чтобы на маленьких экранах, это пояснение было сверху, можно было его скрыть нажав на крестик, и это сохранялось в localStorage, чтобы потом не появлялось</div>
                     </div>
                 </div>
             }

@@ -2,7 +2,6 @@ import mClas from './Massages.module.scss'
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { AppState } from '../../redux/store-redux';
-import { getMassages } from '../../redux/massages-reselects';
 import { getAllDialogs, getConcreteUserMessages, sendMessageToUser } from '../../redux/massages-reducer'
 import { OldURL } from '../../noc/oldURL';
 import { createField, Textarea, Input } from '../../Forms/Forms';
@@ -12,14 +11,27 @@ import { putDialogWithUsers } from "../../redux/massages-reducer";
 import UsersMassages from './UsersMessages/UsersMessages';
 import SelectUsers from './SelectUsers/SelectUsers';
 import { SubmitButton } from 'formik-antd';
+import { Navigate } from 'react-router-dom';
 const Massages: React.FC = () => {
     const [userIdURL, setUserIdUrl] = useState<any>(window.location.href.split('/')[5])
     const myId = useSelector((state: AppState) => state.auth.id)
-    const shortUsers = useSelector((state: AppState) => state.massagesPage.users.map((user) => <SelectUsers setUserIdUrl={setUserIdUrl} key={user.id} hasNewMessages={user.hasNewMessages}
+    const users = useSelector((state:AppState)=> state.massagesPage.users)
+
+    
+    const messages = useSelector((state:AppState)=> state.massagesPage.massages)
+    users.map((u)=>{
+        messages.map(m => {
+            if(u.id === m.senderId){
+                return m.photo = u.photos.small
+            }
+        })
+    })
+    
+    const shortUsers = useSelector((state: AppState) => state.massagesPage.users.map((user) => <SelectUsers userIdURL = {userIdURL} setUserIdUrl={setUserIdUrl} key={user.id} hasNewMessages={user.hasNewMessages}
         userPhoto={user.photos.small}
         userId={user.id} userName={user.userName} />))
 
-    const shortMassages = useSelector((state: AppState) => getMassages(state).map((massage, index) => <UsersMassages userId={userIdURL} id={massage.id} viewed={massage.viewed} myId={myId} senderId={massage.senderId} key={index} body={massage.body} />))
+    const shortMassages = messages.map((massage, index) => <UsersMassages photo = {massage.photo} userId={userIdURL} id={massage.id} viewed={massage.viewed} myId={myId} senderId={massage.senderId} key={index} body={massage.body} />)
     const dispatch = useDispatch()
     type MessagesValues = {
         message: string
@@ -30,11 +42,13 @@ const Massages: React.FC = () => {
         message: '',
         userId: ''
     }
+
     useEffect(() => {
         //@ts-ignore
-        dispatch(getAllDialogs())
+         dispatch(getAllDialogs())
         //@ts-ignore
         dispatch(getConcreteUserMessages(userIdURL))
+        
     }, [userIdURL])
     return <Formik initialValues={initialValues}
         onSubmit={async values => {
@@ -53,6 +67,9 @@ const Massages: React.FC = () => {
             }
         }}>
         <main className={mClas.massages}>
+        {window.location.href.split('/')[5] === undefined && users[0].userName !== 'Anonim' ?
+        <Navigate to={'/massages/' + users[0].id}/> : <></>
+        }
             <Breadcrumb style={{ margin: '16px 0', }}>
                 <Breadcrumb.Item>Start</Breadcrumb.Item>
                 <Breadcrumb.Item>MessagesPage</Breadcrumb.Item>

@@ -64,7 +64,10 @@
     background-color: red;
 }
 .findUsers{
-    width: 300px;
+    max-width: 250px;
+    min-width: 120px;
+    width: 100%;
+    margin-bottom: 5px;
 }
 @keyframes cyrcle {
     0%{

@@ -13,19 +13,32 @@
     transform: rotate(180deg);
 }
 .myMessage{
-    margin-bottom:10px;
+    margin-bottom:20px;
     color: #212121;
-    display: flex;
-    justify-content: end;
+}
+.myPhoto{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
 }
 .messageHelper{
+    display: flex;
+    align-items: center;
     position: relative;
     max-width: 600px;
+    gap: 20px;
 }
 .userMassage{
-    margin-bottom:10px;
+    margin-bottom:20px;
     color: #212121;
     max-width: 600px;
     overflow: hidden;
-    display: grid;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.userPhoto{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
 }

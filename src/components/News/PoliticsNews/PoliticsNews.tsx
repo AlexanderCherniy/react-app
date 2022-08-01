@@ -6,11 +6,22 @@ import { Form, SubmitButton } from "formik-antd";
 import { useDispatch, useSelector } from "react-redux";
 import { getNews as getNewsI} from "../../../redux/news-reducer";
 import { AppState } from "../../../redux/store-redux";
+import { useEffect } from "react";
 const PoliticsNews: React.FC = props => {
     const news = useSelector((state: AppState)=> state.news.news)
-    console.log(news);
-    
     const dispatch = useDispatch()
+    function getRandomNumber(min: number, max: number) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min + 1)) + min; //Максимум и минимум включаются
+    }
+    const PopulariteThemesArray = ['Tesla', 'Putin', 'Joe Biden', 'Elon Musk', 'Iphone', 'Phone', 'KIA', 'Redmi']
+    const RundomNumber = PopulariteThemesArray[getRandomNumber(0, 7)]
+    useEffect(()=>{
+        if(news.length === 0){
+            getNews(RundomNumber)
+        }
+    },[])
     //@ts-ignore
     const getNews = (request: string)=> dispatch(getNewsI(request))
     return <Formik
@@ -24,11 +35,11 @@ const PoliticsNews: React.FC = props => {
                 <h2>Politics News</h2>
             </div>
             <Form className={c.ShieldRequestForm}>
-                <div >
+                <div style={{display: 'flex', marginBottom: 30}}>
                     {createField(c.userRequestForm, 'request', Input, "Enter your request...")}
                     <SubmitButton >FIND</SubmitButton>
                 </div>
-                {news !== [] ? <News/> : <Familiarization/>}
+                {news !== Array(0) ? <News/> : <Familiarization/>}
             </Form>
         </div>
     </Formik>
@@ -41,7 +52,7 @@ const News: React.FC = () => {
             {news.filter(item=> item.language === "en").map((item, index) =>{
                 return (
                     <div className={c.newsItem}>
-                        <div className={c.gridContainer} key={index + 1}>
+                        <div className={window.innerWidth <= 1000 ? c.gridContainer1140 : c.gridContainer} key={index + 1}>
                             <div className={c.mainText}>
                                 <div className={c.Date}>{item.published_date}</div>
                                 <h2 className={c.Title}>{item.title} <span className={c.Authors}>(c) {item.authors !== "" ? item.authors : "..."}</span> </h2>

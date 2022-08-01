@@ -28,6 +28,7 @@ type Props = {
   changeStatus: (ref: React.RefObject<HTMLInputElement>) => void
   updateAccountProfile: (values: any) => void
   item: ItemType
+
 }
 
 const ProfileInfo: React.FC<Props> = (props) => {
@@ -42,6 +43,17 @@ const ProfileInfo: React.FC<Props> = (props) => {
     if(e.target.files?.length){
        //@ts-ignore
       props.updatePhoto(e.target.files[0])
+    }
+  }
+  const [count, setCount] = useState(1)
+  const funcPlus = ()=>{
+    if(count === 1){
+      return setCount(2)
+    }
+  }
+  const funcMinus = ()=>{
+    if(count === 2){
+      return setCount(1)
     }
   }
   const SelectChangeMode = () => {
@@ -70,13 +82,15 @@ const ProfileInfo: React.FC<Props> = (props) => {
   return (
     <div>
       <div key={props.userProfile[0].userId}>
-        <div className={incClass.Profile}>
-          <div className={incClass.Profile__img}>
+        <div className={window.innerWidth <= 630 ? incClass.Profile : incClass.ProfileFlex}>
+          <div style={{marginBottom: 20}} className={incClass.Profile__img}>
             <img className={imgZoomClass}
+              // onMouseOutCapture={funcMinus}
+              onMouseMove={funcPlus}
               onPointerLeave={() => setUseZoom(false)} onClick={() => setUseZoom(true)}
               src={NoPhoto(props.userProfile[0].photos.small)} alt='profilePhoto' />
             <ProfileStatusContainer removeChangeText={props.removeChangeText} addChangeText={props.addChangeText} changeTextFunc={props.changeTextFunc} changeText={props.changeText} userDataProps={props.userData} itemProps = {props.item} updateStatus={props.updateStatus} statusText={props.statusText} statusTextProps = {props.statusText} getStatus={props.getStatus} item={props.userProfile[0]} />
-            <MyProfile {...props}
+            <MyProfile count={count} {...props}
               selectedPhoto={selectedPhoto} />
           </div>
           <div className={incClass.Profile__text}>

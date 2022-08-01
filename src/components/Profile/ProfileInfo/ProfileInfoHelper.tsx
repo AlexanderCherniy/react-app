@@ -12,12 +12,16 @@ export  const NoPhoto = (smallPhoto: any) => {
 }
 type MyProfileProps = {
   selectedPhoto: (e: ChangeEvent<HTMLInputElement>)=> void 
+  count: number
 }
+
 export const MyProfile:React.FC<MyProfileProps> = (props: any) => {
+  console.log(props.count);
+  
   if (props.isMyProfile === true) {
-    return <input className={incClass.selectedPhoto} type='file' onChange={props.selectedPhoto} />
+    return <input style={props.count === 1 ? {display: 'none'} : {display: 'block'}}  className={incClass.selectedPhoto} type='file' onChange={props.selectedPhoto} />
   }
-  return <div></div>
+  return <></>
 }
 // export const ButtonChange = (props: {userData:dataType, userProfile: [ProfileType]}, func:Function)=>{
 export const ButtonChange = (props: any, func:Function)=>{

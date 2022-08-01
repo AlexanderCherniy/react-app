@@ -1,5 +1,6 @@
 .ShieldRequestForm{
     display: flex;
+    flex-direction: column;
     margin-bottom: 100px;
 }
 .userRequestForm{
@@ -7,7 +8,6 @@
 }
 .newsItem{
     max-width: 700px;
-    height: 300px;
     margin-bottom: 20px;
     overflow: hidden;
 }
@@ -22,6 +22,10 @@
 .gridContainer{
     display: grid;
     grid-template-columns: 5fr 4fr;
+}
+.gridContainer1140{
+    display: grid;
+    grid-template-rows: minmax(1fr 3fr) minmax(1fr 4fr);
 }
 .Title{
     font-size: 20px;

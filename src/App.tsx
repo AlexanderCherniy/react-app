@@ -31,7 +31,8 @@ const App: React.FC = props => {
   const userData = useSelector((state: AppState) => state.auth)
   const blackThemeP = useSelector((state: AppState) => state.settings.blackTheme)
   const dispatch = useDispatch()
-
+  const users = useSelector((state:AppState)=> state.massagesPage.users)
+  
   //@ts-ignore
   const inizializateReadyP = (isAuth: boolean, id: number) => dispatch(inizializateReady(isAuth, id))
   localStorage.setItem('blackTheme', blackThemeP);
@@ -45,11 +46,11 @@ const App: React.FC = props => {
   return (
     <Layout style={{ height: '100vh', overflowX: 'hidden' }}>
     <HeaderComponent />
-    <Layout >
+    <Layout  >
       <Layout >
 
           {userData.isAuth === true ? <SideBar /> : <div></div>} 
-        <Layout style={{ padding: '0 24px 24px'}}>
+        <Layout style={{ padding: '0 24px 24px 0'}}>
 
           <Content
             className="site-layout-background"
@@ -82,6 +83,7 @@ const App: React.FC = props => {
                 <Route path='/login' element={<Login />} />
               </Routes>
             </React.Suspense>
+            {/* <div style={{display: 'flex', alignItems: 'center', position: 'relative' ,left: '45%', padding: '7px 0'}}>@Created by Alexander Cherniy</div> */}
           </Content>
         </Layout>
 

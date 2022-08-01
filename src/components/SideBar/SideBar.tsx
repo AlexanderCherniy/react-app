@@ -8,7 +8,7 @@ import {
   UserOutlined, UserAddOutlined, MessageOutlined, SettingOutlined, QuestionCircleOutlined,
   MenuUnfoldOutlined, MenuFoldOutlined
 } from '@ant-design/icons';
-import { Button, Col, MenuProps, } from 'antd';
+import { Button, MenuProps, } from 'antd';
 import { Layout, Menu } from 'antd';
 import 'antd/dist/antd.css';
 import React, { useState } from 'react'
