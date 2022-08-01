@@ -19,7 +19,7 @@ const SelectUsers: React.FC<UsersType> = props => {
     
     return (
         
-        <div onClick={() => props.setUserIdUrl(window.location.href.split('/')[5] === '#' ? window.location.href.split('/')[6] : window.location.href.split('/')[5])} className={cn.user}>
+        <div onClick={() => props.setUserIdUrl(window.location.href.split('/')[4] === '#' ? window.location.href.split('/')[6] : window.location.href.split('/')[5])} className={cn.user}>
             <NavLink to={'/massages/' + props.userId} className={link => link.isActive ? cn.activeUser : cn.user}>
                 <img src={props.userPhoto} alt="" />
                 {props.userName}
