@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getNews as getNewsI} from "../../../redux/news-reducer";
 import { AppState } from "../../../redux/store-redux";
 import { useEffect } from "react";
+import BreadCrumbContainer from "../../BreadCrumb/BreadCrumb";
 const PoliticsNews: React.FC = props => {
     const news = useSelector((state: AppState)=> state.news.news)
     const dispatch = useDispatch()
@@ -31,13 +32,11 @@ const PoliticsNews: React.FC = props => {
             getNews(values.request)
         }}>
         <div>
-            <div>
-                <h2>Politics News</h2>
-            </div>
+            <BreadCrumbContainer page='News' containerPage='NewsPage'/>
             <Form className={c.ShieldRequestForm}>
                 <div style={{display: 'flex', marginBottom: 30}}>
                     {createField(c.userRequestForm, 'request', Input, "Enter your request...")}
-                    <SubmitButton >FIND</SubmitButton>
+                    <SubmitButton>FIND</SubmitButton>
                 </div>
                 {news !== Array(0) ? <News/> : <Familiarization/>}
             </Form>

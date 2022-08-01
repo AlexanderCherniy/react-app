@@ -6,6 +6,7 @@ import { AppState } from '../../redux/store-redux'
 import { actions } from '../../redux/settings-reducer'
 import { OldURL } from '../../noc/oldURL'
 import { Breadcrumb } from 'antd'
+import BreadCrumbContainer from '../BreadCrumb/BreadCrumb'
 
 const Settings: React.FC = (props) => {
     const blackTheme = useSelector((state: AppState) => state.settings.blackTheme)
@@ -26,11 +27,7 @@ const Settings: React.FC = (props) => {
     return (
         <div className={SettingsClass.photos}>
             <div className={SettingsClass.container}>
-                <Breadcrumb style={{ margin: '16px 0', }}>
-                    <Breadcrumb.Item>Start</Breadcrumb.Item>
-                    <Breadcrumb.Item>HelpPage</Breadcrumb.Item>
-                    <Breadcrumb.Item>Help</Breadcrumb.Item>
-                </Breadcrumb>
+                <BreadCrumbContainer page='Settings' containerPage='SettingsPage'/>
                 <input type="text" ref={inputRef} onChange={changeSettingsFunc} value={newText} />
                 <button onClick={() => setBlackThemes(!blackTheme)} className={buttonClasses}>
                     {buttonText}

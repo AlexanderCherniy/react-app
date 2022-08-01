@@ -71,10 +71,10 @@ const App: React.FC = props => {
                 <Route path='/profile' element={<ProfileContainer />} />
                 <Route path='/massages/*' element={<Massages />} />
                 <Route path='/chat' element={<ChatPage />} />
-                <Route path='/music' element={<div>Music</div>} />
+                {/* <Route path='/music' element={<div>Music</div>} /> */}
                 <Route path='/friends' element={<FriendsContainer />} />
                 <Route path='/gays' element={<GaysContainer />} />
-                <Route path='/games' element={<div>Games</div>} />
+                {/* <Route path='/games' element={<div>Games</div>} /> */}
                 <Route path='/help' element={<Help />} />
                 <Route path='/settings' element={<Settings />} />
                 <Route path='/users' element={<UsersContainer />} />

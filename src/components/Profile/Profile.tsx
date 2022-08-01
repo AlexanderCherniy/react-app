@@ -6,6 +6,7 @@ import { ProfileType } from '../../api/api-dal';
 import AnonimGoLogin from '../../noc/hoc';
 import { dataType } from '../../redux/auth-reducer';
 import { getMyUserProfile } from '../../redux/profile-reselects';
+import BreadCrumbContainer from '../BreadCrumb/BreadCrumb';
 import Posts from './Posts/Posts';
 import incClass from './Profile.module.scss';
 import { ItemType } from './ProfileInfo/ProfileContacts/ProfileContactsForm';
@@ -35,11 +36,7 @@ let Profile: React.FC<Props> = props => {
   return (
     <Col span={20}> 
     <main className={incClass.main}>
-      <Breadcrumb style={{ margin: '16px 0', }}>
-        <Breadcrumb.Item>Start</Breadcrumb.Item>
-        <Breadcrumb.Item>ProfilePage</Breadcrumb.Item>
-        <Breadcrumb.Item>Profile</Breadcrumb.Item>
-      </Breadcrumb>
+      <BreadCrumbContainer page='Profile' containerPage='ProfilePage'/>
       <div className={incClass.container}>
         <ProfileInfo {...props} userProfile = {userProfile}/>
       </div>

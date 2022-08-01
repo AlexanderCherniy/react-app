@@ -21,7 +21,6 @@ const Chat: React.FC<ChatType> = (props) => {
     return (
         <div className={c.ShieldWrapper}>
             <div className={c.wrapper}>
-                <h1>Chat</h1>
                 <Message />
             </div>
         </div>

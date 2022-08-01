@@ -14,6 +14,7 @@ import { Formik } from 'formik'
 import { Form, Select, SubmitButton } from 'formik-antd'
 import 'antd/dist/antd.css';
 import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
+import BreadCrumbContainer from '../BreadCrumb/BreadCrumb';
 const Users: React.FC = props => {
     const { Option } = Select;
     const [usersNotFound, setUsersNotFound] = useState(false)
@@ -66,11 +67,7 @@ const Users: React.FC = props => {
         }}>
 
         <div>
-            <Breadcrumb style={{ margin: '16px 0', }}>
-                <Breadcrumb.Item>Start</Breadcrumb.Item>
-                <Breadcrumb.Item>UsersPage</Breadcrumb.Item>
-                <Breadcrumb.Item>Users</Breadcrumb.Item>
-            </Breadcrumb>
+            <BreadCrumbContainer page='Users' containerPage='UsersPage'/>
             <Form >
                 <div style={window.innerWidth <= 450 ? {  } : { display: 'flex', gap: 5 }}>
                     {createField(classes.findUsers, 'term', Input, "Find Users...")}

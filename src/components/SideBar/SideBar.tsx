@@ -45,10 +45,10 @@ const items: MenuItem[] = [
   getItem(<NavLink style={{ backgroundColor: '#f0f2f5' }} to={'/chat'}>{'Chat'}</NavLink>, '3', <WechatOutlined />),
   getItem(<NavLink style={{ backgroundColor: '#f0f2f5' }} to={'/users'}>{'USERS'}</NavLink>, '4', <UserAddOutlined />),
   getItem(<NavLink style={{ backgroundColor: '#f0f2f5' }} to={'/news'}>{'News'}</NavLink>, '5', <FileTextOutlined />),
-  getItem(<NavLink style={{ backgroundColor: '#f0f2f5' }} to={'/music'}>{'MUSIC'}</NavLink>, '6', <CustomerServiceOutlined />),
-  getItem(<NavLink style={{ backgroundColor: '#f0f2f5' }} to={'/games'}>{'GAMES'}</NavLink>, '7', <PlayCircleOutlined />),
-  getItem(<NavLink style={{ backgroundColor: '#f0f2f5' }} to={'/help'}>{'HELP'}</NavLink>, '8', <QuestionCircleOutlined />),
-  getItem(<NavLink style={{ backgroundColor: '#f0f2f5' }} to={'/settings'}>{'SETTINGS'}</NavLink>, '9', <SettingOutlined />),
+  // getItem(<NavLink style={{ backgroundColor: '#f0f2f5' }} to={'/music'}>{'MUSIC'}</NavLink>, '6', <CustomerServiceOutlined />),
+  // getItem(<NavLink style={{ backgroundColor: '#f0f2f5' }} to={'/games'}>{'GAMES'}</NavLink>, '7', <PlayCircleOutlined />),
+  getItem(<NavLink style={{ backgroundColor: '#f0f2f5' }} to={'/help'}>{'HELP'}</NavLink>, '6', <QuestionCircleOutlined />),
+  getItem(<NavLink style={{ backgroundColor: '#f0f2f5' }} to={'/settings'}>{'SETTINGS'}</NavLink>, '7', <SettingOutlined />),
 ];
 
 type SideBarArhType = {

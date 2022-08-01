@@ -1,15 +1,11 @@
-import { Breadcrumb } from 'antd'
 import { OldURL } from '../../noc/oldURL'
+import BreadCrumbContainer from '../BreadCrumb/BreadCrumb'
 import CssClass from './HelpCss.module.css'
 const Help: React.FC = props => {
 
     return (
         <div>
-            <Breadcrumb style={{ margin: '16px 0', }}>
-                <Breadcrumb.Item>Start</Breadcrumb.Item>
-                <Breadcrumb.Item>HelpPage</Breadcrumb.Item>
-                <Breadcrumb.Item>Help</Breadcrumb.Item>
-            </Breadcrumb>
+            <BreadCrumbContainer page='Help' containerPage='HelpPage'/>
             <div className={CssClass.Help}></div>
         </div>
     )
