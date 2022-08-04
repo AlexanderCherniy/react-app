@@ -2,7 +2,7 @@ import React from "react";
 import Post from './Post/Post';
 import incClass from './Posts.module.scss';
 import PostsForm from './PostsForm';
-import { connect, useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { actions, PostType } from '../../../redux/profile-reducer'
 import { AppState } from "../../../redux/store-redux";
 

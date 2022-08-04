@@ -37,7 +37,7 @@ const ProfileContainer: React.FC<Props> = (props) => {
     return <Profile userProfile = {userProfile}
      userData = {userData} statusText = {statusText} isMyProfile={!props.router.params.userId} {...props} />
 }
-export default compose(
+export default compose<React.ComponentType>(
     connect(null, { updateAccountProfile, updatePhoto, getStatus, updateStatus, updateProfile: actions.updateProfile }),
     WithRouters,
     AnonimGoLogin,

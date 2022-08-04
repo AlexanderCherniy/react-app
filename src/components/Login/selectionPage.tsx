@@ -1,14 +1,14 @@
-import LoginForm from "./LoginForm";
 import c from "./Login.module.scss";
-import { Navigate, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { Button } from "antd";
+import { CodeOutlined } from '@ant-design/icons';
 import 'antd/dist/antd.css';
 const SelectionPage: React.FC = props => {
     return <div className={c.selectionPageWrapper}>
         <div className={c.selectionPage}>
             <div>
                 <div className={c.Login}>
-                    <img alt="logo" />
+                <CodeOutlined style={{ width: '100%' , fontSize: 65 , display: 'flex', justifyContent: 'center'}}/>
                     <h2 className={c.title}> Login <div>Developers Network</div> </h2>
                     <div className={c.LoginMessage}>
                         Чтобы просматривать эту страницу, нужно зайти на сайт.

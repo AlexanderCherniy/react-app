@@ -1,3 +1,4 @@
+import React from 'react';
 import { NavLink } from 'react-router-dom';
 import cn from './SelectUsers.module.scss'
 
@@ -6,10 +7,10 @@ type UsersType = {
     userPhoto: string
     userName: string
     userId: number
-    userIdURL: string
+    userIdURL: string | number
     setUserIdUrl: any
 }
-const SelectUsers: React.FC<UsersType> = props => {
+const SelectUsers: React.FC<UsersType> = (props) => {
     let online = props.hasNewMessages
     online === true ? online = '#81b53e' : online = '#f0ad4e'    
     return (

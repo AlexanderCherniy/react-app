@@ -1,4 +1,6 @@
+import { Button } from 'antd';
 import { ChangeEvent } from 'react';
+import { NavLink } from 'react-router-dom';
 import incClass from '.././Profile.module.scss';
 const noPhoto =
   'https://images.theconversation.com/files/449089/original/file-20220301-25-ckck4y.jpeg?ixlib=rb-1.1.0&q=45&auto=format&w=1200&h=1200.0&fit=crop'
@@ -26,6 +28,9 @@ export const MyProfile:React.FC<MyProfileProps> = (props: any) => {
 // export const ButtonChange = (props: {userData:dataType, userProfile: [ProfileType]}, func:Function)=>{
 export const ButtonChange = (props: any, func:Function)=>{
   if(props.userData.id === props.userProfile[0].userId){
-    return <button className={incClass.changeButton} onClick={() => func(true)}>CHANGE</button>
+    // return <button className={incClass.changeButton} onClick={() => func(true)}>CHANGE</button>
+    return <Button onClick={() => func(true)} style={{backgroundColor: 'white', border: '1px black solid', color: 'black'}} type="primary" size={'large'}>
+    Change Profile
+  </Button>
   }
 }

@@ -8,6 +8,7 @@ import { getNews as getNewsI} from "../../../redux/news-reducer";
 import { AppState } from "../../../redux/store-redux";
 import { useEffect } from "react";
 import BreadCrumbContainer from "../../BreadCrumb/BreadCrumb";
+import React from "react";
 const PoliticsNews: React.FC = props => {
     const news = useSelector((state: AppState)=> state.news.news)
     const dispatch = useDispatch()
@@ -31,26 +32,35 @@ const PoliticsNews: React.FC = props => {
         onSubmit={async values => {
             getNews(values.request)
         }}>
-        <div>
+        <div style={window.innerWidth > 1000 ? {display: 'grid', gridTemplateColumns: '0.3fr 6fr 0fr'} : {}}>
+            <div></div>
+            <div>
             <BreadCrumbContainer page='News' containerPage='NewsPage'/>
-            <Form className={c.ShieldRequestForm}>
-                <div style={{display: 'flex', marginBottom: 30}}>
-                    {createField(c.userRequestForm, 'request', Input, "Enter your request...")}
-                    <SubmitButton>FIND</SubmitButton>
-                </div>
-                {news !== Array(0) ? <News/> : <Familiarization/>}
-            </Form>
+                <Form className={c.ShieldRequestForm}>
+                    <FindNews/>
+                    <News/>
+                </Form>
+            </div>
+            <div></div>
         </div>
     </Formik>
 
 }
+const FindNews:React.FC = React.memo(()=>{
+    return(
+        <div style={{display: 'flex', marginBottom: 30}}>
+            {createField(c.userRequestForm, 'request', Input, "Enter your request...")}
+            <SubmitButton>FIND</SubmitButton>
+        </div>
+    )
+})
 const News: React.FC = () => {
     const news = useSelector((state: AppState)=> state.news.news)
     return(
         <div> 
             {news.filter(item=> item.language === "en").map((item, index) =>{
                 return (
-                    <div className={c.newsItem}>
+                    <div key={index} className={c.newsItem}>
                         <div className={window.innerWidth <= 1000 ? c.gridContainer1140 : c.gridContainer} key={index + 1}>
                             <div className={c.mainText}>
                                 <div className={c.Date}>{item.published_date}</div>

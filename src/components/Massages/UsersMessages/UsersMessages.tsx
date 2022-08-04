@@ -8,7 +8,7 @@ import cn from './UsersMessags.module.scss'
 type UsersMassagesType = {
     myId: number
     senderId: number
-    userId: number
+    userId: number | string
     body: string
     id: string
     viewed: boolean
@@ -19,7 +19,7 @@ const UsersMassages: React.FC<UsersMassagesType> = props => {
 
     const myPhoto = useSelector((state: AppState) => state.auth.photo)
     const dispatch = useDispatch()
-    const deleteMessage = async (messageID: string, userId: number)=>{
+    const deleteMessage = async (messageID: string, userId: number | string)=>{
         //@ts-ignore
         dispatch(deleteYourMessage(messageID, userId))   
     }

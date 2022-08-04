@@ -1,13 +1,13 @@
 import { useSelector } from 'react-redux';
-import { NavLink, Navigate } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { AppState } from '../../redux/store-redux';
 import incapsClasses from './Header.module.scss';
 import UnLogin from './Unlogin';
-import { Col, Input, MenuProps, Row, Layout, Menu, Dropdown } from 'antd';
-import { MenuOutlined } from '@ant-design/icons';
+import { Input, Row, Layout, Menu, Dropdown } from 'antd';
+import { MenuOutlined, CodeOutlined } from '@ant-design/icons';
 let noPhoto =
   'https://images.theconversation.com/files/449089/original/file-20220301-25-ckck4y.jpeg?ixlib=rb-1.1.0&q=45&auto=format&w=1200&h=1200.0&fit=crop'
-const Header: React.FC = (props) => {
+const Header: React.FC = () => {
   const userData = useSelector((state: AppState) => state.auth)
   const { Search } = Input;
   const { Header } = Layout;
@@ -31,7 +31,8 @@ const Header: React.FC = (props) => {
       <Header style={{ marginBottom: '20px' }} className="header">
         <Row style={window.innerWidth > 650 ? {display: 'grid', gridTemplateColumns: '5fr 5fr 7fr 2fr 2fr 1fr'} : {display: 'grid', gridTemplateColumns: '5fr 5fr 2fr 2fr 2fr 1fr'}}>
             <div>
-              <img style={{minWidth: '150px' , maxWidth: '200px', height: '65px', width: '100%' }} src='https://img.favpng.com/23/5/9/web-development-web-design-software-development-web-developer-png-favpng-mbCGqwpp8f0gqqSfgwXAsyQGq.jpg' />
+              {/* <img style={{minWidth: '150px' , maxWidth: '200px', height: '65px', width: '100%' }} src='https://img.favpng.com/23/5/9/web-development-web-design-software-development-web-developer-png-favpng-mbCGqwpp8f0gqqSfgwXAsyQGq.jpg' /> */}
+              <CodeOutlined style={window.innerWidth <= 500 ? { color: 'white', fontSize: 65 } :  { width: 190 ,color: 'white', fontSize: 65 }}/>
             </div>
             <div>
              {window.innerWidth > 700 

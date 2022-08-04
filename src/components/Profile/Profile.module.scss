@@ -5,12 +5,10 @@
 }
 .ProfileFlex {
     display: flex;
-    gap: 20px;
-    margin-top: 30px;
+    gap: 10px;
 }
 .Profile {
-    gap: 20px;
-    margin-top: 30px;
+    gap: 10px;
 }
 
 .Profile__name {
@@ -43,9 +41,19 @@
 .ProfileMega{
     font-size: 17px;
 }
+.ProfileImgContainer{
+    background-color: #fff;
+    padding: 10px 4px;
+}
+.ProfileTextContainer{
+    background-color: #fff;
+    padding: 10px 15px;
+}
 .Profile__img {
     display: grid;
+    margin-bottom: 20px;
     grid-template-rows: 5fr 1fr;
+    padding: 10px;
     position: relative;
     height: 150px;
 }
@@ -53,21 +61,19 @@
     transform: scale(1.5);
     height: 150px;
     width: 150px;
-    border: 2px red solid;
     transition: 0.3s all ease;
     position: relative;
 }
 .noUsedZoomImg{
     height: 150px;
     width: 150px;
-    border: 2px green solid;
     transition: 0.3s all ease;
     position: relative;
 }
 .selectedPhoto{
     position: absolute;
     bottom: 5px;
-    left: 12%;
+    left: 15%;
     width: 115px;
 }
 .jobSearchIcon{
@@ -141,4 +147,7 @@
     font-size: 15px;
     cursor: pointer;
     color: rgb(54, 52, 52);
+}
+.WriteToUser{
+    
 }

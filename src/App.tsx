@@ -1,4 +1,4 @@
-import './App.css';
+import './App.scss';
 import './Nullstyle.css';
 import HeaderComponent from './components/Header/Header';
 import Help from './components/Help/Help';
@@ -19,32 +19,29 @@ import { actions } from './redux/settings-reducer';
 import { Layout } from 'antd';
 import 'antd/dist/antd.css';
 import PoliticsNews from './components/News/PoliticsNews/PoliticsNews';
-const Massages = React.lazy(() => import('./components/Massages/Massages'));
-//@ts-ignore
+const Massages = React.lazy(() => import('./components/Massages/Messages'));
 const ProfileContainer = React.lazy(() => import('./components/Profile/ProfileContainer'));
 const UsersContainer = React.lazy(() => import('./components/Users/Users'));
 const ChatPage = React.lazy(() => import('./components/ChatPage/ChatPage'));
 const Login = React.lazy(() => import('./components/Login/Login'));
 
-const App: React.FC = props => {
+const App: React.FC = (props) => {
   const inizializated = useSelector((state: AppState) => state.app.inizializated)
   const userData = useSelector((state: AppState) => state.auth)
   const blackThemeP = useSelector((state: AppState) => state.settings.blackTheme)
   const dispatch = useDispatch()
-  const users = useSelector((state:AppState)=> state.massagesPage.users)
-  
   //@ts-ignore
   const inizializateReadyP = (isAuth: boolean, id: number) => dispatch(inizializateReady(isAuth, id))
   localStorage.setItem('blackTheme', blackThemeP);
   const blackTheme = localStorage.getItem('blackTheme') === 'true';
   // blackTheme === true ? normalPhone : blackPhone
-  const { Header, Content } = Layout;
+  const { Content } = Layout;
   useEffect(() => {
     inizializateReadyP(userData.isAuth, userData.id)
   }, [inizializated])
   if (!inizializated) return <div className='inizializating'></div>
   return (
-    <Layout style={{ height: '100vh', overflowX: 'hidden' }}>
+    <Layout style={{ height: '100vh', overflowX: 'hidden'}}>
     <HeaderComponent />
     <Layout  >
       <Layout >
@@ -58,6 +55,7 @@ const App: React.FC = props => {
               padding: 0,
               margin: 0,
               minHeight: 280,
+              
             } : {
               padding: 24,
               margin: 0,

@@ -1,4 +1,3 @@
-import { useDispatch } from 'react-redux';
 import { AllActionType, TypeFunction } from "./store-redux"
 
 type SideBarLink = {
@@ -9,26 +8,24 @@ type SideBarLink = {
 }
 let initialState = {
     sideBarLinks:[
-        {id:1,to:'/profile',text:'PROFILE', isSelected: false},
+        {id:1,to:'/profile',text:'PROFILE', isSelected: true},
         {id:2,to:'/massages',text:'MESSAGES', isSelected: false},
-        {id:3,to:'/users',text:'USERS!', isSelected: false},
-        {id:4,to:'/music',text:'MUSIC', isSelected: false},
-        {id:5,to:'/games',text:'GAMES', isSelected: false},
-        {id:6,to:'/gays',text:'GAYS', isSelected: false},
-        {id:7,to:'/help',text:'HELP', isSelected: false},
-        {id:8,to:'/settings',text:'SETTINGS', isSelected: false},
-        {id:9,to:'/friends',text:'FRIENDS', isSelected: false},
-
-        ,
-    ] as Array<SideBarLink | any>,
-    // selectedSideBarLinks: [undefined] as any,
-    selectedSideBarLinks: [{id:1,to:'/profile',text:'PROFILE', isSelected: true}] as any,
+        {id:3,to:'/chat',text:'CHAT!', isSelected: false},
+        {id:4,to:'/users',text:'USERS!', isSelected: false},
+        {id:5,to:'/news',text:'NEWS', isSelected: false},
+        {id:6,to:'/help',text:'HELP', isSelected: false},
+        {id:7,to:'/settings',text:'SETTINGS', isSelected: false},
+    ] as Array<SideBarLink>,
+    selectedSideBarLinks: [{id:1,to:'/profile',text:'PROFILE', isSelected: false}] as Array<SideBarLink>,
     showSideBar: true,
     oldURL: ''
-}
+} 
+
 //@ts-ignore
 type initialStateType = typeof initialState
 let SelectedKeysCalls = 0
+console.log(window.location.href.split('/'));
+
 const reducer = (state = initialState,action:ActionType):initialStateType=>{
     switch(action.type){
         case "sideBar-reducer/SET_SHOW_SIDEBAR":{
@@ -39,11 +36,17 @@ const reducer = (state = initialState,action:ActionType):initialStateType=>{
         }
         case 'sideBar-reducer/SET_SELECTED_KEYS':{
             if(SelectedKeysCalls <= state.sideBarLinks.length){
+            const isLocalHost = window.location.href.split('/')[2].split(':')[0]
             return{
                 ...state,
                 sideBarLinks: state.sideBarLinks.map((object)=>{
                     SelectedKeysCalls++
-                    if(`http://localhost:3000/react-app#${object.to}` === window.location.href){
+                    const urlHelper = `http://localhost:3000/react-app#${object.to}`
+                    const gitHub = `https://alexandercherniy.github.io/react-app/#${object.to}`
+                    const defaultUrl = isLocalHost === urlHelper.split('/')[2].split(':')[0] ? urlHelper : gitHub
+                    const defaultUrl2 = isLocalHost === urlHelper.split('/')[2].split(':')[0] ?  `http://localhost:3000/react-app#/${window.location.href.split('/')[4].split('?')[0]}` : `https://alexandercherniy.github.io/react-app/#${window.location.href.split('/')[4].split('?')[0]}`
+                    
+                    if( defaultUrl === defaultUrl2){
                         return {
                             ...object,
                             isSelected: true

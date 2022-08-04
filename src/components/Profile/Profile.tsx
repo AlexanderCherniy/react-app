@@ -1,5 +1,4 @@
-
-import { Breadcrumb, Col } from 'antd';
+import { Col } from 'antd';
 import { useSelector } from 'react-redux';
 //@ts-ignore
 import { ProfileType } from '../../api/api-dal';
@@ -35,8 +34,10 @@ let Profile: React.FC<Props> = props => {
   const userProfile = useSelector(getMyUserProfile)
   return (
     <Col span={20}> 
-    <main className={incClass.main}>
+    <main style={{marginLeft: 10}} className={incClass.main}>
       <BreadCrumbContainer page='Profile' containerPage='ProfilePage'/>
+      {window.innerWidth <= 512 ? <div style={{background: 'white', padding: '8px 20px', borderRadius: 3 ,marginBottom: 10, display: 'flex', justifyContent: 'center'}}><b>{userProfile[0]?.fullName}</b></div> : <span style={{marginLeft: 10, borderRadius: 3 ,background: 'white', padding: '8px 30px'}}><b>{userProfile[0]?.fullName}</b></span>}
+
       <div className={incClass.container}>
         <ProfileInfo {...props} userProfile = {userProfile}/>
       </div>

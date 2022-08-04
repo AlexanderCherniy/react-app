@@ -12,10 +12,10 @@ const FollowUnFollowButtons:React.FC<Props> = ({u, isBlocked, unfollowUsers, fol
         u.followed === true
             ? <button disabled={isBlocked.some(id => id === u.id)} className={classes.unfollow} onClick={() => {
                 unfollowUsers(u.id)
-            }}><UserDeleteOutlined style={{fontSize: '23px', color:'rgb(240, 59, 59)'}}/></button>
+            }}><UserDeleteOutlined style={{fontSize: '24px', color:'rgb(240, 59, 59)', background: 'white'}}/></button>
             : <button disabled={isBlocked.some(id => id === u.id)} className={classes.follow} onClick={() => {
                 followUsers(u.id)
-        }}><UserAddOutlined style={{fontSize: '23px', color:'rgb(41, 181, 41)'}}/></button>
+        }}><UserAddOutlined style={{fontSize: '24px', color:'rgb(41, 181, 41)', background: 'white'}}/></button>
         
     )
 }

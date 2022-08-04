@@ -8,6 +8,19 @@
     margin-right: 20px;
     margin-bottom: 20px;
 }
+.users{
+    padding: 20px;
+    border-radius: 3px;
+    background-color: #fff;
+}
+.instructationContainer{
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+    border-radius: 3px;
+}
 .instructation{
     font-size: 18px;
     padding: 10px 20px;
@@ -29,10 +42,12 @@
     font-weight:bold;
     margin-right: 5px;
     font-size: 20px;
+    cursor: pointer;
 }
 .noactiveNum{
     margin-right: 5px;
     font-size: 17px;
+    cursor: pointer;
 }
 .AllUserInfo{
     display: grid;
@@ -40,9 +55,9 @@
     align-items: center;
 }
 .numsContainer{
-    max-width: 230px;
+    display: inline-block;
     overflow: hidden;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
 }
 .AllUserInfoItem{
     width: 140px;
