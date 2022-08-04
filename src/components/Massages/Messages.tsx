@@ -19,7 +19,7 @@ export type MessagesValues = {
     userId: number | string
 }
 const Massages: React.FC = () => {
-    const [userIdURL, setUserIdUrl] = useState<number | string>(window.location.href.split('/')[5])
+    const [userIdURL, setUserIdUrl] = useState<number | string>(window.location.href.split('/')[6])
     const [reloadesPage, setReloadesPage] = useState<number>(1)
     const myId = useSelector((state: AppState) => state.auth.id)
     const users = useSelector((state: AppState) => state.massagesPage.users)
@@ -40,10 +40,16 @@ const Massages: React.FC = () => {
         message: '',
         userId: ''
     }
-
+    let counter = 0
     useEffect(() => {
+        counter++
         //@ts-ignore
         dispatch(getAllDialogs())
+        //@ts-ignore
+        if(counter === 0){
+            //@ts-ignore
+            dispatch(setUserIdUrl(window.location.href.split('/')[4] === '#' ? window.location.href.split('/')[6] : window.location.href.split('/')[5]))
+        }
         //@ts-ignore
         dispatch(getConcreteUserMessages(userIdURL))
 
