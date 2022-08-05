@@ -47,7 +47,7 @@ const App: React.FC = (props) => {
       <Layout >
 
           {userData.isAuth === true ? <SideBar /> : <div></div>} 
-        <Layout style={{ padding: '0 24px 24px 0'}}>
+        <Layout >
 
           <Content
             className="site-layout-background"

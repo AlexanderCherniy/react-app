@@ -65,7 +65,7 @@ const Users: React.FC = props => {
             navigate(`/users?page=${newPage}&count=${pageSize}&term=${values.term}&friend=${values.searchParams === "null" ? "null" : values.searchParams === "true" ? "true" : "false"}`)
         }}>
 
-        <main style={{marginLeft: 10}}>
+        <main style={{marginLeft: 10, paddingBottom: 30}}>
             <BreadCrumbContainer page='Users' containerPage='UsersPage' />
             <Form style={{marginBottom: 10}}>
                 <div style={window.innerWidth <= 450 ? {} : { display: 'flex', gap: 5 }}>

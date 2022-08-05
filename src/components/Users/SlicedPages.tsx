@@ -1,6 +1,5 @@
 import classes from './Users.module.scss'
 import type { PaginationProps } from 'antd';
-import { Pagination } from 'antd';
 import React from 'react';
 import { fillUsers as fillUsersI, downloadUsers as downloadUsersI, followUsers as followUsersI, unfollowUsers as unfollowUsersI, actions } from "../../redux/users-reducer";
 import { useDispatch } from 'react-redux';

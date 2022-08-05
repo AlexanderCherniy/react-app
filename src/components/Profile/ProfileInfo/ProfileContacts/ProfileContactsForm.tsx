@@ -1,3 +1,4 @@
+import { Button } from "antd";
 import { Form, Field, Formik, ErrorMessage } from "formik"
 import { createField, Input } from "../../../../Forms/Forms";
 import { dataType } from "../../../../redux/auth-reducer";
@@ -88,7 +89,9 @@ const ProfileContactsForm: React.FC<Props> = (props) => {
                                 return <Contacts key={key}
                                     contactTitle={'contacts.' + key} contactValue={key} activeContacts={props.activeContacts} />
                             })}
-                            <button className={classProfile.changeButton} type="submit">GO FORM</button>
+                            <Button style={{backgroundColor: 'white', border: '1px black solid', color: 'black'}} htmlType={"submit"} type="primary" size={'large'}>
+                                Save
+                            </Button>
                         </Form>
                     </div>
                 </div>

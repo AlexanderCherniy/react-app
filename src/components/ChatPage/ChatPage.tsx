@@ -7,7 +7,7 @@ import BreadCrumbContainer from "../BreadCrumb/BreadCrumb";
 
 const ChatPage: React.FC = props => {
     const [CloseErrorMessage ,setCloseErrorMessage] = useState<boolean>(false)
-    return <div >
+    return <div style={{paddingBottom: 30}}>
         <div className={c.wrapper}>
             <BreadCrumbContainer page='Chat' containerPage='ChatPage'/>
         </div>

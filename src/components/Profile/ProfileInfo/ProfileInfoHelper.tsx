@@ -25,10 +25,8 @@ export const MyProfile:React.FC<MyProfileProps> = (props: any) => {
   }
   return <></>
 }
-// export const ButtonChange = (props: {userData:dataType, userProfile: [ProfileType]}, func:Function)=>{
 export const ButtonChange = (props: any, func:Function)=>{
   if(props.userData.id === props.userProfile[0].userId){
-    // return <button className={incClass.changeButton} onClick={() => func(true)}>CHANGE</button>
     return <Button onClick={() => func(true)} style={{backgroundColor: 'white', border: '1px black solid', color: 'black'}} type="primary" size={'large'}>
     Change Profile
   </Button>

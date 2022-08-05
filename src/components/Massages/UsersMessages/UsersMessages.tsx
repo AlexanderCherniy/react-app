@@ -19,36 +19,37 @@ const UsersMassages: React.FC<UsersMassagesType> = props => {
 
     const myPhoto = useSelector((state: AppState) => state.auth.photo)
     const dispatch = useDispatch()
-    const deleteMessage = async (messageID: string, userId: number | string)=>{
+    const deleteMessage = async (messageID: string, userId: number | string) => {
         //@ts-ignore
-        dispatch(deleteYourMessage(messageID, userId))   
+        dispatch(deleteYourMessage(messageID, userId))
     }
-    useEffect(()=>{
+    useEffect(() => {
         count++
-        if(count <= 3){
+        if (count <= 3) {
             //@ts-ignore
             dispatch(getConcreteUserMessages(window.location.href.split('/')[5]))
         }
     }, [window.location.href.split('/')[5]])
     if (props.senderId === props.myId) {
         return (
-            // @ts-ignore
-                <div style={window.innerWidth <= 450 ? {fontSize: 16} : {fontSize: 20}} className={cn.myMessage}>
-                    <span className={cn.messageHelper}>
-                        {/* @ts-ignore */}
-                        <img className={cn.myPhoto} src={myPhoto} alt='Avatar' title='User Photo'/>
-                        <div>
-                            {props.body}
-                            {props.viewed === true ? <CheckOutlined className={cn.messageViewed} /> : <SendOutlined className={cn.messageNotViewed} />}
-                        </div>
-                        <div  title='Delete your message (only for you)' style={{marginLeft: 30, cursor: 'pointer'}} onClick={()=> deleteMessage(props.id, props.userId)}>X</div>
-                    </span>
+            <div style={window.innerWidth <= 450 ? { fontSize: 16 } : { fontSize: 20 }} className={cn.myMessage}>
+                <div className={cn.messageHelper}>
+                    {/* @ts-ignore */}
+                    <img className={cn.myPhoto} src={myPhoto} alt='Avatar' title='User Photo' />
+                    <div>
+                        {props.body}
+                    </div>
+                    <div>
+                        <div title='Delete your message (only for you)' style={{ marginLeft: 30, cursor: 'pointer', position: 'absolute', right: 10, }} onClick={() => deleteMessage(props.id, props.userId)}>X</div>
+                        {props.viewed === true ? <CheckOutlined title='Message was viewed' className={cn.messageViewed} /> : <SendOutlined title='Message was not viewed' className={cn.messageNotViewed} />}
+                    </div>
                 </div>
+            </div>
         )
     }
     return (
-        <div style={window.innerWidth <= 450 ? {fontSize: 16} : {fontSize: 20}} className={cn.userMassage}>
-            <img className={cn.userPhoto} src={props.photo} alt='Avatar' title='User Photo'/>
+        <div style={window.innerWidth <= 450 ? { fontSize: 16 } : { fontSize: 20 }} className={cn.userMassage}>
+            <img className={cn.userPhoto} src={props.photo} alt='Avatar' title='User Photo' />
             {props.body}
         </div>
     )
