@@ -41,7 +41,7 @@ const App: React.FC = (props) => {
   }, [inizializated])
   if (!inizializated) return <div className='inizializating'></div>
   return (
-    <Layout style={{ height: '100vh', overflowX: 'hidden'}}>
+    <Layout style={{ height: '100vh', overflowX: 'hidden' }}>
     <HeaderComponent />
     <Layout  >
       <Layout >

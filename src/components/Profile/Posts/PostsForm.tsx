@@ -4,7 +4,6 @@ import { validatePost } from '../../../validate/validate';
 import { Form, Formik } from "formik"
 import { createField, Textarea } from '../../../Forms/Forms';
 import { SendOutlined } from '@ant-design/icons';
-import { SubmitButton } from 'formik-antd';
 import { Button } from 'antd';
 const noPhoto =
     'https://images.theconversation.com/files/449089/original/file-20220301-25-ckck4y.jpeg?ixlib=rb-1.1.0&q=45&auto=format&w=1200&h=1200.0&fit=crop'
