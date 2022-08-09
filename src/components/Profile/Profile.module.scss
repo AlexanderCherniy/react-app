@@ -1,0 +1,153 @@
+.title{
+    font-size: 50px;
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+.ProfileFlex {
+    display: flex;
+    gap: 10px;
+}
+.Profile {
+    gap: 10px;
+}
+
+.Profile__name {
+    margin-top: 5px;
+    margin-bottom: 3px;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+.ProfileTextStyle {
+    line-height: 24px;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+.ProfileTextHeader{
+    font-weight: 600;
+    color: rgb(54, 52, 52);
+}
+.ContactTitle{
+    font-weight: 600;
+    color: rgb(54, 52, 52);
+    cursor: pointer;
+}
+.ProfileJobSearchTitle{
+    font-weight: 600;
+    color: rgb(54, 52, 52);
+    margin-right: 5px;
+}
+.ProfileMega{
+    font-size: 17px;
+}
+.ProfileImgContainer{
+    background-color: #fff;
+    padding: 10px 4px;
+}
+.ProfileTextContainer{
+    background-color: #fff;
+    padding: 10px 15px;
+}
+.Profile__img {
+    display: grid;
+    margin-bottom: 20px;
+    grid-template-rows: 5fr 1fr;
+    padding: 10px;
+    position: relative;
+    height: 150px;
+}
+.usedZoomImg{
+    transform: scale(1.5);
+    height: 150px;
+    width: 150px;
+    transition: 0.3s all ease;
+    position: relative;
+}
+.noUsedZoomImg{
+    height: 150px;
+    width: 150px;
+    transition: 0.3s all ease;
+    position: relative;
+}
+.selectedPhoto{
+    position: absolute;
+    bottom: 5px;
+    left: 15%;
+    width: 115px;
+}
+.jobSearchIcon{
+    width: 20px;
+    height: 20px;
+}
+.ContactLink{
+    margin-left: 15px;
+    line-height: 16px;
+    margin-bottom: 2px;
+}
+.ContactLinkHeader{
+    font-weight: 600;
+    color: rgb(54, 52, 52);
+    margin-right: 4px;
+}
+.changeButton{
+    background-color: #fff;
+    border-radius: 6px;
+    padding: 5px 20px;
+    text-transform: uppercase;
+    font-size: 15px;
+    border: solid 1px #555555;
+}
+.ProfileJobSearch{
+    line-height: 24px;
+    display: flex;
+    align-items: center;
+    gap: 3px;
+}
+.ContactsFormContainer{
+    display: flex;
+    align-items: center;
+    margin-left: 15px;
+    line-height: 16px;
+    margin-bottom: 2px;
+    max-height: 1000px;
+    overflow: visible;
+    transition: 0.5s all ease;
+}
+.ContactsFormContainer.active{
+    max-height: 0px;
+    overflow: hidden;
+    transition: 0.5s all ease;
+}
+.plus{
+    font-size: 15px;
+}
+.minus{
+    font-size: 15px;
+}
+.status{
+    font-weight: 600;
+    color: rgb(54, 52, 52);
+}
+.penIcon{
+    width: 15px;
+    height: 15px;
+    transform: scale(1.6);
+}
+.form{
+    padding: 8px 5px;
+    border-radius: 5px;
+    border: solid 1px #555555;
+    max-width: 480px;
+    width: 100%;
+    height: 16px;
+    font-size: 14px;
+}
+.statusText{
+    font-size: 15px;
+    cursor: pointer;
+    color: rgb(54, 52, 52);
+}
+.WriteToUser{
+    
+}

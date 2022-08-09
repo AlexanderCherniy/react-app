@@ -1,0 +1,37 @@
+
+.wrapper {
+    font-family: Arial;
+    background-color: #ecf0f1;
+    height: 100%;
+    width: 100%;
+}
+
+.wrapper.blackTheme{
+    background-color: #333637;
+    color: white;
+}
+
+
+.shellMainSide {
+    display: flex;
+    gap: 40px;
+}
+
+.main__container {
+    display: flex;
+    flex-direction: column;
+    gap: 19px;
+}
+.title{
+    font-size: 50px;
+    font-weight: 500;
+    margin-bottom: 20px;   
+}
+.inizializating{
+    background-color: #ecf0f1;
+    font-size: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: arial;
+}

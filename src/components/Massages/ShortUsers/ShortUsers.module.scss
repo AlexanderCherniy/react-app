@@ -1,0 +1,22 @@
+.users{
+    background: white;
+    padding: 20px;
+}
+.usersSmallWidth{
+    background: white;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+.users990Width{
+    background: white;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+.users750Width{
+    background: white;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: 1fr;
+}
