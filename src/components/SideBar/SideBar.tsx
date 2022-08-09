@@ -51,7 +51,6 @@ let SideBar: React.FC = () => {
   console.log(selectedSideBarLinks);
   
   const [counter, setCounter] = useState(0)
-  console.log(counter);
   
   setTimeout(()=>{
     if(counter < 3) setCounter(counter + 1)

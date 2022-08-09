@@ -37,14 +37,15 @@ const reducer = (state = initialState,action:ActionType):initialStateType=>{
         case 'sideBar-reducer/SET_SELECTED_KEYS':{
             if(SelectedKeysCalls <= state.sideBarLinks.length){
             const isLocalHost = window.location.href.split('/')[2].split(':')[0]
+            
             return{
                 ...state,
                 sideBarLinks: state.sideBarLinks.map((object)=>{
                     SelectedKeysCalls++
                     const urlHelper = `http://localhost:3000/react-app#${object.to}`
                     const gitHub = `https://alexandercherniy.github.io/react-app/#${object.to}`
-                    const defaultUrl = isLocalHost === urlHelper.split('/')[2].split(':')[0] ? urlHelper : gitHub
-                    const defaultUrl2 = isLocalHost === urlHelper.split('/')[2].split(':')[0] ?  `http://localhost:3000/react-app#/${window.location.href.split('/')[4].split('?')[0]}` : `https://alexandercherniy.github.io/react-app/#${window.location.href.split('/')[4].split('?')[0]}`
+                    const defaultUrl = isLocalHost === 'localhost' ? urlHelper : gitHub
+                    const defaultUrl2 = isLocalHost === 'localhost' ?  `http://localhost:3000/react-app#/${window.location.href.split('/')[4].split('?')[0]}` : `https://alexandercherniy.github.io/react-app/#${window.location.href.split('/')[4].split('?')[0]}`
                     
                     if( defaultUrl === defaultUrl2){
                         return {
