@@ -14,6 +14,7 @@ import AnonimGoLogin from '../../noc/hoc';
 import { compose } from 'redux';
 import ShortUsers from './ShortUsers/ShortUsers';
 import ShortMessages from './ShortMessages/ShortMessages';
+import { getMyUserProfile } from '../../redux/profile-reselects';
 export type MessagesValues = {
     message: string
     userId: number | string
@@ -32,7 +33,8 @@ const Massages: React.FC = () => {
             }
         })
     })
-
+    const userDataEmail = useSelector((state: AppState)=> state.auth.login)
+    
     const shortMassages = messages.map((massage, index) => <UsersMassages photo={massage.photo} userId={userIdURL} id={massage.id} viewed={massage.viewed} myId={myId} senderId={massage.senderId} key={index} body={massage.body} />)
     const dispatch = useDispatch()
 
@@ -79,10 +81,13 @@ const Massages: React.FC = () => {
         }}>
         <main className={mClas.messages}>
             <BreadCrumbContainer page='Messages' containerPage='MessagesPage'/>
-            <Form className={mClas.SearchUsersFlexContainer}>
-                {createField(mClas.InputSearchUsers, 'userId', Input, "Введите ID собеседника")}
-                <SubmitButton type='default'>Find</SubmitButton>
-            </Form>
+            <div style={ window.innerWidth <= 512 ? {} :{display: 'flex'}}>
+                <Form className={mClas.SearchUsersFlexContainer}>
+                    {createField(mClas.InputSearchUsers, 'userId', Input, "Введите ID собеседника")}
+                    <SubmitButton type='default'>Find</SubmitButton>
+                </Form>
+                {window.innerWidth <= 512 ? <div style={{background: 'white', padding: '8px 20px', borderRadius: 3 ,marginBottom: 10, display: 'flex', justifyContent: 'center', alignItems: 'center'}}><b>{userDataEmail}</b></div> : <span style={{marginBottom: 9 ,marginLeft: 10 ,background: 'white', padding: '0px 20px', display:'flex', alignItems: 'center'}}><b>{userDataEmail}</b></span>}
+            </div>
             <div className={window.innerWidth <= 1300 ? mClas.containerSmallWidth : mClas.container}>
                 {window.innerWidth <= 900 ? window.location.href.split('/')[4] === '#'
                     ? window.location.href.split('/')[6] === undefined
