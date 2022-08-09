@@ -45,7 +45,9 @@ const reducer = (state = initialState,action:ActionType):initialStateType=>{
                     const urlHelper = `http://localhost:3000/react-app#${object.to}`
                     const gitHub = `https://alexandercherniy.github.io/react-app/#${object.to}`
                     const defaultUrl = isLocalHost === 'localhost' ? urlHelper : gitHub
-                    const defaultUrl2 = isLocalHost === 'localhost' ?  `http://localhost:3000/react-app#/${window.location.href.split('/')[4].split('?')[0]}` : `https://alexandercherniy.github.io/react-app/#${window.location.href.split('/')[5].split('?')[0]}`
+                    const defaultUrl2 = isLocalHost === 'localhost' ?  `http://localhost:3000/react-app#/${window.location.href.split('/')[4].split('?')[0]}` : `https://alexandercherniy.github.io/react-app/#/${window.location.href.split('/')[4].split('?')[0]}`
+                    console.log(`https://alexandercherniy.github.io/react-app/#/${window.location.href.split('/')[4].split('?')[0]}`);
+                    
                     
                     
                     if( defaultUrl === defaultUrl2){
