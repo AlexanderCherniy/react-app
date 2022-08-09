@@ -1,4 +1,3 @@
-
 import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { AppState } from '../../redux/store-redux';
@@ -49,9 +48,13 @@ let SideBar: React.FC = () => {
   };
 
   const selectedSideBarLinks:any = useSelector((state: AppState) => state.sideBar.selectedSideBarLinks)
+  console.log(selectedSideBarLinks);
+  
   const [counter, setCounter] = useState(0)
+  console.log(counter);
+  
   setTimeout(()=>{
-    if(counter < 6) setCounter(counter + 1)
+    if(counter < 3) setCounter(counter + 1)
   }, 0)
   if(counter >= 1){
     return (
